@@ -1,29 +1,34 @@
 <?php
 
+require APP_DIR . '/helpers/url_helper.php';
+
 class View {
 
-	private $pageVars = array();
-	private $template;
+    //private $pageVars = array();
+    //private $template;
+    private $smarty;
 
-	public function __construct($template)
-	{
-		$this->template = APP_DIR .'views/'. $template .'.php';
-	}
+    public function __construct() {
+        //$this->template = APP_DIR . 'views/' . $template . '.php';
+        $this->smarty = new Smarty();
+        $this->smarty->setTemplateDir(APP_DIR . '/views');
+        $this->smarty->setCompileDir(APP_DIR . '/views/compiled');
+        $urlhelper =new Url_helper();
+        //$this->smarty->registerClass('urlhelper', 'Url_helper');
+        $this->smarty->registerObject('urlhelper', $urlhelper);
+    }
 
-	public function set($var, $val)
-	{
-		$this->pageVars[$var] = $val;
-	}
+    public function render($filename, $data = array(), $return = false) {
+//        ob_start();
+//        require($this->template);
+//        echo ob_get_clean();
+        $tmpl = $this->smarty->createTemplate($filename, NULL, NULL, $data, NULL);
+        if ($return)
+            $tmpl->fetch();
+        else
+            $tmpl->display();
+    }
 
-	public function render()
-	{
-		extract($this->pageVars);
-
-		ob_start();
-		require($this->template);
-		echo ob_get_clean();
-	}
-    
 }
 
 ?>
