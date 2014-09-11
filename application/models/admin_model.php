@@ -12,6 +12,6 @@
  * @author brian
  */
 
-class User_model extends Model{
+class Admin_model extends Model{
     //put your code here
 }

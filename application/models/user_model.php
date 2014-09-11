@@ -11,7 +11,23 @@
  *
  * @author brian
  */
+class User_model extends Model {
 
-class User_model extends Model{
     //put your code here
+
+    public function login($username, $password) {
+        $username = $this->escapeString($username);
+        $password = md5($this->escapeString($password));
+        $result = $this->query("select * from users where name='" . $username . "' and passsword='" . $password . "';");
+        return $result;
+    }
+
+    public function register($username, $password, $nickname) {
+        $username = $this->escapeString($username);
+        $password = md5($this->escapeString($password));
+        $nickname = $this->escapeString($nickname);
+        $result = $this->query("insert into users (name,password,nickname) values('" . $username . "','" . $password . "'," . $nickname . "');");
+        return $result;
+    }
+
 }

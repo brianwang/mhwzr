@@ -6,6 +6,7 @@ class Main extends Controller {
         //$template = $this->loadView('main_view');
         $this->view->render('default.tpl');
     }
+    
 
 }
 
