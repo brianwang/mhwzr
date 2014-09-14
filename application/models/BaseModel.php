@@ -7,11 +7,14 @@
  */
 
 /**
- * Description of User_model
+ * Description of BaseModel
  *
  * @author brian
  */
-
-class Admin_model extends Model{
+class BaseModel extends ActiveRecord\Model {
     //put your code here
+    public static function attrs(){
+        return self::connection()->columns(self::table_name());
+    }
+    static $columns= array();
 }

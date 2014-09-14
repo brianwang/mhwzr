@@ -2,13 +2,14 @@
 
 class User extends Controller {
 
-    protected $usermodel;
-    protected $postmodel;
+    protected $userbll;
+
+    //protected $postmodel;
 
     function __construct() {
         parent::__construct();
-        $this->usermodel = new User_model;
-        $this->postmodel = new Post_model;
+        $this->userbll = new UserBll;
+        //$this->postmodel = new Post;
     }
 
     function register() {
@@ -18,16 +19,22 @@ class User extends Controller {
             $password = $_POST['password'];
             $confirmpass = $_POST['confirmpassword'];
             $username = $_POST['username'];
-            $nickname = $_POST['nickname'];
+            //$nickname = $_POST['nickname'];
             if ($password == $confirmpass) {
-                $result = $this->usermodel->register($username, $password, $nickname);
-                $this->rediect('/user/register');
+                $data = $_POST;
+                $data['id'] = genid();
+                $data['password'] = md5($data['password']);
+                unset($data['confirmpassword']);
+                $this->userbll->register($data);
+                $this->redirect('/page/register');
             } else {
                 $data['error'] = '密码和确认密码不一致';
+                $data['questions'] = $config['questions'];
                 $this->view->render('register.tpl', $data);
             }
         } else {
             $data['error'] = '用户名和密码为空';
+            $data['questions'] = $config['questions'];
             $this->view->render('register.tpl', $data);
         }
     }

@@ -1,5 +1,7 @@
 <?php
 
+
+
 class Model {
 
     private $connection;
@@ -7,12 +9,12 @@ class Model {
     public function __construct() {
         global $config;
 
-        $this->connection = mysql_pconnect($config['db_host'], $config['db_username'], $config['db_password']) or die('MySQL Error: ' . mysql_error());
-        mysql_select_db($config['db_name'], $this->connection);
+        //$this->connection = mysqli_connect($config['db_host'], $config['db_username'], $config['db_password']) or die('MySQL Error: ' . mysql_error());
+        //mysqli_select_db($this->connection, $config['db_name']);
     }
 
     public function escapeString($string) {
-        return mysql_real_escape_string($string);
+        return mysqli_real_escape_string($string);
     }
 
     public function escapeArray($array) {
@@ -37,17 +39,17 @@ class Model {
     }
 
     public function query($qry) {
-        $result = mysql_query($qry) or die('MySQL Error: ' . mysql_error());
+        $result = mysqli_query($qry) or die('MySQL Error: ' . mysqli_error());
         $resultObjects = array();
 
-        while ($row = mysql_fetch_object($result))
+        while ($row = mysqli_fetch_object($result))
             $resultObjects[] = $row;
 
         return $resultObjects;
     }
 
     public function execute($qry) {
-        $exec = mysql_query($qry) or die('MySQL Error: ' . mysql_error());
+        $exec = mysqli_query($qry) or die('MySQL Error: ' . mysqli_error());
         return $exec;
     }
 

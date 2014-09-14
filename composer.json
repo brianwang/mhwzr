@@ -1,7 +1,10 @@
 {
-    "name": "root/smvc",
+    "name": "smvc",
     "require": {
         "smarty/smarty": "*",
-        "adodb/adodb-php": "*"
+        "php-activerecord/php-activerecord": "*"
+    },
+    "autoload": {
+        "psr-0": {"":   "application/models/"}
     }
 }

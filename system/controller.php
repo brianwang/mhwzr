@@ -1,14 +1,13 @@
 <?php
 
 class Controller {
-    
-    
+
     /**
      *
      * @var View
      */
     protected $view;
-    
+
     function __construct() {
         $this->view = new View();
     }
@@ -19,8 +18,6 @@ class Controller {
         $model = new $name;
         return $model;
     }
-
-    
 
     public function loadPlugin($name) {
         require(APP_DIR . 'plugins/' . strtolower($name) . '.php');
@@ -34,7 +31,6 @@ class Controller {
 
     public function redirect($loc) {
         global $config;
-
         header('Location: ' . $config['base_url'] . $loc);
     }
 

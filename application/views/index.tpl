@@ -1,4 +1,5 @@
 {extends file='layouts/main.tpl'}
 {block name=content}
-    Hello, world
+    首页
+
 {/block}

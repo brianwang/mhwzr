@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.19-dev, created on 2014-08-20 00:00:05
+<?php /* Smarty version Smarty-3.1.19-dev, created on 2014-09-14 22:00:38
          compiled from "/home/brian/www/smvc/application/views/layouts/header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:83934834453f36e8986d515-11550100%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2caadf5efb3cdc91773c56fcbbc3bd38b46b3c2e' => 
     array (
       0 => '/home/brian/www/smvc/application/views/layouts/header.tpl',
-      1 => 1408464005,
+      1 => 1410703237,
       2 => 'file',
     ),
   ),
@@ -41,6 +41,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <link rel="stylesheet" href="/static/css/app.css">
 
         <script src="/static/bower_components/modernizr/modernizr.js"></script>
-
+        <script src="/static/bower_components/jquery/dist/jquery.js"></script>
+        <script src="/static/bower_components/jquery-placeholder/jquery.placeholder.js"></script>
+        <script src="/static/bower_components/jquery.cookie/jquery.cookie.js"></script>
+        <script src="/static/bower_components/foundation/js/foundation.js"></script>
+        <script src="/static/bower_components/fastclick/lib/fastclick.js"></script>
     </head>
     <body><?php }} ?>

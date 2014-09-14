@@ -7,13 +7,11 @@
  */
 
 /**
- * Description of post_model
+ * Description of PostBLL
  *
  * @author brian
  */
-class Post_model extends Model {
-
-    //put your code here
+class PostBll extends Model {
 
     public function create($data = array()) {
         $sql = 'insert into posts(';
@@ -27,11 +25,15 @@ class Post_model extends Model {
             }
         }
         $sql = substr($sql, 0, str_len($sql) - 1);
-        $values = substr($values, 0, str_len($values) - 1);
+        $values = \substr($values, 0, str_len($values) - 1);
         $sql = $sql . ') values(' . $values . ')';
         echo $sql;
         $result = $this->query($sql);
         return $result;
+    }
+
+    function addcomments($data) {
+        
     }
 
 }
