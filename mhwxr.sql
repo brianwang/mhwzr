@@ -24,11 +24,11 @@ DROP TABLE IF EXISTS `post_comments`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `post_comments` (
   `post_id` bigint(20) NOT NULL,
-  `content` text NOT NULL,
+  `content` mediumtext NOT NULL,
   `uid` bigint(20) NOT NULL,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,17 +52,18 @@ CREATE TABLE `posts` (
   `name` varchar(45) NOT NULL,
   `province` varchar(24) NOT NULL,
   `city` varchar(24) NOT NULL,
-  `birthday` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `birthday` datetime NOT NULL,
   `gender` bit(1) NOT NULL,
-  `identity` varchar(50) DEFAULT NULL,
-  `description` text NOT NULL,
+  `description` mediumtext NOT NULL,
   `task` varchar(50) NOT NULL,
   `rewards` float NOT NULL,
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` varchar(50) NOT NULL,
   `creator` bigint(20) NOT NULL,
+  `duration` varchar(45) NOT NULL,
+  `imgurl` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,6 +72,7 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
+INSERT INTO `posts` VALUES (27,'aa','安徽','安徽','1982-01-01 00:00:00','','222','查QQ',100,'2014-09-14 16:02:27','',0,'1','/uploads/5415bc137209a.'),(362,'bb','安徽','安徽','1982-01-01 00:00:00','','222','查QQ',100,'2014-09-14 16:03:41','',0,'1','/uploads/5415bc5dc16a0.'),(6817,'cc','安徽','安徽','1982-01-01 00:00:00','','222','查QQ',100,'2014-09-14 16:03:48','',0,'1',NULL),(75266308,'aa','安徽','安徽','1982-01-01 00:00:00','','111','查QQ',100,'0000-00-00 00:00:00','',0,'1','/uploads/5415bba261acc.');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,12 +97,12 @@ CREATE TABLE `users` (
   `description` text,
   `question` varchar(255) NOT NULL,
   `answer` varchar(255) NOT NULL,
-  `idpic1` text,
-  `idpic2` text,
+  `idpic1` mediumtext,
+  `idpic2` mediumtext,
   `register_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `status` varchar(45) NOT NULL,
   PRIMARY KEY (`id`,`email`,`identity`,`phone`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,6 +111,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (0,'aaa','aaa','aaa','aaa','aaa','aaa','2014-09-13 17:00:27','\0','aaa',NULL,'ä½ æœ€å–œæ¬¢çš„æ˜Žæ˜Ÿæ˜¯è°?','aaa',NULL,NULL,'0000-00-00 00:00:00',''),(244,'123','123123','123123','1231','123123','123','2014-09-13 17:16:58','\0','123123',NULL,'','111',NULL,NULL,'0000-00-00 00:00:00',''),(329,'aaa','aaa','11','1231','11','11','2014-09-14 09:41:04','\0','47bce5c74f589f4867dbd57e9ca9f808',NULL,'ä½ æœ€å–œæ¬¢çš„æ˜Žæ˜Ÿæ˜¯è°?','111',NULL,NULL,'0000-00-00 00:00:00',''),(494,'aa','asdf','123','123','123','123','2014-09-13 17:14:08','\0','123',NULL,'','123',NULL,NULL,'0000-00-00 00:00:00',''),(32490,'aaa','aaa','aaa','aaa','aaa','aaa','2014-09-13 17:13:26','\0','aaa',NULL,'ä½ æœ€å–œæ¬¢çš„æ˜Žæ˜Ÿæ˜¯è°?','aaa',NULL,NULL,'0000-00-00 00:00:00',''),(94685,'123','bbb','bb','bbb','bbb','bb','2014-09-13 17:17:09','\0','bb',NULL,'ä½ æœ€å–œæ¬¢çš„æ˜Žæ˜Ÿæ˜¯è°?','bb',NULL,NULL,'0000-00-00 00:00:00','');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -121,4 +124,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-09-13  1:00:44
+-- Dump completed on 2014-09-15  0:34:00
