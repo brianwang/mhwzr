@@ -13,6 +13,7 @@
  */
 class PostBll extends Model {
 
+
     public function create($data = array()) {
         $sql = 'insert into posts(';
         $values = '';

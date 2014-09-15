@@ -15,8 +15,8 @@
                     <td>{$obj->$k}</td>
                 {/foreach}
                 <td>
-                    <a>编辑</a>
-                    <a>删除</a>
+                    <a href="{$editurl}/{$obj->id}">编辑</a>
+                    <a href="{$rmurl}/{$obj->id}">删除</a>
                 </td>
             </tr>
         {/foreach}

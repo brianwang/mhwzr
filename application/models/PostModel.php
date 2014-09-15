@@ -13,6 +13,9 @@
  */
 class PostModel extends BaseModel {
 
+    static $has_many = array(
+        array('comments', 'limit' => 5, 'foreign_key'=>'post_id','class_name' => 'Comment')
+    );
     static $table_name = "posts";
     static $attr_protected = array('');
     static $columns = array(
@@ -35,8 +38,10 @@ class PostModel extends BaseModel {
         $gender = $this->read_attribute('gender');
         return $gender == 1 ? '男' : '女';
     }
-    public function get_birthday(){
+
+    public function get_birthday() {
         $birthday = $this->read_attribute('birthday');
-        return date_format($birthday,'Y-m-d');
+        return date_format($birthday, 'Y-m-d');
     }
+
 }

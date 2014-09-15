@@ -14,6 +14,7 @@ define('VENDOR_DIR', ROOT_DIR . 'vendor/');
 require(VENDOR_DIR . 'autoload.php');
 // Includes
 require(APP_DIR . 'config/config.php');
+require(APP_DIR . 'config/validate.php');
 require(ROOT_DIR . 'system/model.php');
 require(ROOT_DIR . 'system/view.php');
 require(ROOT_DIR . 'system/controller.php');

@@ -5,6 +5,6 @@
         "php-activerecord/php-activerecord": "*"
     },
     "autoload": {
-        "psr-0": {"":   "application/models/"}
+        "psr-0": {"":   ["application/models/","application/helpers/"]}
     }
 }

@@ -1,24 +1,23 @@
 <?php
 
-class Form_helper {
+class FormHelper {
     /*     * *
      * rule like array(
      *      'name'=> array(
      *          array('name1', 'required'),
      *          array('name2', array('min','required')),
-     * 
      *      )
      * )
      *      /
      */
 
-    function validate($rules = array()) {
+    public function validate($rule = []) {
         $result = array();
         $result['errors'] = array();
         $result['status'] = true;
 
-        if (is_array($rules)) {
-            foreach ($rules[$name] as $key => $value) {
+        if (is_array($rule)) {
+            foreach ($rule as $key => $value) {
                 if (isset($_POST[$key])) {
                     $postval = $_POST[$key];
                     $params = array($postval);

@@ -1,7 +1,5 @@
 <?php
 
-require APP_DIR . '/helpers/url_helper.php';
-
 class View {
 
     //private $pageVars = array();
@@ -13,9 +11,9 @@ class View {
         $this->smarty = new Smarty();
         $this->smarty->setTemplateDir(APP_DIR . '/views');
         $this->smarty->setCompileDir(APP_DIR . '/views/compiled');
-        $urlhelper = new Url_helper();
+        //$urlhelper = new UrlHelper;
         //$this->smarty->registerClass('urlhelper', 'Url_helper');
-        $this->smarty->registerObject('url', $urlhelper);
+        //$this->smarty->registerObject('url', $urlhelper);
         global $config;
         $this->smarty->assignGlobal('config', $config);
     }

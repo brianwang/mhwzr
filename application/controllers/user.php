@@ -19,7 +19,6 @@ class User extends Controller {
             $password = $_POST['password'];
             $confirmpass = $_POST['confirmpassword'];
             $username = $_POST['username'];
-            //$nickname = $_POST['nickname'];
             if ($password == $confirmpass) {
                 $data = $_POST;
                 $data['id'] = genid();
@@ -34,28 +33,15 @@ class User extends Controller {
             }
         } else {
             $data['error'] = '用户名和密码为空';
-            $data['questions'] = $config['questions'];
             $this->view->render('register.tpl', $data);
         }
     }
 
-    function login() {
-        $data = array();
-        if (isset($_POST['username']) && isset($_POST['password'])) {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-            $result = $this->usermodel->login($username, $password);
-            if (!empty($result)) {
-                $_SESSION['user'] = $result;
-                $this->redirect('/');
-            } else {
-                $data['error'] = '登录失败';
-                $this->view->render('login.tpl', $data);
-            }
-        } else {
-            $data['error'] = '用户名和密码为空';
-            $this->view->render('login.tpl', $data);
-        }
+  
+
+    function logout() {
+        unset($_SESSION['user']);
+        $this->redirect('/');
     }
 
     //发布寻人消息
@@ -101,6 +87,29 @@ class User extends Controller {
         } else {
             $data['errors'] = $result['errors'];
             $this->smarty->view('post_create.tpl', $data);
+        }
+    }
+
+    function edit($id = '') {
+        if ($id == '') {
+            $this->show_404();
+        }
+        $data = array();
+        global $rules;
+        $form_helper = new FormHelper;
+        $result = $form_helper->validate($rules['user']);
+        if ($result['status']) {
+            $user = UserModel::find(array('id' => $id));
+            foreach ($_POST as $k => $v) {
+                if ($k == 'password') {
+                    $v = md5($v);
+                }
+                $user->$k = $v;
+            }
+            $user->save();
+            $this->redirect($_SERVER["HTTP_REFERER"]);
+        } else {
+            var_dump($result['errors']);
         }
     }
 

@@ -58,4 +58,32 @@ class admin extends Controller {
         $this->view->render('admin/consume.tpl', $data);
     }
 
+    function edituser($uid = '') {
+        if ($uid == '') {
+            $this->show_404();
+        }
+        $data['user'] = UserModel::find(array('id' => $uid));
+        $data['isedit'] = true;
+        $this->view->render('admin/usermodel.tpl', $data);
+    }
+
+    function adduser() {
+        $data['isedit'] = false;
+        $this->view->render('admin/usermodel.tpl', $data);
+    }
+    
+    function rmuser($id = '') {
+        if ($id == '') {
+            $this->show_404();
+        } else {
+            $user = UserModel::find(array('id' => $id));
+            if ($user != null) {
+                $user->delete();
+                $this->redirect($_SERVER["HTTP_REFERER"]);
+            } else {
+                $this->show_error('该用户不存在!');
+            }
+        }
+    }
+
 }

@@ -31,7 +31,24 @@ class Controller {
 
     public function redirect($loc) {
         global $config;
-        header('Location: ' . $config['base_url'] . $loc);
+        if (strpos($loc, 'http') > -1) {
+            header('Location: ' . $loc);
+        } else {
+            header('Location: ' . $config['base_url'] . $loc);
+        }
+    }
+
+    public function show_404($message = '') {
+        header('HTTP/1.0 404 Not Found');
+        echo "<h1>404 Not Found</h1>";
+        echo $message;
+        exit();
+    }
+
+    public function show_error($message = '') {
+        header('HTTP/1.0 500 ERROR');
+        echo $message;
+        exit();
     }
 
 }

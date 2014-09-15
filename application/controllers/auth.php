@@ -19,11 +19,18 @@ class auth extends Controller {
         $username = $_POST['username'];
         $password = $_POST['password'];
         if ($username != '' && $password != "") {
-            $user = UserModel::find(array('username' => $username, 'password' => md5($password)));
-            if (user != null) {
-                $_SESSION['user'] = $user;
+            $password = md5($password);
+            $user = UserModel::find(array('username' => $username, 'password' => $password));
+            if ($user != null) {
+                $_SESSION['user'] = $user->to_array();
                 $this->redirect('/');
+            } else {
+                $data['error'] = '用户名密码错误';
+                $this->view->render('login.tpl', $data);
             }
+        } else {
+            $data['error'] = '请输入用户名和密码';
+            $this->view->render('login.tpl', $data);
         }
     }
 
