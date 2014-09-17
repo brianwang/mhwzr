@@ -7,13 +7,11 @@ class Error extends Controller {
     }
 
     function error404() {
-        echo '<h1>404 Error</h1>';
-        echo '<p>Looks like this page doesn\'t exist</p>';
+       $this->view->render('errors/404.tpl',$data);
     }
 
     function error500() {
-        echo '<h1>500 Error</h1>';
-        //echo '<p>Looks like this page doesn\'t exist</p>';
+        $this->view->render('errors/500.tpl',$data);
     }
 
 }

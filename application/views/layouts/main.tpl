@@ -13,18 +13,22 @@
             {if $smarty.session.user|default:false}
                 <li><a href="/page/profile/{$smarty.session.user.id}"}>{$smarty.session.user.username}</a></li>
                 <li><a href="/user/logout">退出登录</a></li>
-            {else}
+                {else}
                 <li><a href="/page/login">登录</a></li>
                 <li><a href="/page/register">注册</a></li>
-            {/if}
+                {/if}
         </ul>
 
         <!-- Left Nav Section -->
         <ul class="left">
             <li><a href="/">首页</a></li>
-            <li><a href="#">首页</a></li>
-            <li><a href="#">首页</a></li>
-
+            <li><a href="{site_url('/page/newuser')}">新手上路</a></li>
+            <li><a href="{site_url('/page/success')}">成功案例</a></li>
+            <li><a href="{site_url('/page/servicetry')}">服务试用</a></li>
+            <li><a href="{site_url('/page/profile')}">个人中心</a></li>
+            <li><a href="{site_url('/page/srvcenter')}">服务商中心</a></li>
+            <li><a href="{site_url('/page/srvguide')}">服务商指南</a></li>
+            <li><a href="{site_url('/page/help')}">帮助中心</a></li>
         </ul>
     </section>
 </nav>

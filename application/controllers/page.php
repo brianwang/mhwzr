@@ -16,7 +16,7 @@ class page extends Controller {
     //put your code here
 
     public function index() {
-        $this->view->render('default.tpl');
+        $this->view->render('index.tpl');
     }
 
     public function register() {
@@ -28,17 +28,45 @@ class page extends Controller {
             '你最爱看的书是什么？',
             '自定义答案'
         );
-        $this->view->render('register.tpl',$data);
+        $this->view->render('register.tpl', $data);
     }
 
     public function login() {
         $this->view->render('login.tpl');
     }
-    
-    function createpost(){
+
+    function createpost() {
         $this->view->render('post/create.tpl');
-        
     }
-    
+
+    //新手上路
+    function newuser() {
+        $this->view->render('newuser.tpl');
+    }
+
+    //成功案例
+    function success() {
+        $this->view->render('success.tpl');
+    }
+
+    function servicetry() {
+        $this->view->render('servicetry.tpl');
+    }
+
+    function profile() {
+        $this->view->render('profile.tpl');
+    }
+
+    function srvcenter() {
+        $this->view->render('srvcenter.tpl');
+    }
+
+    function srvguide() {
+        $this->view->render('srvguide.tpl');
+    }
+
+    function help() {
+        $this->view->render('help.tpl');
+    }
 
 }
