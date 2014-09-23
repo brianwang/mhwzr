@@ -16,7 +16,10 @@ class page extends Controller {
     //put your code here
 
     public function index() {
-        $this->view->render('index.tpl');
+        $data = array();
+        $postbll = new PostBll();
+        $data['top3'] = $postbll->gettop3();
+        $this->view->render('index.tpl',$data);
     }
 
     public function register() {

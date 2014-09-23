@@ -29,14 +29,7 @@ class Controller {
         return $helper;
     }
 
-    public function redirect($loc) {
-        global $config;
-        if (strpos($loc, 'http') > -1) {
-            header('Location: ' . $loc);
-        } else {
-            header('Location: ' . $config['base_url'] . $loc);
-        }
-    }
+   
 
     public function show_404($message = '') {
         header('HTTP/1.0 404 Not Found');

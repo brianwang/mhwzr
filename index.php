@@ -15,6 +15,7 @@ require(VENDOR_DIR . 'autoload.php');
 // Includes
 require(APP_DIR . 'config/config.php');
 require(APP_DIR . 'config/validate.php');
+require(ROOT_DIR . 'system/common.php');
 require(ROOT_DIR . 'system/model.php');
 require(ROOT_DIR . 'system/view.php');
 require(ROOT_DIR . 'system/controller.php');
@@ -23,10 +24,7 @@ require(ROOT_DIR . 'system/pip.php');
 // Define base URL
 global $config;
 define('BASE_URL', $config['base_url']);
-
-
 $cfg = ActiveRecord\Config::instance();
-//
 $cfg->set_model_directory(ROOT_DIR . '/application/models');
 $cfg->set_connections(
         array(

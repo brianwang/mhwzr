@@ -25,7 +25,7 @@ class User extends Controller {
                 $data['password'] = md5($data['password']);
                 unset($data['confirmpassword']);
                 $this->userbll->register($data);
-                $this->redirect('/page/register');
+                redirect('/page/register');
             } else {
                 $data['error'] = '密码和确认密码不一致';
                 $data['questions'] = $config['questions'];
@@ -41,7 +41,7 @@ class User extends Controller {
 
     function logout() {
         unset($_SESSION['user']);
-        $this->redirect('/');
+        redirect('/');
     }
 
     //发布寻人消息

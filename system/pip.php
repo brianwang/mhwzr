@@ -25,25 +25,39 @@ function pip() {
     if (isset($segments[1]) && $segments[1] != '')
         $action = $segments[1];
 
+    $hookdir = $config['hookpath'];
+    $hookclass = $config['hookclass'];
+    $hookpath = APP_DIR . $hookdir . '/' . $hookclass . '.php';
+    require_once($hookpath);
+
     // Get our controller file
     $path = APP_DIR . 'controllers/' . $controller . '.php';
     if (file_exists($path)) {
         require_once($path);
     } else {
-        $controller = $config['error_controller'];
-        require_once(APP_DIR . 'controllers/' . $controller . '.php');
+        die('controller is not exists');
+        //$controller = $config['error_controller'];
+        //require_once(APP_DIR . 'controllers/' . $controller . '.php');
     }
 
     // Check the action exists
     if (!method_exists($controller, $action)) {
-        $controller = $config['error_controller'];
-        require_once(APP_DIR . 'controllers/' . $controller . '.php');
-        $action = 'index';
+//        $controller = $config['error_controller'];
+//        require_once(APP_DIR . 'controllers/' . $controller . '.php');
+//        $action = 'index';
+        die('controller "' . $controller . '" method "' . $action . '" is not exists');
     }
 
+    $hook = new $hookclass;
+    if (method_exists($hookclass, 'before')) {
+        call_user_func_array(array($hook, 'before'), array($controller,$action));
+    }
     // Create object and call method
     $obj = new $controller;
-    die(call_user_func_array(array($obj, $action), array_slice($segments, 2)));
+    call_user_func_array(array($obj, $action), array_slice($segments, 2));
+    if (method_exists($hookclass, 'after')) {
+        die(call_user_func_array(array($hook, 'before'), array($controller,$action)));
+    }
 }
 
 ?>

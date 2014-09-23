@@ -13,7 +13,6 @@
  */
 class PostBll extends Model {
 
-
     public function create($data = array()) {
         $sql = 'insert into posts(';
         $values = '';
@@ -35,6 +34,19 @@ class PostBll extends Model {
 
     function addcomments($data) {
         
+    }
+
+    function gettop3() {
+        $posts = PostModel::find('all', array('order' => 'create_time desc', 'limit' => 3));
+        if ($posts == nULL) {
+            return array();
+        } else {
+            $result = array();
+            foreach ($posts as $post) {
+                array_push($result,$post->to_array());
+            }
+            return $result;
+        }
     }
 
 }

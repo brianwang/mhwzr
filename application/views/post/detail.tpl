@@ -9,14 +9,17 @@
     <p>{$post.task}</p>
     <p>{$post.rewards}</p>
     <p>{$post.create_time}</p>
-    <a href="#">申请任务</a>
-    <a href="#">提供线索</a>
-    
-    
+    <form action="{site_url('/user/apply')}/{$post.id}" method="post">
+        <input type="submit" value="申请任务"/>
+    </form>
+    <form>
+        <input type="submit" value="提供线索"/>
+    </form>
+
     <div id="comments">
-         评论({$post.comments|count})
+        评论({$post.comments|count})
         {foreach from=$post.comments|default:[] item=comment}
-                {$comment.content}
+            {$comment.content}
         {/foreach}
     </div>
 

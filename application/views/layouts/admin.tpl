@@ -21,7 +21,7 @@
             <li class="divider"></li>
             <li><a href="#">资金管理</a></li>
             <li><a href="/admin/recharge">充值</a></li>
-            <li><a href="/admin/comsume">消费</a></li>
+            <li><a href="/admin/consume">消费</a></li>
             <li class="divider"></li>
             <li><a href="/admin/postmgmt/1">寻人管理</a></li>
         </ul>

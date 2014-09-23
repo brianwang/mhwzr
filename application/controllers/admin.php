@@ -21,9 +21,9 @@ class admin extends Controller {
 
     function usermgmt($curpage = 1) {
         $data = array();
-        $pagesize = 1;
+        $pagesize = 5;
         //$curpage = 1;
-        $users = UserModel::all(array('limit' => $pagesize, 'offset' => $pagesize * $curpage));
+        $users = UserModel::all(array('limit' => $pagesize, 'offset' =>$pagesize * ($curpage-1)));
         //var_dump($users);
         $data['users'] = $users;
         $data['objs'] = $users;
@@ -36,9 +36,9 @@ class admin extends Controller {
 
     function postmgmt($curpage = 1) {
         $data = array();
-        $pagesize = 1;
+        $pagesize = 5;
         //$curpage = 1;
-        $users = PostModel::all(array('limit' => $pagesize, 'offset' => $pagesize * $curpage));
+        $users = PostModel::all(array('limit' => $pagesize, 'offset' => $pagesize * ($curpage-1)));
         //var_dump($users);
         $data['users'] = $users;
         $data['objs'] = $users;
@@ -71,7 +71,7 @@ class admin extends Controller {
         $data['isedit'] = false;
         $this->view->render('admin/usermodel.tpl', $data);
     }
-    
+
     function rmuser($id = '') {
         if ($id == '') {
             $this->show_404();
@@ -79,11 +79,12 @@ class admin extends Controller {
             $user = UserModel::find(array('id' => $id));
             if ($user != null) {
                 $user->delete();
-                $this->redirect($_SERVER["HTTP_REFERER"]);
+                redirect($_SERVER["HTTP_REFERER"]);
             } else {
                 $this->show_error('该用户不存在!');
             }
         }
     }
+
 
 }
