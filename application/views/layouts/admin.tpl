@@ -1,4 +1,4 @@
-{include  file='layouts/header.tpl'}
+{include  file='layouts/adminheader.tpl'}
 <nav class="top-bar" data-topbar role="navigation">
     <ul class="title-area">
         <li class="name">

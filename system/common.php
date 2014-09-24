@@ -15,3 +15,13 @@ function redirect($loc) {
     }
     exit();
 }
+
+function site_url($path) {
+    global $config;
+    return $config['base_url'] . $path;
+}
+
+function asset_url($path) {
+    global $config;
+    return $config['asset_url'] . $path;
+}

@@ -1,0 +1,86 @@
+.title{width: 100%; height: 29px; background-image: url(../img/back_title.png)}
+.title p{line-height: 29px;}
+.title .login{position: absolute; display: block; left: 200px; top: 0px;}
+.title a:hover{color: #F39700;}
+.title .nav{position: absolute;display: block; right: 0px; top: 0px;}
+.title .user{position: absolute;display: block; right: 294px; top: 0px;}
+.search{height: auto; padding-top: 27px; padding-bottom: 5px;}
+.search .logo{width: 64px; height:63px; display: block;}
+.search .box{position: absolute;right: 0px; bottom: 4px;}
+.input_search_back{width: 429px; height: 34px; background-color: #fff;border: 2px solid #F39700;float: left;position: relative;}
+.input_search{width: 419px;position: absolute;left: 5px; top: 10px; background: none;border: 0; outline: none;}
+.search .btn_search{width: 87px; height: 38px; line-height: 38px;background-color: #F39700; display: block; color: #fff;text-align: center;float: left;}
+.search .text_or{width: 62px; height: 38px; line-height: 38px; display: block; text-align: center;float: left;}
+
+.main_nav{height: 36px; margin-top: 40px; border-bottom: 2px solid #F39700; position: relative; line-height: 38px;}
+.main_nav ul{display: block; padding-left: 200px;}
+.main_nav li{display: block; float: left;width: 100px; text-align: center;font-size: 16px; font-weight: bold;}
+.main_nav a{color: #454545;}
+.main_nav a:hover{color: #f39700;}
+.main_nav .right{position: absolute; right: 5px;}
+
+.banner{width: 100%; height: 334px; background-color: #0052b2;}
+.banner .imglist{width: 1600px; height: 334px;}
+
+.content{position: relative;}
+.content .nav{width: 200px; height: 598px; background-color: #f4f4f4;position: absolute; top:-374px;}
+.content .nav ul{display: block;}
+.content .nav li{display: block; padding-left: 15px;width: 185px;}
+.content .nav .box_title{height: 38px; line-height: 38px; font-size: 14px; color: #ffffff;}
+.content .nav .box_content{height: 112px;}
+.content .nav .box_content .p_title{color: #ffffff; font-size: 16px;line-height: 50px; display: block;}
+.content .nav .box_foot{position: relative;}
+.content .nav .box_foot .p_title{font-size: 12px;line-height: 40px; font-weight: normal;}
+.content .nav .box_foot .img_title{position: absolute; bottom: 4px; left: 15px; color: #ffffff;background-image: url(../img/img_title_bg.png); width: 171px; line-height: 20px; padding-top: 5px; padding-bottom: 5px;text-indent: 10px;}
+
+.content .nav .box_content .p_content{display: block; float: left;}
+.content .nav .box_content a{color: #ffffff; line-height: 20px;display: block; float: left; width:auto; padding-right: 12px;}
+.content .nav .box_content a:hover{color: #D9D9D9;}
+.content .notice{width: 200px; height: 334px; position: absolute; right: 0px; top: -334px;}
+.content .notice .p_title{line-height: 40px; position: relative;text-indent: 30px;}
+.content .notice .notice_box{width: 100%; height: 113px; background-color: #ffffff;}
+.content .notice .list{display: block; padding:5px 10px 5px 10px;line-height: 18px;}
+.content .notice .list .item{display: block;}
+.content .notice .list .item .msg_time{display: block; float: left; background-color: #cccccc; color: #ffffff; width: 40px; text-align: center;}
+.content .notice .list .item .msg_type{display: block; float: left; padding-left: 5px;}
+.content .notice .list .item .msg_content{display: block; clear: both;}
+.content .notice .list1{display: block; padding-top: 10px;}
+.content .notice .list1 .item{display: block; position: relative;height: 55px;}
+.content .notice .p_1{font-size: 14px; padding-left: 60px; padding-top: 8px;}
+.content .notice .p_2{font-size: 12px; color: #666666; padding-left: 60px; line-height: 20px;}
+
+.content .task{width: 800px; height: 224px; padding-left: 200px;}
+.content .task .task_box{width: 370px; height: auto; float: left; position: relative; padding-left: 30px; padding-bottom: 10px;}
+.content .task .task_box .tast_title{line-height: 60px;}
+.content .task .task_box li{line-height: 25px;}
+.content .task .task_box li a:hover{text-decoration: underline;}
+.content .task .tast_foot{width: 740px; height: auto; border-top: 1px solid #cccccc; float: left;margin-left: 30px; padding-top: 15px; line-height: 28px;}
+.content .task .tast_foot a{display: block; float: left; margin-right: 30px;}
+.content .task .tast_foot .button{width: 102px; height: 28px; background-color: #d2d2d2; text-align: center; color: #ffffff;}
+
+.technological{width: 100%; height: 244px; background-color: #f8f8f8; margin-top: 35px; position: relative;}
+.technological .technological_title{padding-bottom: 35px;}
+.technological .right{position: absolute; right: 5px;top: 30px;}
+.technological a:hover{color: #F39700;}
+
+
+.content_list{height: auto; padding-top: 39px;}
+.content_list .item{float: left; width: 450px; height: 146px; border: 1px solid #cccccc; padding: 16PX 16PX 16PX 16PX; position: relative;}
+.content_list img{float: left;}
+.content_list .content{float: left; padding-left: 16px;width: 320px;}
+.content_list .item .img_title{display: block; width: 87px; height: 34px; text-align: center;position: absolute; line-height: 34px; color: #ffffff; top: 16px; left: 0px;}
+.content_list .margin_left{margin-left: 32px;}
+.content_list .margin_top{margin-top: 32px;}
+
+.footer{width: 100%; height: 300px; border-top: 3px solid #cccccc; margin-top: 110px;}
+.footer .size{width: 1080px;}
+.footer .item{display: block; height: 213px; float: left; padding-left: 40px; padding-right: 50px; padding-top: 20px; background-image: url(../img/line.png); background-repeat: no-repeat;}
+.footer .item a{display: block; line-height: 23px;}
+.footer .item a:hover{color: #F39700;}
+.footer .weixin{padding-left: 60px; padding-right: 60px;}
+.footer .footer_nav{width: 100%; height: 30px; border-top: 1px solid #cccccc;}
+.footer .footer_nav p{text-align: center; line-height: 50px; display: block;position: absolute; left: 250px;}
+.footer .footer_nav a{display: block; float: left;}
+.footer .footer_nav span{display: block; float: left; padding-left: 20px; padding-right: 20px;}
+.footer .footer_nav a:hover{color: #F39700;}
+
