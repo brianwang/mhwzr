@@ -1,0 +1,59 @@
+*{padding: 0px;margin: 0px;}
+body{font-size: 12px; font-family:"微软雅黑";}
+ul{list-style: none;}
+a{color: #000; text-decoration: none;}
+a img{border:none;}
+
+
+.center{margin: 0 auto; width: 1000px; position: relative;}
+.clear:after{ visibility: hidden; display: block; font-size: 0; content: "."; clear: both; height: 0;} 
+* .clear{zoom: 1;} 
+*:first-child + .clear{zoom: 1;} 
+
+/*p颜色集合*/
+.p_yellow{color: #f39700;}
+.p_grey{color: #d9d9d9;}
+.p_grey1{color: #454545;}
+.p_grey2{color: #666666;}
+.p_blue{color: #3592e2;}
+.p_clor_red{color:#ff0000}
+.p_clor_24c1a4{color: #24c1a4;}
+
+/*p字号集合*/
+.p_size_14{font-size: 14px;}
+.p_size_16{font-size: 16px;}
+.p_size_18{font-size: 18px;}
+.p_size_20{font-size: 20px;}
+.p_size_24{font-size: 24px;}
+.p_size_35{font-size: 35px;}
+
+/*p粗体*/
+.p_bold{font-weight: bold;}
+
+/*p缩进集合*/
+.p_indent_55{text-indent: 35px;}
+/*p行高集合*/
+.p_lineHeight_30{line-height: 25px;}
+.p_lineHeight_40{line-height: 40px;}
+.p_lineHeight_70{line-height: 70px;}
+
+/*背景颜色集合*/
+.bg_0{background-color: #f27302;}
+.bg_1{background-color: #ff9400;}
+.bg_2{background-color: #3592e2;}
+.bg_3{background-color: #24c1a4;}
+.bg_4{background-color: #f4f4f4;}
+.bg_5{background-color: #24c1a4;}
+.bg_6{background-color: #ff9400;}
+
+/*图标集合*/
+.icon{background-image: url(../img/icon_png.png); display: inline-block;}
+.arror{ width: 6px; height: 6px;}
+.logo{background-position:0px -6px; width: 64px; height: 63px;}
+.horn{width: 13px; height: 17px; background-position: -64px 0px;position: absolute;left: 11px;top: 13px;}
+.transaction{width: 38px; height: 38px;background-position: 0px -73px; position: absolute; left: 11px; top: 7px;}
+.guarantee{width: 38px; height: 38px;background-position: 0px -116px; position: absolute; left: 11px; top: 7px;}
+.arbitration{width: 38px; height: 38px;background-position: 0px -158px; position: absolute; left: 11px; top: 7px;}
+.icon_tast{width: 40px; height: 34px;background-position: -41px -72px; position: absolute; left: 25px; top: 12px;}
+.icon_phone{width: 24px; height: 32px;background-position: -40px -109px;}
+.icon_success{width: 60px; height: 76px;background-position: -79px 0px; position: absolute; right: 5px;bottom: -10px;}
