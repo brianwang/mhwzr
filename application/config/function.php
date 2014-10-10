@@ -5,17 +5,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-function base_url() {
-    global $config;
-    return $config['base_url'];
-}
-
-function site_url($path) {
-    global $config;
-    return $config['base_url'] . $path;
-}
-
 function genid() {
     //set the random id length 
     $random_id_length = 10;

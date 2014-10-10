@@ -30,6 +30,5 @@
     <p class="right"><a href="{site_url('/page/profile')}">个人中心</a><span class="p_grey"> | </span>
         <a href="{site_url('/page/srvguide')}">服务商中心</a> </p>
 </div>
-
 {block name=content}{/block}
 {include  file='layouts/footer.tpl'}

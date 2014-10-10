@@ -1,0 +1,37 @@
+.content .page_nav{width: 200px; height: 40px; position: absolute; top:-40px;}
+.content .page_nav ul{display: block;}
+.content .page_nav li{display: block; padding-left: 15px;width: 185px;}
+.content .page_nav .box_title{height: 38px; line-height: 38px; font-size: 14px; color: #ffffff;}
+.content_left{width: 785px; height: auto; float: left;}
+.content_left_box{width:100%;border-bottom: solid #999999 1px; padding-bottom: 30px; position: relative; float: left;}
+.left_header{width: 767px; height: 66px; padding: 9px;}
+.left_header .img_header{float: left; padding-right: 20px;}
+.content_left_box .p{display: block; padding-left: 13px;}
+.content_left .padding_bottom{padding-bottom: 100px; }
+.content_left .padding_top{padding-top: 30px;}
+.content_left_box .circle_bot{width: 100%;}
+.content_left_box .text_center{height: 30px; text-align: center;}
+.content_left_box .btn_search{display: block;width: 219px; height: 55px; line-height: 55px;text-align: center; background-image: url(../img/btn.png);position: absolute; right: 0; bottom: 10px;}
+.content_left_box ul{display:block;float: left;}
+.content_left_box li{display: block; width: 45px; padding-left: 5px;}
+.content_left_box  textarea{width: 775px; height: 100px;resize: none; outline: none; border:  #999999 1px solid;padding:5px; margin-top: 5px;}
+.content_left_box .btn{display:block;width: 105px; height: 30px; line-height: 30px; text-align: center; float: right; margin-top: 5px;}
+.content_left_box .img_header{float: left;}
+.content_left_box .content{clear: both; padding-left: 60px;}
+.content_left_box .content .p_content{line-height: 60px;}
+.content_left_box .content .content_box{width: auto; height: auto; padding: 20px; border: #999999 1px solid;}
+.content_left_box .content textarea{width: 665px; height: 30px; resize: none; outline: none; padding: 5px; border: #999999 1px solid;}
+.content_left_box .content .btn{width: 80px; height: 25px; line-height: 25px;}
+.content_left_box .content .item{clear: both; padding-top: 20px;}
+.content_left_box .boder_bottom{ border-bottom: #999999 1px solid;}
+.clear_boder{border-bottom:none;}
+
+
+.content_right{width: 200px;float: left; padding-left: 15px;}
+.content_right .right_box{width: 178px; height: auto;border: #e9e9e9 1px solid; padding: 0 10px 10px 10px;}
+.content_right .textInput{border:  #e9e9e9 1px solid; border-radius: 3px; height: 25px; outline: none; width: 168px; color: #cccccc; padding: 5px;}
+.content_right .item{float: left; width: 50%; position: relative; padding-bottom: 10px;}
+.content_right .checkbox{outline: none; float: left;}
+.content_right .item span{display: block; float: left; position: absolute; left: 20px;top: -2px;}
+.content_right textarea{outline: none; border: #e9e9e9 1px solid; border-radius: 3px; resize: none; width: 168px; height: 80px; padding: 5px; color: #cccccc;}
+.content_right .right_search{display: block; background-color: #FF9400; width: 80px; height: 30px; text-align: center; line-height: 30px; color: #ffffff; float: right; margin-top: 5px;}

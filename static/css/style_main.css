@@ -6,7 +6,7 @@
 .title .user{position: absolute;display: block; right: 294px; top: 0px;}
 .search{height: auto; padding-top: 27px; padding-bottom: 5px;}
 .search .logo{width: 64px; height:63px; display: block;}
-.search .box{position: absolute;right: 0px; bottom: 4px;}
+.search .box{position: absolute;right: 0px; bottom: 4px; width: 739px;}
 .input_search_back{width: 429px; height: 34px; background-color: #fff;border: 2px solid #F39700;float: left;position: relative;}
 .input_search{width: 419px;position: absolute;left: 5px; top: 10px; background: none;border: 0; outline: none;}
 .search .btn_search{width: 87px; height: 38px; line-height: 38px;background-color: #F39700; display: block; color: #fff;text-align: center;float: left;}
