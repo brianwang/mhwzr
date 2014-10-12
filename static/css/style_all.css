@@ -1,7 +1,4 @@
 @import "style_main.css";
-@import "page_list.css";
-@import "page_content.css";
-@import "login_reg.css";
 *{padding: 0px;margin: 0px;}
 body{font-size: 12px; font-family:"微软雅黑";}
 ul{list-style: none;}
@@ -97,4 +94,3 @@ a img{border:none;}
 
 .icon_shang{width: 16px; height: 16px;background-position: -70px -114px; position: absolute;left: 0px;top: 7px;}
 .icon_gong{width: 16px; height: 16px;background-position: -89px -114px; position: absolute;left: 0px;top: 7px;}
-

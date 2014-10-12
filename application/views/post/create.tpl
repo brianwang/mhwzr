@@ -7,6 +7,10 @@
             <option value="1">男</option>
             <option value="0">女</option>
         </select>
+         <select name="type">
+            <option value="shang">悬赏类</option>
+            <option value="gong">公益类</option>
+        </select>
         <input type="text" name="birthday" placeholder ="出生年月">
         {include file='partials/province.tpl'}
         <select name='rewards'>

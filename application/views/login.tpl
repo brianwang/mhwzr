@@ -1,4 +1,7 @@
 {extends file='layouts/main.tpl'}
+{block name='header'}
+    <link rel="stylesheet" href="{asset_url('css/login_reg.css')}" />
+{/block}
 {block name=content}
     <div class="login_title bg_4">
         <p class="p_size_24 center">用户登录</p>

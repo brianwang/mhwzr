@@ -19,7 +19,21 @@ class page extends Controller {
         $data = array();
         $postbll = new PostBll();
         $data['top3'] = $postbll->gettop3();
-        $this->view->render('index.tpl',$data);
+        $this->view->render('index.tpl', $data);
+    }
+
+    public function items($pageid = 1,$status='going') {
+        $data = array();
+        $postbll = new PostBll();
+        $pages =  $postbll->getpages();
+        if($pageid > $pages){
+             $data['posts'] = array();
+        }else{
+            $data['posts'] = $postbll->getitems($pageid,10,$status);
+        }
+        $data['pages'] = $pages;
+        $data['curpage'] =$pageid;
+        $this->view->render('list.tpl', $data);
     }
 
     public function register() {
@@ -42,12 +56,12 @@ class page extends Controller {
         $this->view->render('post/create.tpl');
     }
 
-    //新手上路
+//新手上路
     function newuser() {
         $this->view->render('newuser.tpl');
     }
 
-    //成功案例
+//成功案例
     function success() {
         $this->view->render('success.tpl');
     }

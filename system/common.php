@@ -21,6 +21,11 @@ function site_url($path) {
     return $config['base_url'] . $path;
 }
 
+function current_url() {
+    global $config;
+    return $config['base_url'] . $_SERVER['REQUEST_URI'];
+}
+
 function asset_url($path) {
     global $config;
     return $config['asset_url'] . $path;
