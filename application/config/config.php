@@ -17,13 +17,15 @@ $config['questions'] = array(
     '你最爱看的书是什么？',
     '自定义答案'
 );
+$config['tasks'] = array('手机找人', '姓名找人', '照片找人', 'QQ找人', '邮箱找人');
 $config['provinces'] = array('安徽', '北京', '重庆', '福建', '甘肃', '广东', '广西', '贵州', '海南', '河北', '黑龙江', '河南', '香港', '湖北', '湖南', '江苏', '江西', '吉林', '辽宁', '澳门', '内蒙古', '宁夏', '青海', '山东', '上海', '山西', '陕西', '四川', '台湾', '天津', '新疆', '西藏', '云南', '浙江', '海外');
 $config['sitename'] = '美猴王寻人网';
 $config['hookpath'] = 'hook';
 $config['hookclass'] = 'hook';
 $config['admin'] = 'admin';
 $config['password'] = 'admin';
-
+$config['status'] = array('going' => '进行中',
+    'finish' => '成功');
 $config['cities'] = array('安徽'
     => Array(
         '合肥(*)', '合肥',

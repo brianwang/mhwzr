@@ -1,5 +1,4 @@
-{extends file='layouts/main.tpl'}
-{block name=content}
-
-
+{extends file='layouts/page_content.tpl'}
+{block name=pagebody}
+  
 {/block}

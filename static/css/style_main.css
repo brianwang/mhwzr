@@ -62,10 +62,11 @@
 .technological .technological_title{padding-bottom: 35px;}
 .technological .right{position: absolute; right: 5px;top: 30px;}
 .technological a:hover{color: #F39700;}
-
-
 .content_list{height: auto; padding-top: 39px;}
-.content_list .item{float: left; width: 450px; height: 146px; border: 1px solid #cccccc; padding: 16PX 16PX 16PX 16PX; position: relative;}
+.content_list .item{float: left; width: 450px; height: 146px; 
+     border: 1px solid #cccccc; padding: 16px; position: relative;
+     margin: 32px 0px 0 0;
+}
 .content_list img{float: left;}
 .content_list .content{float: left; padding-left: 16px;width: 320px;}
 .content_list .item .img_title{display: block; width: 87px; height: 34px; text-align: center;position: absolute; line-height: 34px; color: #ffffff; top: 16px; left: 0px;}

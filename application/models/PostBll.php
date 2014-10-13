@@ -36,8 +36,8 @@ class PostBll extends Model {
         
     }
 
-    function gettop3() {
-        $posts = PostModel::find('all', array('order' => 'create_time desc', 'limit' => 3));
+    function gettop4() {
+        $posts = PostModel::find('all', array('order' => 'create_time desc', 'limit' => 4));
         if ($posts == nULL) {
             return array();
         } else {

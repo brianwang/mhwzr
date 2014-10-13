@@ -1,6 +1,5 @@
 {extends file='layouts/main.tpl'}
 {block name=content}
-
     <div class="content center">
         <div class="page_nav">
             <ul>

@@ -16,7 +16,7 @@
                     <p><span class="textinput_label">邮箱：</span><input class="text_name" type="text" name="email"></p>
                     <p><span class="textinput_label">密保问题：</span>
                         <select name="question">
-                            {foreach from=$questions item=q}
+                            {foreach from=$config.questions item=q}
                                 <option>{$q}</option>
                             {/foreach}
                         </select>

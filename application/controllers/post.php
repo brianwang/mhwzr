@@ -40,6 +40,8 @@ class post extends Controller {
                 move_uploaded_file($file, $filename);
             }
         }
+        $duration =date_diff(new DateTime(), new DateTime($data['birthday']));
+        $data['age'] = $duration->y;
         $post = PostModel::create($data);
         $post->save();
         redirect($_SERVER['HTTP_REFERER']);

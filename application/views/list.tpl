@@ -62,12 +62,12 @@
                                 {foreach from=$posts  item=post}
                                 <li class="box_item">
                                     <span class="b_1">
-                                        <img src="{asset_url('img/pixel.gif')}" class="icon icon_{$post.type|default: 'shang'}"></img><span class="item_title">{$post.task}</span>
+                                        <img src="{asset_url('img/pixel.gif')}" class="icon icon_{if $post.type == '悬赏类'}shang{else}gong{/if}"></img><span class="item_title">{$post.title}</span>
                                         <span class="item_content"><span class="p_size_14 p_yellow p_bold">￥{$post.rewards}</span> <span class="p_grey3">{$post.browsers|default:0}人浏览 / {$post.bidscount|default:0}人已经投标</span></span>
                                     </span>
-                                    <span class="b_2">{$post.status}</span>
+                                    <span class="b_2">{$config['status'][$post.status]}</span>
                                     <span class="b_3">{$post.province}-{$post.city}</span>
-                                    <span class="b_4">{$post.duration}</span>
+                                    <span class="b_4">{$post.duration}个月</span>
                                 </li>
                             {/foreach}
                         </ul>
@@ -90,7 +90,7 @@
                 <div class="content_right">
                     <div class="right_box">
                         <p class="p_lineHeight_40 p_size_14 p_bold">我也要发布找人</p>
-                        <input type="text" class="textInput" value="请输入标题"/>
+                        <input type="text" class="textInput" placeholder="请输入标题"/>
                         <p class="p_lineHeight_40">请勾选线索</p>
                         <form>
                             <div class="item">
@@ -106,7 +106,7 @@
                                 <input type="checkbox" class="checkbox"/><span>手机号</span>
                             </div>
                         </form>
-                        <textarea name="" rows="" cols="">其他你认为重要的线索</textarea>
+                        <textarea name="" rows="" cols="" placeholder="其他你认为重要的线索"></textarea>
                         <a href="#" class="right_search">发布找人</a>
                         <p class="clear"></p>
                     </div>

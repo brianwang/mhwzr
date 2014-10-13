@@ -18,10 +18,12 @@ class page extends Controller {
     public function index() {
         $data = array();
         $postbll = new PostBll();
-        $data['top3'] = $postbll->gettop3();
+        $data['top4'] = $postbll->gettop4();
         $this->view->render('index.tpl', $data);
     }
 
+    
+ 
     public function items($pageid = 1,$status='going') {
         $data = array();
         $postbll = new PostBll();
@@ -39,12 +41,6 @@ class page extends Controller {
     public function register() {
         $data['province'] = array();
         $data['cities'] = array();
-        $data['questions'] = array(
-            '你最喜欢的明星是谁?',
-            '你的第一所学校是什么?',
-            '你最爱看的书是什么？',
-            '自定义答案'
-        );
         $this->view->render('register.tpl', $data);
     }
 

@@ -104,44 +104,17 @@
         </div>
     </div>
     <div class="content_list center">
-        <div class="item bg_4">
-            <img src="{asset_url('img/item_head.jpg')}" />
-            <div class="content">
-                <p class="p_bold p_size_18  p_grey2">寻找离家儿子</p>
-                <p class="p_size_14 p_grey2 p_lineHeight_40">黃汀宇    男   23岁 </p>
-                <p class="p_size_14 p_grey2 p_lineHeight_30">13年6月21号 晚上说出去网吧卖游戏装备至今未归。当时穿着黑色长裤，黑色t恤，红色拖鞋，身高162CM，戴黑框眼镜，人长得瘦削。</p>
+        {foreach from=$top4 item=p key=k}
+            <div class="item bg_4 {if $k%2!=0 }margin_left{/if}">
+                <img src="{if $p.imgurl}{$p.imgurl}{else}{asset_url('/img/item_head.jpg')}{/if}" />
+                <div class="content">
+                    <p class="p_bold p_size_18  p_grey2">{$p.title}</p>
+                    <p class="p_size_14 p_grey2 p_lineHeight_40">{$p.name}   {$p.gender}   {if $p.age}{$p.age}岁{/if} </p>
+                    <p class="p_size_14 p_grey2 p_lineHeight_30">{$p.description}</p>
+                </div>
+                <p class="img_title {if $p.type == '公益类'}}bg_4{else}bg_6{/if} p_bold">{$p.type|cat:'寻人'}</p>
             </div>
-            <p class="img_title bg_6 p_bold">任务寻人</p>
-        </div>
-        <div class="item margin_left bg_4">
-            <img src="{asset_url('img/item_head.jpg')}" />
-            <div class="content">
-                <p class="p_bold p_size_18  p_grey2">寻找离家儿子</p>
-                <p class="p_size_14 p_grey2 p_lineHeight_40">黃汀宇    男   23岁 </p>
-                <p class="p_size_14 p_grey2 p_lineHeight_30">13年6月21号 晚上说出去网吧卖游戏装备至今未归。当时穿着黑色长裤，黑色t恤，红色拖鞋，身高162CM，戴黑框眼镜，人长得瘦削。</p>
-            </div>	
-            <p class="img_title bg_5 p_bold">公益寻人</p>
-        </div>
-        <div class="item margin_top bg_4">
-            <img src="{asset_url('img/item_head.jpg')}" />
-            <div class="content">
-                <p class="p_bold p_size_18  p_grey2">寻找离家儿子</p>
-                <p class="p_size_14 p_grey2 p_lineHeight_40">黃汀宇    男   23岁 </p>
-                <p class="p_size_14 p_grey2 p_lineHeight_30">13年6月21号 晚上说出去网吧卖游戏装备至今未归。当时穿着黑色长裤，黑色t恤，红色拖鞋，身高162CM，戴黑框眼镜，人长得瘦削。</p>
-            </div>
-            <p class="img_title bg_6 p_bold">任务寻人</p>
-        </div>
-        <div class="item margin_top margin_left bg_4">
-            <img src="{asset_url('img/item_head.jpg')}" />
-            <div class="content">
-                <p class="p_bold p_size_18  p_grey2">寻找离家儿子</p>
-                <p class="p_size_14 p_grey2 p_lineHeight_40">黃汀宇    男   23岁 </p>
-                <p class="p_size_14 p_grey2 p_lineHeight_30">13年6月21号 晚上说出去网吧卖游戏装备至今未归。当时穿着黑色长裤，黑色t恤，红色拖鞋，身高162CM，戴黑框眼镜，人长得瘦削。</p>
-            </div>
-            <p class="img_title bg_6 p_bold">任务寻人</p>
-        </div>
+        {/foreach}
     </div>
     <p class="clear"></p>
-
-    {$top3|json_encode}
 {/block}
