@@ -36,6 +36,26 @@ class PostBll extends Model {
         
     }
 
+    private function to_array($data) {
+        $result = array();
+        foreach ($data as $d) {
+            array_push($result, $d->to_array());
+        }
+        return $result;
+    }
+
+    //今日寻人
+    function gettoday() {
+        $now = date('Y-m-d', time());
+        $posts = PostModel::find('all', array('order' => 'create_time desc', 'limit' => 4,
+                    'conditions' => 'create_time >= \'' . $now . '\''));
+        if ($posts == nULL) {
+            return array();
+        } else {
+            return $this->to_array($posts);
+        }
+    }
+
     function gettop4() {
         $posts = PostModel::find('all', array('order' => 'create_time desc', 'limit' => 4));
         if ($posts == nULL) {

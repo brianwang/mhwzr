@@ -9,6 +9,7 @@ session_start();
 // Defines
 define('ROOT_DIR', realpath(dirname(__FILE__)) . '/');
 define('APP_DIR', ROOT_DIR . 'application/');
+define('VIEW_DIR', ROOT_DIR . 'application/views/');
 define('VENDOR_DIR', ROOT_DIR . 'vendor/');
 
 require(VENDOR_DIR . 'autoload.php');

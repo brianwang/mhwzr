@@ -32,4 +32,5 @@
         {/block}
     </div>
 </div>
+<script>{block name=scrtip}{/block}</script>
 {include  file='layouts/footer.tpl'}

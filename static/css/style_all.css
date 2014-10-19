@@ -1,10 +1,11 @@
 @import "style_main.css";
+@import "form.css";
 *{padding: 0px;margin: 0px;}
 body{font-size: 12px; font-family:"微软雅黑";}
 ul{list-style: none;}
 a{color: #000; text-decoration: none;}
 a img{border:none;}
-
+.new_list{display: block; width: 100%; height: auto;  border:#666666 1px solid; border-width: 1px 0;}
 /*圆角框*/
 .circle_bot .s_b b{ font-size:1px; line-height:1px; overflow:hidden; display:block; clear:both; }
 .circle_bot .border {border:#999999 solid 1px;}
@@ -71,6 +72,8 @@ a img{border:none;}
 /*图标集合*/
 .icon{background-image: url(../img/icon_png.png); display: inline-block;}
 .arror{ width: 6px; height: 6px;}
+.icon_duihao {width: 16px;height: 16px;background-position: -88px -135px;}
+.combobox_arror{width: 10px; height: 8px; background-position: 0 -7px; position: absolute; right: 5px; top: 12px;}
 .logo{background-position:0px -6px; width: 64px; height: 63px;}
 .horn{width: 13px; height: 17px; background-position: -64px 0px;position: absolute;left: 11px;top: 13px;}
 .transaction{width: 38px; height: 38px;background-position: 0px -73px; position: absolute; left: 11px; top: 7px;}
@@ -94,3 +97,5 @@ a img{border:none;}
 
 .icon_shang{width: 16px; height: 16px;background-position: -70px -114px; position: absolute;left: 0px;top: 7px;}
 .icon_gong{width: 16px; height: 16px;background-position: -89px -114px; position: absolute;left: 0px;top: 7px;}
+.icon_tanhao{width: 16px; height: 16px; background-position: -70px -135px;}
+.field_span{ width: 120px;display:inline-block;}

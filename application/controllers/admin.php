@@ -21,7 +21,7 @@ class admin extends Controller {
 
     function usermgmt($curpage = 1) {
         $data = array();
-        $pagesize = 5;
+        $pagesize = 10;
         //$curpage = 1;
         $users = UserModel::all(array('limit' => $pagesize, 'offset' =>$pagesize * ($curpage-1)));
         //var_dump($users);
@@ -67,6 +67,14 @@ class admin extends Controller {
         $this->view->render('admin/usermodel.tpl', $data);
     }
 
+    function editpost($id = '') {
+        if ($id == '') {
+            $this->show_404();
+        }
+        $data['post'] = PostModel::find(array('id' => $id))->to_array();
+        $data['isedit'] = true;
+        $this->view->render('admin/postmodel.tpl', $data);
+    }
     function adduser() {
         $data['isedit'] = false;
         $this->view->render('admin/usermodel.tpl', $data);

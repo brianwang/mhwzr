@@ -11,14 +11,18 @@
         <link rel="stylesheet" href="/static/bower_components/foundation/css/normalize.css">
         <link rel="stylesheet" href="/static/bower_components/foundation/css/foundation.css">
 
+
         <!-- If you are using the gem version, you need this only -->
         <link rel="stylesheet" href="/static/css/app.css">
-
+        <link rel="stylesheet" href="/static/fdatepicker/foundation-datepicker.css">
+        
         <script src="/static/bower_components/modernizr/modernizr.js"></script>
         <script src="/static/bower_components/jquery/dist/jquery.js"></script>
         <script src="/static/bower_components/jquery-placeholder/jquery.placeholder.js"></script>
         <script src="/static/bower_components/jquery.cookie/jquery.cookie.js"></script>
         <script src="/static/bower_components/foundation/js/foundation.js"></script>
         <script src="/static/bower_components/fastclick/lib/fastclick.js"></script>
+        <script src="/static/fdatepicker/foundation-datepicker.js"></script>
+
     </head>
     <body>

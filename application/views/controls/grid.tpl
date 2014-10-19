@@ -11,7 +11,6 @@
         {foreach from=$objs item=obj}
             <tr>
                 {foreach from=$columns item=col key=k}
-                    
                     <td>{$obj->$k}</td>
                 {/foreach}
                 <td>

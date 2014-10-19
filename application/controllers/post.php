@@ -13,9 +13,12 @@
  */
 class post extends Controller {
 
-    function create() {
-        $data = $_POST;
-        $data['id'] = genid();
+    function save() {
+        if (!isset($_POST['id'])) {
+            $post['id'] = genid();
+        } else {
+            $post = $_POST;
+        }
         if (count($_FILES) > 0) {
             if ($_FILES['identity']['error'] == 0) {
                 $file = $_FILES['identity']['tmp_name'];
@@ -36,14 +39,17 @@ class post extends Controller {
                 $fileurl = '/uploads/' . $fileid . '.' . $ext;
                 $filename = ROOT_DIR . 'uploads/' . $fileid . '.' . $ext;
                 //echo $filename;
-                $data['imgurl'] = $fileurl;
+                $post['imgurl'] = $fileurl;
                 move_uploaded_file($file, $filename);
             }
         }
-        $duration =date_diff(new DateTime(), new DateTime($data['birthday']));
-        $data['age'] = $duration->y;
-        $post = PostModel::create($data);
-        $post->save();
+        $duration = date_diff(new DateTime(), new DateTime($post['birthday']));
+        $post['age'] = $duration->y;
+        if (isset($_POST['id'])) {
+            PostModel::table()->update($post,array('id'=>$_POST['id']));
+        } else {
+            PostModel::create($data);
+        }
         redirect($_SERVER['HTTP_REFERER']);
     }
 

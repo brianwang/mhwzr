@@ -1,4 +1,10 @@
 {extends file='layouts/main.tpl'}
+{block name=script}
+$(function(){
+    
+
+});
+{/block}
 {block name=content}
     <div class="banner">
         <div class="imglist center">
@@ -117,4 +123,7 @@
         {/foreach}
     </div>
     <p class="clear"></p>
+
+
+   
 {/block}

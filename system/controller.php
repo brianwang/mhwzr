@@ -29,19 +29,19 @@ class Controller {
         return $helper;
     }
 
-   
-
-    public function show_404($message = '') {
-        header('HTTP/1.0 404 Not Found');
-        echo "<h1>404 Not Found</h1>";
-        echo $message;
-        exit();
-    }
-
-    public function show_error($message = '') {
-        header('HTTP/1.0 500 ERROR');
-        echo $message;
-        exit();
+    public function display($tplfile = '', $data = array(), $isfetch = false) {
+        if ($tplfile == '') {
+            $idx = strripos(__METHOD__, ':') + 1;
+            $method = substr(__METHOD__, $idx);
+            $classname = debug_backtrace()[1]['class'];
+            $method= debug_backtrace()[1]['function'];
+            $tplfile = VIEW_DIR . $classname . '/' . $method . '.html';
+        }
+        //if ($isfetch) {
+        return $this->view->render($tplfile, $data, $isfetch);
+        //} else {
+        // $this->view->render($tplfile, $data);
+        //}
     }
 
 }

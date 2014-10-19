@@ -1,10 +1,10 @@
 <select name="province">
     {foreach from=$config.provinces item=p}
-        <option value="{$p}">{$p}</option>
+        <option value="{$p}" {if  $p== $province}selected{/if}>{$p}</option>
     {/foreach}
 </select>
 <select name='city'>
     {foreach from=$config.cities item=p key=province}
-        <option value="{$province}">{$province}</option>
+        <option value="{$province}" {if  $p== $city}selected{/if}>{$province}</option>
     {/foreach}
 </select>

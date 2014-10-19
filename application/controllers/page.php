@@ -19,22 +19,33 @@ class page extends Controller {
         $data = array();
         $postbll = new PostBll();
         $data['top4'] = $postbll->gettop4();
+        $data['today'] =$postbll->gettoday();
         $this->view->render('index.tpl', $data);
     }
 
-    
- 
-    public function items($pageid = 1,$status='going') {
+    function test() {
+//        echo VIEW_DIR;
+//        echo __CLASS__;
+//        echo __METHOD__;
+//        $idx = strripos(__METHOD__, ':');
+//        $method = substr(__METHOD__, $idx + 1);
+//        echo $method;
+         $now=date('Y-m-d',time());
+         echo $now;
+        //$this->display();
+    }
+
+    public function items($pageid = 1, $status = 'going') {
         $data = array();
         $postbll = new PostBll();
-        $pages =  $postbll->getpages();
-        if($pageid > $pages){
-             $data['posts'] = array();
-        }else{
-            $data['posts'] = $postbll->getitems($pageid,10,$status);
+        $pages = $postbll->getpages();
+        if ($pageid > $pages) {
+            $data['posts'] = array();
+        } else {
+            $data['posts'] = $postbll->getitems($pageid, 10, $status);
         }
         $data['pages'] = $pages;
-        $data['curpage'] =$pageid;
+        $data['curpage'] = $pageid;
         $this->view->render('list.tpl', $data);
     }
 
@@ -80,6 +91,10 @@ class page extends Controller {
 
     function help() {
         $this->view->render('help.tpl');
+    }
+
+    function recharge() {
+        $this->view->render('recharge.tpl');
     }
 
 }
