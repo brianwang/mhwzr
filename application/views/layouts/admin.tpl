@@ -18,12 +18,13 @@
     <div class="medium-2 columns">
         <ul class="side-nav">
             <li><a href="/admin/usermgmt/1">用户管理</a></li>
+            <li><a href="/admin/postmgmt/1">寻人管理</a></li>
             <li class="divider"></li>
             <li><a href="#">资金管理</a></li>
             <li><a href="/admin/recharge">充值</a></li>
             <li><a href="/admin/consume">消费</a></li>
             <li class="divider"></li>
-            <li><a href="/admin/postmgmt/1">寻人管理</a></li>
+            
         </ul>
     </div>
     <div class="medium-10 columns">

@@ -2,6 +2,15 @@
 {block name=header}
     <link rel="stylesheet" href="{asset_url('css/page_list.css')}" />
 {/block}
+{block name=script}
+$('.search_box li a').click(function(e){
+    var filter=$('.search_box').data('filter');
+    if($(e.target).hasAttribute('data')){
+        $(e.target).
+        filter.push(
+    }
+});
+{/block}
 {block name=content}
     <div class="content center">
         <div class="page_nav">
@@ -12,25 +21,25 @@
         <p class="p_lineHeight_50"><a href="/" class="p_grey3">首页</a><span class="p_grey3"> > </span><a href="#" class="p_grey3">服务</a><span class="p_grey3"> > </span><a href="#" class="p_grey3">我要找人</a></p>
         <div class="content_left">
             <div class="search_box bg_4">
-                <ul class="nav_1">
+                <ul class="nav_1" data="type">
                     <li>服务：</li>
                     <li><a href="#" class="select">全部</a></li>
-                    <li><a href="#">找人</a></li>
-                    <li><a href="#">公益寻人</a></li>
+                    <li><a href="#" data='悬赏类寻人'>找人</a></li>
+                    <li><a href="#"  data='公益寻人'>公益寻人</a></li>
                 </ul>
 
-                <ul class="nav_2">
+                <ul class="nav_2" data="hasreward">
                     <li>赏金：</li>
                     <li><a href="#" class="select">全部</a></li>
-                    <li><a href="#">未托管赏金</a></li>
-                    <li><a href="#">已托管赏金</a></li>
+                    <li><a href="#" data="free">未托管赏金</a></li>
+                    <li><a href="#" data="no">已托管赏金</a></li>
                 </ul>
 
-                <ul class="nav_3">
+                <ul class="nav_3" data="time">
                     <li>时间：</li>
                     <li><a href="#" class="select">全部</a></li>
-                    <li><a href="#">加急委托</a></li>
-                    <li><a href="#">限时委托</a></li>
+                    <li><a href="#" data="">加急委托</a></li>
+                    <li><a href="#" data="">限时委托</a></li>
                 </ul>
             </div>
             <div class="page_contenter">

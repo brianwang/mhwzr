@@ -78,6 +78,10 @@ class PostBll extends Model {
         try {
             if ($page == 0)
                 $page = 1;
+            $conditions = array();
+            foreach ($_GET as $key => $v) {
+                $conditions[$key] = $v;
+            }
             $posts = PostModel::find('all', array(
                         'conditions' => array('status=?', $status),
                         'order' => 'create_time desc', 'limit' => $pagesize,

@@ -62,5 +62,10 @@ class post extends Controller {
             $this->view->render('post/detail.tpl', $data);
         }
     }
+    function search($key=''){
+        if($key == ''){
+               $posts = PostModel::find(array('id' => $id));
+        }
+    }
 
 }

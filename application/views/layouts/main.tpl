@@ -38,9 +38,9 @@
     <div class="main_nav center">
         <ul>
             <li><a class="p_grey1" href="/">首页</a></li>
-            <li><a class="p_grey1" href="{site_url('/page/newuser')}">新手上路</a></li>
+            <li><a class="p_grey1" href="{site_url('/page/items')}">寻人列表</a></li>
             <li><a class="p_grey1" href="{site_url('/page/success')}">成功案例</a></li>
-            <li><a class="p_grey1" href="{site_url('/page/servicetry')}">服务试用</a></li>
+            <li><a class="p_grey1" href="{site_url('/page/help')}">帮助中心</a></li>
         </ul>
         <p class="right"><a href="{site_url('/page/profile')}">个人中心</a><span class="p_grey"> | </span>
             <a href="{site_url('/page/srvguide')}">服务商中心</a> </p>
@@ -82,17 +82,15 @@
     <ul class="center size">
         <li class="item">
             <p class="p_bold p_size_18  p_grey2 p_lineHeight_70">关于我们</p>
-            <a href="#">公司简介</a>
-            <a href="#">发展历程</a>
-            <a href="#">平台公告</a>
-            <a href="#">联系方式</a>
+            {foreach from=$config.company item=com}
+                <a href="{$com.url}">{$com.title}</a>
+            {/foreach}
         </li>
         <li class="item">
             <p class="p_bold p_size_18  p_grey2 p_lineHeight_70">交易保障</p>
-            <a href="#">担保交易</a>
-            <a href="#">诚信保障</a>
-            <a href="#">网站协议</a>
-            <a href="#">支付方式</a>
+            {foreach from=$config.trade item=td}
+                <a href="{$td.url}">{$td.title}</a>
+            {/foreach}
         </li>
         <li class="item weixin">
             <p class="p_bold p_size_18  p_grey2 p_lineHeight_70">官方微信</p>
@@ -113,7 +111,11 @@
     <p class="clear"></p>
     <div class="footer_nav">
         <div class="center">
-            <p><a href="/">首页</a><span class="p_grey"> | </span><a href="{site_url('/page/aboutus')}">关于我们</a><span class="p_grey"> | </span><a href="#">新闻中心</a><span class="p_grey"> | </span><a href="#">支付方式</a><span class="p_grey"> | </span><a href="#">联系方式</a><span class="p_grey"> | </span><a href="#">客服中心</a></p>
+            <p>
+                {foreach from=$config.footer item=f}
+                    <a href='{$f.url}'>{$f.title}</a><span class="p_grey"> |</span>
+                {/foreach}
+            </p>
         </div>
     </div>
 </div>

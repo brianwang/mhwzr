@@ -31,6 +31,7 @@ $config['status'] = array(
     'going' => '进行中',
     'paying' => '付款中', 'payfinish' => '付款结束', 'finish' => '任务完成'
 );
+include 'urls.php';
 $config['cities'] = array('安徽'
     => Array(
         '合肥',
