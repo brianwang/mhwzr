@@ -14,30 +14,46 @@ class User extends Controller {
 
     function register() {
         $data = array();
-        if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['confirmpassword']) && isset($_POST['confirmpassword'])
-        ) {
-            $password = $_POST['password'];
-            $confirmpass = $_POST['confirmpassword'];
-            $username = $_POST['username'];
-            if ($password == $confirmpass) {
-                $data = $_POST;
-                $data['id'] = genid();
-                $data['password'] = md5($data['password']);
-                unset($data['confirmpassword']);
-                $this->userbll->register($data);
-                redirect('/page/register');
+        if (isset($_SESSION['phrase'])) {
+            if ($_SESSION['phrase'] == $_POST['verifycode']) {
+                if (isset($_POST['agree']) && $_POST['agree'] == 'true') {
+                    if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['confirmpassword']) && isset($_POST ['confirmpassword'])
+                    ) {
+                        $password = $_POST['password'];
+                        $confirmpass = $_POST['confirmpassword'];
+                        $username = $_POST['username'];
+                        if ($password == $confirmpass) {
+                            $data = $_POST;
+                            $data['id'] = genid();
+                            $data['password'] = md5($data['password']);
+                            unset($data['confirmpassword']);
+                            unset($data['verifycode']);
+                            unset($data['agree']);
+                            $this->userbll->register($data);
+                            redirect('/page/login');
+                        } else {
+                            $data['error'] = '密码和确认密码不一致';
+                            $data['questions'] = $config['questions'];
+
+                            $this->view->render('register.tpl', $data);
+                        }
+                    } else {
+                        $data['error'] = '用户名和密码为空';
+                        $this->view->render('register.tpl', $data);
+                    }
+                } else {
+                    $data['error'] = '请同意并接受协议';
+                    $this->view->render('register.tpl', $data);
+                }
             } else {
-                $data['error'] = '密码和确认密码不一致';
-                $data['questions'] = $config['questions'];
+                $data['error'] = '验证码不正确';
                 $this->view->render('register.tpl', $data);
             }
         } else {
-            $data['error'] = '用户名和密码为空';
+            $data['error'] = '验证码不正确';
             $this->view->render('register.tpl', $data);
         }
     }
-
-  
 
     function logout() {
         unset($_SESSION['user']);
@@ -83,6 +99,7 @@ class User extends Controller {
         if ($result['status']) {
             $result = $this->postmodel->create($_POST);
             $data['message'] = '创建成功';
+
             $this->smarty->view('post_success.tpl', $data);
         } else {
             $data['errors'] = $result['errors'];
@@ -104,6 +121,7 @@ class User extends Controller {
                 if ($k == 'password') {
                     $v = md5($v);
                 }
+
                 $user->$k = $v;
             }
             $user->save();

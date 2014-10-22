@@ -11,7 +11,29 @@
  *
  * @author brian
  */
+use Gregwar\Captcha\CaptchaBuilder;
+
 class auth extends Controller {
+
+    function registerverify() {
+        $builder = new CaptchaBuilder;
+        $builder->build();
+        header('Content-type: image/jpeg');
+        // Example: storing the phrase in the session to test for the user 
+        $_SESSION['phrase'] = $builder->getPhrase();
+        echo $builder->output();
+        //$_SESSION['captcha'] = captcha();
+        //echo '<img src="' . $_SESSION['captcha']['image_src'] . '" alt="CAPTCHA" />';
+    }
+
+    function postverify() {
+        $builder = new CaptchaBuilder;
+        $builder->build();
+        header('Content-type: image/jpeg');
+        // Example: storing the phrase in the session to test for the user 
+        $_SESSION['postphrase'] = $builder->getPhrase();
+        echo $builder->output();
+    }
 
     //put your code here
 
@@ -26,7 +48,7 @@ class auth extends Controller {
                     'id' => 'admin',
                     'isadmin' => true
                 );
-                 redirect('/admin');
+                redirect('/admin');
             } else {
                 $password = md5($password);
                 $user = UserModel::find(array('username' => $username, 'password' => $password));

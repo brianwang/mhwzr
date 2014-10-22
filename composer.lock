@@ -4,53 +4,56 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "28ff7c66d5d0652c70d68aee2f08e1f1",
+    "hash": "0adf8581a2e2e8224c2073a3deabe574",
     "packages": [
         {
-            "name": "adodb/adodb-php",
-            "version": "v5.19",
+            "name": "gregwar/captcha",
+            "version": "v1.0.11",
+            "target-dir": "Gregwar/Captcha",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ADOdb/ADOdb.git",
-                "reference": "773bb9b7ccd81b403bf75f7ef476c3f2d7ee04de"
+                "url": "https://github.com/Gregwar/Captcha.git",
+                "reference": "68c27a070922cf306984dc04a92a27525e534e83"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ADOdb/ADOdb/zipball/773bb9b7ccd81b403bf75f7ef476c3f2d7ee04de",
-                "reference": "773bb9b7ccd81b403bf75f7ef476c3f2d7ee04de",
+                "url": "https://api.github.com/repos/Gregwar/Captcha/zipball/68c27a070922cf306984dc04a92a27525e534e83",
+                "reference": "68c27a070922cf306984dc04a92a27525e534e83",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.2"
+                "ext-gd": "*",
+                "php": ">=5.3.0"
             },
-            "type": "library",
+            "type": "captcha",
             "autoload": {
-                "files": [
-                    "adodb.inc.php"
-                ]
+                "psr-0": {
+                    "Gregwar\\Captcha": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "LGPL-2.1",
-                " BSD-2-Clause"
+                "MIT"
             ],
             "authors": [
                 {
-                    "name": "John Lim",
-                    "email": "jlim@natsoft.com",
-                    "role": "Author"
+                    "name": "Grégoire Passault",
+                    "email": "g.passault@gmail.com",
+                    "homepage": "http://www.gregwar.com/"
                 },
                 {
-                    "name": "Damien Regad",
-                    "role": "Current maintainer"
+                    "name": "Jeremy Livingston",
+                    "email": "jeremy.j.livingston@gmail.com"
                 }
             ],
-            "description": "ADOdb is a PHP database abstraction layer library",
-            "homepage": "http://adodb.sourceforge.net/",
+            "description": "Captcha generator",
+            "homepage": "https://github.com/Gregwar/Captcha",
             "keywords": [
-                "database"
+                "bot",
+                "captcha",
+                "spam"
             ],
-            "time": "2014-04-23 14:37:03"
+            "time": "2014-03-19 15:13:34"
         },
         {
             "name": "php-activerecord/php-activerecord",
@@ -132,21 +135,11 @@
             "time": "2014-08-07 20:42:11"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": [],
     "prefer-stable": false,
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "platform": [],
+    "platform-dev": []
 }

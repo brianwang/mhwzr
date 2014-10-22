@@ -2,7 +2,8 @@
     "name": "smvc",
     "require": {
         "smarty/smarty": "*",
-        "php-activerecord/php-activerecord": "*"
+        "php-activerecord/php-activerecord": "*",
+        "gregwar/captcha": "~1.0"
     },
     "autoload": {
         "psr-0": {"":   ["application/models/","application/helpers/"]}
