@@ -86,7 +86,7 @@
 .footer .footer_nav a:hover{color: #F39700;}
 
 
-.alert_public{position:absolute; height:790px; width:812px; margin:-405px 0px 0px -406px; top: 50%; left: 50%; background: url(../img/alert_bg.png) repeat; padding: 10px;}
+.alert_public{position:fixed; height:790px; width:812px;  top: 20%; left: 20%; background: url(../img/alert_bg.png) repeat; padding: 10px;}
 .alert_public .alert_title{display: block; position: relative; color: #000000; font-weight: bold; background: url(../img/alert_title_bg.png) repeat-x; line-height: 41px; text-indent: 20px;}
 .alert_public .btn_close{position: absolute; right: 15px; color: #bcbcbc;}
 .alert_public .alert_content{width: 772px; height: 724px; background-color: #ffffff; padding-left: 40px; padding-top: 25px;}

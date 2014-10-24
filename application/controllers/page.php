@@ -20,6 +20,8 @@ class page extends Controller {
         $postbll = new PostBll();
         $data['top4'] = $postbll->gettop4();
         $data['today'] =$postbll->gettoday();
+        $userdll = new UserBll();
+        $data['usercount'] = $userdll->count();
         $this->view->render('index.tpl', $data);
     }
 

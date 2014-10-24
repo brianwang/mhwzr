@@ -40,4 +40,7 @@ class UserBll extends Model {
 //        return $result;
     }
 
+    public function count(){
+        return UserModel::count();
+    }
 }

@@ -1,9 +1,9 @@
 {extends file='layouts/main.tpl'}
 {block name=script}
-$(function(){
-    
+    $(function(){
 
-});
+
+    });
 {/block}
 {block name=content}
     <div class="banner">
@@ -31,7 +31,7 @@ $(function(){
                     <p class="clear"></p>
                 </li>
                 <li class="box_foot">
-                    <p class="p_title">200W用户在美猴王找人</p>
+                    <p class="p_title">{$usercount}用户在美猴王找人</p>
                     <a href="#"><img src="{asset_url('img/top.png')}"/></a>
                     <div class="img_title">
                         <p>寻找失散多年的姐妹</p>
@@ -45,15 +45,13 @@ $(function(){
             <img class="icon horn" src="{asset_url('img/pixel.gif')}"><p class="p_title">平台规则变更通知</p>
             <div class="notice_box">
                 <ul class="list">
-                    <li class="item">
-                        <span class="msg_time">20:33</span><span class="p_yellow msg_type">寻人任务</span>
-
-                        <p class="p_grey1 msg_content"><span class="p_blue">葡萄家的底层民工</span> 发布了一个 照片寻人</p>
-                    </li>
-                    <li class="item">
-                        <span class="msg_time">20:33</span><span class="p_clor_24c1a4 msg_type">公益寻人</span>
-                        <p class="p_grey1 msg_content"><span class="p_blue">逗逼思密达</span> 发布了一个 公益寻人</p>
-                    </li>
+                    {foreach from=$today item=t}
+                        <li class="item">
+                            <span class="msg_time">{$t.create_time|date_format: '%H:%M'}</span>
+                            <span class="{if $t.type=='公益寻人'}p_clor_24c1a4{else}p_yellow{/if} msg_type">寻人任务</span>
+                            <p class="p_grey1 msg_content"><span class="p_blue">{$t.creator_name}</span> 发布了一个 {$t.task}</p>
+                        </li>
+                    {/foreach}
                 </ul>
             </div>
             <ul class="list1">
@@ -80,9 +78,11 @@ $(function(){
                     <p class="p_title p_size_20 p_grey2 p_bold"><span class="p_yellow p_size_24 p_bold">今日寻人</span> 任务板</p>
                 </div>
                 <ul>
-                    <li><a href="#" class="p_size_14"><span class="p_blue">葡萄家的底层民工</span> 发布了 一个照片寻人,悬赏 <span class="p_yellow p_bold">3866</span> 元。</a></li>
-                    <li><a href="#" class="p_size_14"><span class="p_blue">王翔宇</span> 发布了 一个寻人,提供照片，手机号，原住址，悬赏 <span class="p_yellow p_bold">103866</span> 元。</a></li>
-                    <li><a href="#" class="p_size_14"><span class="p_blue">葡萄家的底层民工</span> 发布了 一个照片寻人,悬赏 <span class="p_yellow p_bold">3866</span> 元。</a></li>
+                    {foreach from=$today item=t}
+                        {if $t.type == '悬赏找人'}
+                            <li><a href="{site_url('/post/')}/{$t.id}" class="p_size_14"><span class="p_blue">{$t.creator_name}</span> 发布了 一个{$t.task},悬赏 <span class="p_yellow p_bold">{$t.rewards}</span> 元。</a></li>
+                            {/if}
+                        {/foreach}
                 </ul>
             </div>
             <div class="task_box">
@@ -90,15 +90,17 @@ $(function(){
                     <img src="{asset_url('img/pixel.gif')}" class="icon icon_tast"/><p class="p_title  p_size_20 p_grey2 p_indent_55 p_bold"><span class="p_yellow p_size_24 p_bold">公益找人</span> 任务板</p>
                 </div>
                 <ul>
-                    <li><a href="#" class="p_size_14"><span class="p_blue">葡萄家的底层民工</span> 发布了 一个照片寻人。</a></li>
-                    <li><a href="#" class="p_size_14"><span class="p_blue">王翔宇</span> 发布了 一个寻人,提供照片，手机号，原住址。</a></li>
-                    <li><a href="#" class="p_size_14"><span class="p_blue">葡萄家的底层民工</span> 发布了 一个照片寻人。</a></li>
+                    {foreach from=$today item=t}
+                        {if $t.type == '公益找人'}
+                            <li><a href="#" class="p_size_14"><span class="p_blue">{$t.creator_name}</span> 发布了 一个{$t.task}。</a></li>
+                            {/if}
+                        {/foreach}
                 </ul>
             </div>
             <div class="tast_foot">
-                <a href="#" class="button">找人经验分享</a>
-                <a href="#">团队坚持信誉品质 依托平台四个月赚四十万</a>
-                <a href="#">兼职接单照顾宝宝两不误 全职妈妈过起了威客生活</a>
+                <a href="{site_url('company/help')}" class="button">找人经验分享</a>
+                <a href="{site_url('company/help')}">团队坚持信誉品质 依托平台四个月赚四十万</a>
+                <a href="{site_url('company/help')}">兼职接单照顾宝宝两不误 全职妈妈过起了威客生活</a>
             </div>
         </div>
     </div>
@@ -118,12 +120,12 @@ $(function(){
                     <p class="p_size_14 p_grey2 p_lineHeight_40">{$p.name}   {$p.gender}   {if $p.age}{$p.age}岁{/if} </p>
                     <p class="p_size_14 p_grey2 p_lineHeight_30">{$p.description}</p>
                 </div>
-                <p class="img_title {if $p.type == '公益类'}}bg_4{else}bg_6{/if} p_bold">{$p.type|cat:'寻人'}</p>
+                <p class="img_title {if $p.type == '公益找人'}}bg_4{else}bg_6{/if} p_bold">{$p.type|cat:'寻人'}</p>
             </div>
         {/foreach}
     </div>
     <p class="clear"></p>
 
 
-   
+
 {/block}

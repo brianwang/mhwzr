@@ -48,34 +48,40 @@
 
 {block name=content}{/block}
 <div class="alert_public " style="display:none;" id="dialogcreatepost">
-    <p class="alert_title">一键发布找人（无需注册）<a class="btn_close" href="#">X</a></p>
+    <p class="alert_title">一键发布找人（无需注册）<a class="btn_close" href="javascript:;" onclick='$(this).parent().parent().toggle();return false;'>X</a></p>
     <div class="alert_content">
-        <p class="item"><span class="label t_width_90">手机号码：</span><input class="input_text input_width_190" type="text" id="" value=""></p>
+        {*<p class="item"><span class="label t_width_90">手机号码：</span><input class="input_text input_width_190" type="text" id="" value=""></p>
         <p class="item"><span class="label t_width_90">验证码：</span><input class="input_text input_width_90" type="text" id="" value=""></p>
         <p class="item"><span class="label t_width_90">手机验证码：</span><input class="input_text input_width_90" type="text" id="" value=""></p>
         <p class="item"><span class="label t_width_90">需求描述：</span><textarea class="textare"></textarea></p>
         <!--p class="item p_padding_100"><input class="input_text" type="text" id="" value=""><span class="label p_indent_20">可选内容，提高找人效率</span></p>
         <p class="item p_padding_100"><input class="input_text" type="text" id="" value=""><span class="label p_indent_20">可选内容，提高找人效率</span></p-->
         <div class="item"><span class="label t_width_90">任务分类：</span>
-            <select name="type" class="easyui-combobox" >
-                {foreach from=$config.types item=t}
-                    <option value="{$t}">{$t}</option>
-                {/foreach}
-            </select>
-            <!--div class="combobox">                
-                <p>公益找人<img src="img/pixel.gif" class="icon combobox_arror"></p>
-                <ul class="list">
-                    <li>公益找人</li>
-                    <li>悬赏找人</li>
-                </ul>
-            </div-->
+        <select name="type" class="easyui-combobox" >
+        {foreach from=$config.types item=t}
+        <option value="{$t}">{$t}</option>
+        {/foreach}
+        </select>
+        <!--div class="combobox">                
+        <p>公益找人<img src="img/pixel.gif" class="icon combobox_arror"></p>
+        <ul class="list">
+        <li>公益找人</li>
+        <li>悬赏找人</li>
+        </ul>
+        </div-->
         </div>
         <div class="yanzheng"><img src="img/img_yanzheng.png"></div>
         <a href="#" class="phone_yanzheng p_lineHeight_30 p_bold">获取验证码</a>
         <a class="linkbtn" href="#">无法获取验证码？</a>
         <p class="error top_2"><img src="img/pixel.gif" class="icon icon_tanhao">请填写正确的验证码</p>
         <p class="success top_1"><img src="img/pixel.gif" class="icon icon_duihao"></p>
-        <p class="item p_padding_100"><a class="btn" href="#">发布找人</a></p>
+        <p class="item p_padding_100"><a class="btn" href="#">发布找人</a></p>*}
+        <form action="{site_url('/post/save')}" 
+              method="post" enctype="multipart/form-data" 
+              style="width: 400px;" class="form center">
+            {include file='model/post.tpl' isedit=false model=null isfile=false}
+            <input type='submit' value='提交'/>
+        </form>
     </div>
 </div>
 <div class="footer">
@@ -114,7 +120,7 @@
             <p>
                 {foreach from=$config.footer item=f}
                     <a href='{$f.url}'>{$f.title}</a><span class="p_grey"> |</span>
-                {/foreach}
+                    {/foreach}
             </p>
         </div>
     </div>

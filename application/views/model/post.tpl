@@ -1,22 +1,24 @@
-{if !$isedit}
-    <div>
-        <span class="field_span">身份证文件</span>
-        <input type="file" name="identity">
-    </div>
-{else}
-    {if $model.imgurl == ''}
+{if !$isnew|default:true}
+    {if !$isedit}
         <div>
             <span class="field_span">身份证文件</span>
             <input type="file" name="identity">
         </div>
     {else}
-        <img src="{$model.imgurl|default:''}" width=160 heigh=160>
+        {if $model.imgurl == ''}
+            <div>
+                <span class="field_span">身份证文件</span>
+                <input type="file" name="identity">
+            </div>
+        {else}
+            <img src="{$model.imgurl|default:''}" width=160 heigh=160>
+        {/if}
+        <input type='hidden' name='id' value='{$model.id}'>
+        <div>
+            <span class="field_span">状态</span>
+            {include file='partials/status.tpl' status=$model.status}
+        </div>
     {/if}
-    <input type='hidden' name='id' value='{$model.id}'>
-    <div>
-        <span class="field_span">状态</span>
-        {include file='partials/status.tpl' status=$model.status}
-    </div>
 {/if}
 <div>
     <span class="field_span">姓名</span>
@@ -69,3 +71,23 @@
 <div>
     <textarea name='description'>{$model.description}</textarea>
 </div>
+<script>
+    var p =$('select[name=province]').val();
+    function getcity(province) {
+        $.get('/api/city/' + province, function (data) {
+            data = JSON.parse(data);
+            var options = '';
+            for (var i = 0; i < data.length; i++) {
+                options += '<option value=' + data[i] + '>' + data[i] + '</option>';
+            }
+            $('select[name=city]').html(options);
+        });
+    }
+    // var province = $(e.target).val();
+    getcity(p);
+    $('select[name=province]').change(function (e) {
+        var province = $(e.target).val();
+        getcity(province);
+    });
+
+</script>

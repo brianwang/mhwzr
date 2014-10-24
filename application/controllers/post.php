@@ -14,11 +14,10 @@
 class post extends Controller {
 
     function save() {
-        if (!isset($_POST['id'])) {
+        $post = $_POST;
+        if (!isset($post['id'])) {
             $post['id'] = genid();
-        } else {
-            $post = $_POST;
-        }
+        } 
         if (count($_FILES) > 0) {
             if ($_FILES['identity']['error'] == 0) {
                 $file = $_FILES['identity']['tmp_name'];
@@ -45,10 +44,19 @@ class post extends Controller {
         }
         $duration = date_diff(new DateTime(), new DateTime($post['birthday']));
         $post['age'] = $duration->y;
+        if(isset($_SESSION['user'])){
+            $username = $_SESSION['user']['username'];
+            $creator = $_SESSION['user']['id'];
+        }else{
+            $username = '游客';
+            $creator = '-1';
+        }
+        $post['creator'] = $creator;
+        $post['creator_name'] = $username;
         if (isset($_POST['id'])) {
             PostModel::table()->update($post,array('id'=>$_POST['id']));
         } else {
-            PostModel::create($data);
+            PostModel::create($post);
         }
         redirect($_SERVER['HTTP_REFERER']);
     }
