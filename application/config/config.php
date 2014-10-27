@@ -1,6 +1,6 @@
 <?php
 
-$config['base_url'] = 'http://www.mhwxr.com:8080'; // Base URL including trailing slash (e.g. http://localhost/)
+$config['base_url'] = 'http://www.mhwxr.com'; // Base URL including trailing slash (e.g. http://localhost/)
 $config['asset_url'] = '/static/'; // Base URL including trailing slash (e.g. http://localhost/)
 
 $config['default_controller'] = 'page'; // Default controller to load
@@ -18,6 +18,7 @@ $config['questions'] = array(
     '自定义答案'
 );
 $config['tasks'] = array('手机找人', '姓名找人', '照片找人', 'QQ找人', '邮箱找人');
+$config['times'] = array('一个月','二个月','三个月');
 $config['provinces'] = array('安徽', '北京', '重庆', '福建', '甘肃', '广东', '广西', '贵州', '海南', '河北', '黑龙江', '河南', '香港', '湖北', '湖南', '江苏', '江西', '吉林', '辽宁', '澳门', '内蒙古', '宁夏', '青海', '山东', '上海', '山西', '陕西', '四川', '台湾', '天津', '新疆', '西藏', '云南', '浙江', '海外');
 $config['sitename'] = '美猴王寻人网';
 $config['hookpath'] = 'hook';

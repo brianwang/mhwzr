@@ -3,13 +3,29 @@
     <link rel="stylesheet" href="{asset_url('css/page_list.css')}" />
 {/block}
 {block name=script}
-$('.search_box li a').click(function(e){
-    var filter=$('.search_box').data('filter');
-    if($(e.target).hasAttribute('data')){
-        $(e.target).
-        filter.push(
+    <script></script>
+    var filters = $('.search_box').data('filter');
+    $('.contenter_title a').click(function(e){
+        var img = $(e.target).find('img');
+        var field = $(e.target).attr('data');
+        var orderby = 'aesc';
+        if(img.hasClass('icon_arror_bottom')){
+            orderby = 'desc';
+            img.removeClass('icon_arror_bottom').addClass('icon_arror_top');
+        }
+        filters.push({ field: field, value: orderby});
+    });
+    
+    $('.search_box a').click(function(e){
+
+    if(filters ==  undefined){
+        filters =[];
     }
-});
+    if($(e.target).hasAttribute('data')){
+        var f =$(e.target).attr('data');
+        filters.push(f);
+    }
+    });
 {/block}
 {block name=content}
     <div class="content center">
@@ -23,23 +39,25 @@ $('.search_box li a').click(function(e){
             <div class="search_box bg_4">
                 <ul class="nav_1" data="type">
                     <li>服务：</li>
-                    <li><a href="#" class="select">全部</a></li>
-                    <li><a href="#" data='悬赏类寻人'>找人</a></li>
-                    <li><a href="#"  data='公益寻人'>公益寻人</a></li>
+                    <li><a href="#" class="select" data='service-all'>全部</a></li>
+                    <li><a href="#" data='悬赏找人'>悬赏找人</a></li>
+                    <li><a href="#"  data='公益找人'>公益找人</a></li>
                 </ul>
 
                 <ul class="nav_2" data="hasreward">
-                    <li>赏金：</li>
-                    <li><a href="#" class="select">全部</a></li>
-                    <li><a href="#" data="free">未托管赏金</a></li>
-                    <li><a href="#" data="no">已托管赏金</a></li>
+                    <li>任务：</li>
+                    <li><a href="#" class="select" data='task-all'>全部</a></li>
+                        {foreach from=$config.tasks item=t}
+                        <li><a href="#" data="{$t}">{$t}</a></li>
+                        {/foreach}
                 </ul>
 
                 <ul class="nav_3" data="time">
                     <li>时间：</li>
-                    <li><a href="#" class="select">全部</a></li>
-                    <li><a href="#" data="">加急委托</a></li>
-                    <li><a href="#" data="">限时委托</a></li>
+                    <li><a href="#" class="select" data='time-all'>全部</a></li>
+                        {foreach from=$config.times item=t}
+                        <li><a href="#" data="{$t}">{$t}</a></li>
+                        {/foreach}                    
                 </ul>
             </div>
             <div class="page_contenter">
@@ -55,16 +73,16 @@ $('.search_box li a').click(function(e){
                             </li>
                         </ul>
                         <ul class="contenter_title">
-                            <li><a href="#" class="border_no_right select">综合</a></li>
-                            <li><a href="#" class="border_no_right addArror">发布时间<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
-                            <li><a href="#" class="border_no_right addArror">剩余时间<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
-                            <li><a href="#" class="border_no_right addArror">参与数<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
-                            <li><a href="#" class="border_all addArror">价格<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
+                            <li><a href="#" class="border_no_right select" data='sum-all'>综合</a></li>
+                            <li><a href="#" class="border_no_right addArror" data='create_time'>发布时间<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
+                            <li><a href="#" class="border_no_right addArror" data='lefttime'>剩余时间<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
+                            <li><a href="#" class="border_no_right addArror" data='joincount'>参与数<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
+                            <li><a href="#" class="border_all addArror" data='price'>价格<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
                             <li><a href="#" class="border_all combobox addArror">所有价格<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror1_bottom"></img></a></li>
                         </ul>
                         <ul class="contenter_title_right">
-                            <li><a href="#"><img src="{asset_url('img/pixel.gif')}" class="icon icon_arror1_left"></img></a></li>
-                            <li><a href="#"><img src="{asset_url('img/pixel.gif')}" class="icon icon_arror1_right"></img></a></li>
+                            <li><a href="javasript:;" id='btn_left'><img src="{asset_url('img/pixel.gif')}" class="icon icon_arror1_left"></img></a></li>
+                            <li><a href="javascript:;"  id='btn_right'><img src="{asset_url('img/pixel.gif')}" class="icon icon_arror1_right"></img></a></li>
                         </ul>
                         <ul class="contenter_data_box">
                             <li class="box_title"><span class="b_1">标题/赏金</span><span class="b_2">状态</span><span class="b_3">所在地</span><span class="b_4">时间</span></li>

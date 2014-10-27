@@ -1,7 +1,4 @@
-.content .page_nav{width: 200px; height: 40px; position: absolute; top:-40px;}
-.content .page_nav ul{display: block;}
-.content .page_nav li{display: block; padding-left: 15px;width: 185px;}
-.content .page_nav .box_title{height: 38px; line-height: 38px; font-size: 14px; color: #ffffff;}
+
 .content_left{width: 785px; height: auto; float: left;}
 .search_box{width: 749px; height: 106px; padding: 18px;}
 .search_box ul{display: block; width: 100%;float: left;}

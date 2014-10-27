@@ -97,7 +97,19 @@ a img{border:none;}
 
 .icon_shang{width: 16px; height: 16px;background-position: -70px -114px; position: absolute;left: 0px;top: 7px;}
 .icon_gong{width: 16px; height: 16px;background-position: -89px -114px; position: absolute;left: 0px;top: 7px;}
+
+
 .icon_tanhao{width: 16px; height: 16px; background-position: -70px -135px;}
+.icon_zhifubao{width: 32px; height: 32px; background-position: -112px -65px; position: absolute; left: 20px; top: 20px;}
+.icon_blank{width: 32px; height: 32px; background-position: -112px -100px; position: absolute; left: 20px; top: 20px;}
+.icon_blank_item1{width: 120px; height: 40px; background-position: -220px 0px;}
+.icon_fanghu{width: 24px; height: 27px; background-position: -158px -109px; position: absolute; left: 20px; top: 65px;}
+
+
 .field_span{ width: 120px;display:inline-block; float:left;padding: 5px; font-size:1.2em;}
 .field input{width: 180px; padding: 5px;}
 .field select{width: 195px; padding: 5px;}
+.box_title{height: 38px; line-height: 38px; font-size: 14px;}
+.content .page_nav{width: 200px; height: 40px; position: absolute; top:-40px;}
+.content .page_nav ul{display: block;}
+.content .page_nav li{display: block; padding-left: 15px;width: 185px;}

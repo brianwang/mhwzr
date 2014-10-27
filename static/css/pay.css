@@ -1,0 +1,32 @@
+.pay_title{width: 100%; margin-top:40px; padding-top: 30px; border-top: #FF9400 2px solid;}
+.pay_content_left{display: block;width: 200px; float: left;}
+.pay_content_left li{display: block; width: 180px; padding-left: 20px; position: relative;}
+.pay_content_left .left_title{font-size: 24px; color: #CCCCCC; padding:10px 0 30px 20px;}
+.pay_content_left .pay_list_item{height: 50px;padding:10px 0; width: 200px;}
+.pay_content_left .pay_list_item a{display:block; height: 100%; font-size: 14px; color: #a6a6a6; font-weight: bold; line-height: 50px; text-indent: 60px;}
+.pay_content_left .pay_list_item a:hover, .pay_content_left .select a{background-color: #f1f1f1; color: #FF9400; border-right: #FF9400 2px solid;}
+.pay_content_right{float: left; width: 760px; padding-left: 40px;}
+.pay_content_right .right_title{display:block; width:100%;font-size: 24px; color: #cccccc; padding: 30px 0 20px 0; border-bottom: #BCBCBC 1px solid;}
+.pay_content_right .right_content{padding: 60px 0 0 60px;}
+.recharge_input{display: block; padding: 20px 0; float: left;}
+.recharge_input .span1{display: block; float: left; line-height: 44px; padding-right: 10px; font-size: 18px; color: #454545;}
+.recharge_input input{width: 163px; height: 20px; line-height: 20px; padding: 10px 5px; outline: none; float: left;}
+.recharge_input .span2{display: block; float: left; line-height: 44px; padding-left: 10px; font-size: 14px; color: #ccc;}
+.recharge_amount{clear: both; color: #454545; font-size: 18px; padding: 40px 0 60px 0;}
+.recharge_btn{display: block; width: 164px; height: 48px; line-height: 48px; text-align: center; background-color: #F27302; color: #ffffff; font-size: 18px;}
+a.recharge_btn:hover{background-color: #F39700;}
+.blank_box .blank_list{display: block; float: left; padding: 40px 0 80px 0;}
+.blank_box .blank_list .item{position: relative; width: 170px; height: 30px; padding-top: 20px; float: left;}
+.blank_box .blank_list .p_icon{position: absolute; top: 8px; left: 20px;}
+.alert_pay{position:absolute; height:328px; width:520px; margin:-164px 0px 0px -270px; top: 50%; left: 50%; background-color: #FFFFFF; padding-left: 20px;}
+.alert_pay .alert_title{display:block;position:relative;font-size: 18px; color: #FF9400; font-weight: bold; line-height: 50px;}
+.alert_pay .btn_close{position: absolute; right: 15px; font-weight: normal; font-size: 14px; color: #bcbcbc;}
+.alert_pay .alert_content{position: relative;}
+.alert_pay .p_title_icon{position: absolute; top: 0px; left: 50px;}
+.alert_pay .p_item_top{position: absolute; left: 0px; top: 10px;}
+.alert_pay .p_item_last{position: absolute; left: 170px; top: 10px;}
+.alert_pay .seach_list{display: block; width: 200px; height: 88px; background-color: #fafafa; border: #e5e5e5 2px solid; border-radius: 5px; padding: 15px; position: relative; float: left; margin-top: 65px;}
+.alert_pay .btn_send{display: block;width: 160px; height: 38px; background-color: #FF9400; color: #ffffff; text-align: center; line-height: 38px; font-weight: bold; font-size: 18px; border: #d67c00 solid 1px; position: absolute; top: 270px; left: 20px;}
+.alert_pay .p_content{padding-left: 40px; padding-top: 20px;}
+.alert_pay .p_content1{padding-top: 20px;}
+.alert_pay .margin_left_25{margin-left: 25px;}

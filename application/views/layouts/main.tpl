@@ -8,8 +8,6 @@
         <script src="{asset_url('easyui/jquery.min.js')}" type="text/javascript"></script>
         <script src="{asset_url('easyui/easyloader.js')}" type="text/javascript"></script>
         <script src="{asset_url('easyui/jquery.easyui.min.js')}" type="text/javascript"></script>
-
-
     {block name=header}{/block}
 </head>
 <body>
@@ -79,11 +77,7 @@
         <p class="item p_padding_100"><a class="btn" href="#">发布找人</a></p>*}
         <form action="{site_url('/post/save')}" method="post" enctype="multipart/form-data">
             {include file='model/post.tpl' isedit=false model=null isfile=false}
-            <div class="field">
-                <span class="field_span">验证码</span>
-                <input type="text" name="postverify" placeholder="验证码" style="float:left;">
-                <img src="{site_url('/auth/postverify')}" height="29">
-            </div>
+          
             <div>
                 <input type='submit' value='提交' class="btn" style="margin: 20px 0 0 40px;"/>
             </div>
