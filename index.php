@@ -30,7 +30,7 @@ $cfg = ActiveRecord\Config::instance();
 $cfg->set_model_directory(ROOT_DIR . '/application/models');
 $cfg->set_connections(
         array(
-            'development' => 'mysql://root:admin@localhost/mhwxr;charset=utf8',
+            'development' => 'mysql://mhwxr:mhwxr@localhost/mhwxr;charset=utf8',
             //'test' => 'mysql://username:password@localhost/test_database_name',
             //'production' => 'mysql://username:password@localhost/production_database_name'
         )

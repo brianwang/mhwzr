@@ -98,4 +98,6 @@ a img{border:none;}
 .icon_shang{width: 16px; height: 16px;background-position: -70px -114px; position: absolute;left: 0px;top: 7px;}
 .icon_gong{width: 16px; height: 16px;background-position: -89px -114px; position: absolute;left: 0px;top: 7px;}
 .icon_tanhao{width: 16px; height: 16px; background-position: -70px -135px;}
-.field_span{ width: 120px;display:inline-block;}
+.field_span{ width: 120px;display:inline-block; float:left;padding: 5px; font-size:1.2em;}
+.field input{width: 180px; padding: 5px;}
+.field select{width: 195px; padding: 5px;}

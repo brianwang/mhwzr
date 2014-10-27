@@ -48,7 +48,8 @@
 
 {block name=content}{/block}
 <div class="alert_public " style="display:none;" id="dialogcreatepost">
-    <p class="alert_title">一键发布找人（无需注册）<a class="btn_close" href="javascript:;" onclick='$(this).parent().parent().toggle();return false;'>X</a></p>
+    <p class="alert_title">一键发布找人（无需注册）<a class="btn_close" href="javascript:;" onclick='$(this).parent().parent().toggle();
+            return false;'>X</a></p>
     <div class="alert_content">
         {*<p class="item"><span class="label t_width_90">手机号码：</span><input class="input_text input_width_190" type="text" id="" value=""></p>
         <p class="item"><span class="label t_width_90">验证码：</span><input class="input_text input_width_90" type="text" id="" value=""></p>
@@ -76,11 +77,16 @@
         <p class="error top_2"><img src="img/pixel.gif" class="icon icon_tanhao">请填写正确的验证码</p>
         <p class="success top_1"><img src="img/pixel.gif" class="icon icon_duihao"></p>
         <p class="item p_padding_100"><a class="btn" href="#">发布找人</a></p>*}
-        <form action="{site_url('/post/save')}" 
-              method="post" enctype="multipart/form-data" 
-              style="width: 400px;" class="form center">
+        <form action="{site_url('/post/save')}" method="post" enctype="multipart/form-data">
             {include file='model/post.tpl' isedit=false model=null isfile=false}
-            <input type='submit' value='提交'/>
+            <div class="field">
+                <span class="field_span">验证码</span>
+                <input type="text" name="postverify" placeholder="验证码" style="float:left;">
+                <img src="{site_url('/auth/postverify')}" height="29">
+            </div>
+            <div>
+                <input type='submit' value='提交' class="btn" style="margin: 20px 0 0 40px;"/>
+            </div>
         </form>
     </div>
 </div>
