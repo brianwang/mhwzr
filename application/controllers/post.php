@@ -13,8 +13,8 @@
  */
 class post extends Controller {
 
+    //保存
     function save() {
-
         if (isset($_SESSION['postphrase'])) {
             if ($_SESSION['postphrase'] == $_POST['postverify']) {
                 $post = $_POST;
@@ -78,10 +78,44 @@ class post extends Controller {
         }
     }
 
-    function search($key = '') {
-        if ($key == '') {
-            $posts = PostModel::find(array('id' => $id));
+    function search() {
+        if (isset($_GET['key'])) {
+            $filters = array('name like ? or desciption like ?', '%' . $_GET['key'] . '%', '%' . $_GET['key'] . '%');
+            $posts = PostModel::find('all', array('conditons' => $filters, 'limit' => 10, 'offset' => 0));
+        } else {
+            $filters = array();
+            foreach ($_GET as $key => $value) {
+                if ($key == 'page') {
+                    $filters['limit'] = $value;
+                }
+                $filters['conditions'] = array();
+                if ($key == 'task' || $key == 'type') {
+                    $filters['conditions'] [$key . '=?'] = $value;
+                }
+                if ($key == 'time') {
+                    $time = intval(substr($value, 0, 1));
+                    $filters['conditions'] ['duration=?'] = $time;
+                }
+                $pos = strpos($key, 'lefttime');
+                if ($pos == 0) {
+                    //$filters['order'] = 
+                } else if (strpos($key, 'create_time') == 0 ||
+                        strpos($key, 'reward') == 0
+                ) {
+                    $desc = substr($key, strpos($key, '_'));
+                    if ($desc == 'desc') {
+                        $filters['order'] = $key . ' desc';
+                    } else {
+                        $filters['order'] = $key . ' asc';
+                    }
+                }
+            }
+            $posts = PostModel::find('all', array('conditions' => $filters));
+            $this->view->json($posts);
         }
+        /* if ($key == '') {
+          $posts = PostModel::find(array('id' => $id));
+          } */
     }
 
 }

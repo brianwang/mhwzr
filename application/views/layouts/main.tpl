@@ -27,7 +27,9 @@
         <a href="/" class="logo"><img src="{asset_url('img/pixel.gif')}" class="icon logo"/></a>
         <div class="box">
             <div class="input_search_back">
-                <input type="text" value="服务" class="input_search p_bold p_grey1"/>
+                <form action="{site_url('/post/search')}" action='get'>
+                    <input type="text" placeholder="服务" class="input_search p_bold p_grey1" name='key'/>
+                </form>
             </div>
             <a href="#" class="btn_search p_bold">搜索</a><span class="text_or p_bold p_grey1">或者</span>
             <a href="javascript:;" class="btn_search p_bold" style="width: 157px;" id="btn_createpost">发布一个找人</a>
@@ -77,7 +79,7 @@
         <p class="item p_padding_100"><a class="btn" href="#">发布找人</a></p>*}
         <form action="{site_url('/post/save')}" method="post" enctype="multipart/form-data">
             {include file='model/post.tpl' isedit=false model=null isfile=false}
-          
+
             <div>
                 <input type='submit' value='提交' class="btn" style="margin: 20px 0 0 40px;"/>
             </div>
@@ -128,9 +130,13 @@
 <Script>
     $(document).ready(function () {
         $('#btn_createpost').click(function () {
-            $('#dialogcreatepost').toggle();
+            if ({$smarty.session.user|default: 'false' != null}) {
+                $('#dialogcreatepost').toggle();
+            } else {
+                alert('请登录');
+            }
         });
-
     });
 </script>
+{block name=script}{/block}
 {include  file='layouts/footer.tpl'}
