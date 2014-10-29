@@ -137,7 +137,7 @@
                             <li><a href="javascript:;" class="border_no_right addArror" data='create_time'>发布时间<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
                             <li><a href="javascript:;" class="border_no_right addArror" data='lefttime'>剩余时间<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
                             <li><a href="javascript:;" class="border_no_right addArror" data='joincount'>参与数<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
-                            <li><a href="javascript:;" class="border_all addArror" data='price'>价格<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
+                            <li><a href="javascript:;" class="border_all addArror" data='rewards'>价格<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
                             {*<li><a href="javascript:;" class="border_all combobox addArror">所有价格<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror1_bottom"></img></a></li>*}
                         </ul>
                         <ul class="contenter_title_right">

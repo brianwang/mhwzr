@@ -22,6 +22,7 @@ class hook {
                     || ($controller == 'auth' && $action == 'login') 
                     || ($controller == 'page' && $action == 'register')
                     || ($controller == 'user' && $action == 'register') 
+                    || ($controller == 'api') 
             ) {
                 
             } else {

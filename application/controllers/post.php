@@ -84,34 +84,71 @@ class post extends Controller {
             $posts = PostModel::find('all', array('conditons' => $filters, 'limit' => 10, 'offset' => 0));
         } else {
             $filters = array();
+
+            $conditionarr = array();
+            //$condition = '';
             foreach ($_GET as $key => $value) {
-                if ($key == 'page') {
+                if ($value == 'all') {
+                    continue;
+                }
+
+                if ($key == 'pagesize') {
+                    $filters['limit'] = $value;
+                } else {
                     $filters['limit'] = $value;
                 }
-                $filters['conditions'] = array();
+                if ($key == 'page') {
+                    $filters['offset'] = ($filters['limit'] - 1) * 10;
+                } else {
+                    $filters['offset'] = 0;
+                }
+
+                $filters = array();
                 if ($key == 'task' || $key == 'type') {
-                    $filters['conditions'] [$key . '=?'] = $value;
+                    $conditionarr[$key . '=?'] = $value;
                 }
                 if ($key == 'time') {
                     $time = intval(substr($value, 0, 1));
-                    $filters['conditions'] ['duration=?'] = $time;
+                    $conditionarr['duration=?'] = $time;
                 }
-                $pos = strpos($key, 'lefttime');
-                if ($pos == 0) {
-                    //$filters['order'] = 
-                } else if (strpos($key, 'create_time') == 0 ||
-                        strpos($key, 'reward') == 0
-                ) {
-                    $desc = substr($key, strpos($key, '_'));
+                if (preg_match('/^lefttime/', $key) == 1) {
+                    //$conditionarr['timediff(now(),create_time) as duration'] = '';
+                    $desc = substr($key, strripos($key, '_') + 1);
+                    //$field = substr($key, 0, strripos($key, '_'));
                     if ($desc == 'desc') {
-                        $filters['order'] = $key . ' desc';
+                        $filters['order'] = 'timediff(now(),create_time) desc';
                     } else {
-                        $filters['order'] = $key . ' asc';
+                        $filters['order'] = 'timediff(now(),create_time) asc';
+                    }
+                    //var_dump($key);
+                    //$filters['order'] = 
+                } else if (preg_match('/^create_time/', $key) == 1 ||
+                        preg_match('/^reward/', $key) == 1
+                ) {
+                    $desc = substr($key, strripos($key, '_') + 1);
+                    $field = substr($key, 0, strripos($key, '_'));
+                    if ($desc == 'desc') {
+                        $filters['order'] = $field . ' desc';
+                    } else {
+                        $filters['order'] = $field . ' asc';
                     }
                 }
             }
-            $posts = PostModel::find('all', array('conditions' => $filters));
-            $this->view->json($posts);
+            $condition = implode(' AND ', array_keys($conditionarr));
+            $coarr = array();
+            $coarr[0] = $condition;
+            foreach ($conditionarr as $key => $v) {
+                if ($v != '') {
+                    array_push($coarr, $v);
+                }
+            }
+            $filters['conditions'] = $coarr;
+            $posts = PostModel::find('all', $filters);
+            $result = array();
+            foreach ($posts as $post) {
+                array_push($result, $post->to_array());
+            }
+            $this->view->json($result);
         }
         /* if ($key == '') {
           $posts = PostModel::find(array('id' => $id));
