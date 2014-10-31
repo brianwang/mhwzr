@@ -47,6 +47,7 @@ class post extends Controller {
                 }
                 $duration = date_diff(new DateTime(), new DateTime($post['birthday']));
                 $post['age'] = $duration->y;
+                unset($post['postverify']);
                 if (isset($_SESSION['user'])) {
                     $username = $_SESSION['user']['username'];
                     $creator = $_SESSION['user']['id'];

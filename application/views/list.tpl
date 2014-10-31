@@ -6,9 +6,9 @@
     <script>
         var filters = [];//$('.search_box').data('filter');
         $('.contenter_title a').click(function (e) {
-                $('.contenter_title a').each(function(i,e){
-                    $(e).removeClass('select');
-                });
+            $('.contenter_title a').each(function (i, e) {
+                $(e).removeClass('select');
+            });
             $(e.target).addClass('select');
             var img = $(e.target).find('img');
             var field = $(e.target).attr('data');
@@ -16,11 +16,11 @@
             if (img.hasClass('icon_arror_bottom')) {
                 orderby = 'desc';
                 img.removeClass('icon_arror_bottom').addClass('icon_arror_top');
-            }else{
+            } else {
                 img.removeClass('icon_arror_top').addClass('icon_arror_bottom');
             }
-            if(orderby != undefined && field != undefined){
-                   addfilter(filters, 'order', orderby, field);
+            if (orderby != undefined && field != undefined) {
+                addfilter(filters, 'order', orderby, field);
             }
         });
         function addfilter(filters, field, op, value) {
@@ -29,42 +29,47 @@
                 var filter = filters[i];
                 if (filter.field === field) {
                     filters[i].value = value;
-                    filters[i].op= op;
+                    filters[i].op = op;
                     found = true;
                     break;
                 }
             }
-            if (!found) {                
-                  var item = {
-                        field: field, value: value, op: op
-                  };
-                  filters.push(item);
+            if (!found) {
+                var item = {
+                    field: field, value: value, op: op
+                };
+                filters.push(item);
             }
 
             //filter 过完之后，需要生成url，来获得数据
             var url = geneurl(filters);
             console.log(url);
-            $.get('{site_url('/post/search')}?'+url, function(data){
+            $.get('{site_url('/post/search')}?' + url, function (data) {
                 console.log(data);
+                data = JSON.parse(data);
+                m.posts.removeAll();
+                for (var i = 0; i < data.length; i++) {
+                    m.posts.push(data[i]);
+                }
             });
         }
 
         function geneurl(filters) {
             var url = '';
-            for(var i=0;i< filters.length;i++){
-                 var filter = filters[i];
-                 if(filter.field=== 'order'){
-                    url+=  filter.value+'_'+filter.op;
-                 }else{
-                     url += filter.field;
-                 }
-                 if(filter.op === '='){
-                     url += '='+filter.value;
+            for (var i = 0; i < filters.length; i++) {
+                var filter = filters[i];
+                if (filter.field === 'order') {
+                    url += filter.value + '_' + filter.op;
+                } else {
+                    url += filter.field;
                 }
-               
-                 if(i !=  filters.length -1){
-                     url+= '&';
-                 }
+                if (filter.op === '=') {
+                    url += '=' + filter.value;
+                }
+
+                if (i != filters.length - 1) {
+                    url += '&';
+                }
             }
             return url;
         }
@@ -81,10 +86,24 @@
                 $(e.target).addClass('select');
                 var field = $(e.target).parent().parent().attr('data');
                 if (field != undefined && f != undefined) {
-                    addfilter(filters,field, '=', f);
+                    addfilter(filters, field, '=', f);
                 }
             }
         });
+
+        var model = function () {
+            var self = this;
+            self.posts = ko.observableArray({$posts|json_encode});
+            self.cpage = function (p) {
+                addfilter(filters, 'page', '=', p);
+                $('.nav_tool li a').each(function (i, e) {
+                    $(e).removeClass('select');
+                });
+                $('.page_' + p).addClass('select');
+            }
+        }
+        var m = new model();
+        ko.applyBindings(m);
     </script>
 {/block}
 {block name=content}
@@ -138,7 +157,7 @@
                             <li><a href="javascript:;" class="border_no_right addArror" data='lefttime'>剩余时间<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
                             <li><a href="javascript:;" class="border_no_right addArror" data='joincount'>参与数<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
                             <li><a href="javascript:;" class="border_all addArror" data='rewards'>价格<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
-                            {*<li><a href="javascript:;" class="border_all combobox addArror">所有价格<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror1_bottom"></img></a></li>*}
+                                    {*<li><a href="javascript:;" class="border_all combobox addArror">所有价格<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror1_bottom"></img></a></li>*}
                         </ul>
                         <ul class="contenter_title_right">
                             <li><a href="javascript:;" id='btn_left'><img src="{asset_url('img/pixel.gif')}" class="icon icon_arror1_left"></img></a></li>
@@ -146,28 +165,33 @@
                         </ul>
                         <ul class="contenter_data_box">
                             <li class="box_title"><span class="b_1">标题/赏金</span><span class="b_2">状态</span><span class="b_3">所在地</span><span class="b_4">时间</span></li>
-                                {foreach from=$posts  item=post}
-                                <li class="box_item">
-                                    <span class="b_1">
-                                        <img src="{asset_url('img/pixel.gif')}" class="icon icon_{if $post.type == '悬赏类'}shang{else}gong{/if}"></img><span class="item_title">{$post.title}</span>
-                                        <span class="item_content"><span class="p_size_14 p_yellow p_bold">￥{$post.rewards}</span> <span class="p_grey3">{$post.browsers|default:0}人浏览 / {$post.bidscount|default:0}人已经投标</span></span>
+                            <!-- ko foreach: posts -->
+                            <li class="box_item">
+                                <span class="b_1">
+                                    <img src="{asset_url('img/pixel.gif')}" class='icon'
+                                         data-bind="css: { icon_shang: $data.type == '悬赏类', icon_gong: $data.type != '悬赏类' }"
+                                         ></img><span class="item_title" data-bind="text: $data.title"></span>
+                                    <span class="item_content"><span class="p_size_14 p_yellow p_bold" data-bind="text: $data.rewards+'币'"></span> 
+                                        <span class="p_grey3"><span data-bind="text: $data.browsers?$data.browsers:0"></span>人浏览 / 
+                                            <span data-bind="text: $data.bidscount?$data.bidscount:0"></span>人已经投标</span>
                                     </span>
-                                    <span class="b_2">{$config['status'][$post.status]}</span>
-                                    <span class="b_3">{$post.province}-{$post.city}</span>
-                                    <span class="b_4">{$post.duration}个月</span>
-                                </li>
-                            {/foreach}
+                                </span>
+                                <span class="b_2" data-bind="text: $data.status"></span>
+                                <span class="b_3"><span data-bind="text: $data.province"></span>-<span data-bind="$data.city"></span></span>
+                                <span class="b_4"><span data-bind="text: $data.duration"></span>个月</span>
+                            </li>
+                            <!-- /ko -->
                         </ul>
                         <div class="contenter_footer">
                             <div class="list_search icon icon_list_search_bg">
                                 <input type="text" placeholder="快速搜索需求" class="p_grey list_search_input"/>
                                 <a href="javascript:;"><img src="{asset_url('img/pixel.gif')}" class="icon icon_list_search"/></a>
                             </div>
-                            <ul>
+                            <ul class='nav_tool'>
                                 <li><a href="javascript:;" class="icon_page_left_a"><<</a></li>
                                     {for $page=1 to $pages}
-                                    <li><a href="javascript:;" class="icon_page_center_a 
-                                           {if $page == $curpage}select{/if}">{$page}</a></li>
+                                    <li><a href="javascript:;" class="icon_page_center_a page_{$page}
+                                           {if $page == $curpage}select{/if}" data-bind='click: cpage.bind(this,{$page})'>{$page}</a></li>
                                     {/for}
                                 <li><a href="javascript:;" class="icon_page_right_a">>></a></li>
                             </ul>

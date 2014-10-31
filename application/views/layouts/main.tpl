@@ -8,6 +8,7 @@
         <script src="{asset_url('easyui/jquery.min.js')}" type="text/javascript"></script>
         <script src="{asset_url('easyui/easyloader.js')}" type="text/javascript"></script>
         <script src="{asset_url('easyui/jquery.easyui.min.js')}" type="text/javascript"></script>
+        <script src="{asset_url('js/knockout-3.2.0.js')}" type="text/javascript"></script>
     {block name=header}{/block}
 </head>
 <body>
