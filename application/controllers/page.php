@@ -19,7 +19,7 @@ class page extends Controller {
         $data = array();
         $postbll = new PostBll();
         $data['top4'] = $postbll->gettop4();
-        $data['today'] =$postbll->gettoday();
+        $data['today'] = $postbll->gettoday();
         $userdll = new UserBll();
         $data['usercount'] = $userdll->count();
         $this->view->render('index.tpl', $data);
@@ -32,23 +32,30 @@ class page extends Controller {
 //        $idx = strripos(__METHOD__, ':');
 //        $method = substr(__METHOD__, $idx + 1);
 //        echo $method;
-         $now=date('Y-m-d',time());
-         echo $now;
+        $now = date('Y-m-d', time());
+        echo $now;
         //$this->display();
     }
 
-    public function items($pageid = 1, $status = 'going') {
+    public function items($key = '', $pageid = 1, $status = 'going') {
         $data = array();
         $postbll = new PostBll();
-        $pages = $postbll->getpages();
-        if ($pageid > $pages) {
-            $data['posts'] = array();
+        if ($key != '') {
+            $data['posts'] = $postbll->search(urldecode($key), $pageid);
+            $data['pages'] = count($data['posts']) / 10;
+            $data['curpage'] = $pageid;
         } else {
-            $data['posts'] = $postbll->getitems($pageid, 10, $status);
-        }
-        $data['pages'] = $pages;
-        $data['curpage'] = $pageid;
-        $this->view->render('list.tpl', $data);
+            //$data = array();
+            //$postbll = new PostBll();
+            $pages = $postbll->getpages();
+            if ($pageid > $pages) {
+                $data['posts'] = array();
+            } else {
+                $data['posts'] = $postbll->getitems($pageid, 10, $status);
+            }
+            $data['pages'] = $pages;
+            $data['curpage'] = $pageid;
+        } $this->view->render('list.tpl', $data);
     }
 
     public function register() {

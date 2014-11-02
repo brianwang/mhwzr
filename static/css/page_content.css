@@ -1,6 +1,3 @@
-.content .page_nav{width: 200px; height: 40px; position: absolute; top:-40px;}
-.content .page_nav ul{display: block;}
-.content .page_nav li{display: block; padding-left: 15px;width: 185px;}
 .content .page_nav .box_title{height: 38px; line-height: 38px; font-size: 14px; color: #ffffff;}
 .content_left{width: 785px; height: auto; float: left;}
 .content_left_box{width:100%;border-bottom: solid #999999 1px; padding-bottom: 30px; position: relative; float: left;}

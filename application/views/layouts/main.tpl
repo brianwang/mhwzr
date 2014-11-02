@@ -28,11 +28,9 @@
         <a href="/" class="logo"><img src="{asset_url('img/pixel.gif')}" class="icon logo"/></a>
         <div class="box">
             <div class="input_search_back">
-                <form action="{site_url('/post/search')}" action='get'>
-                    <input type="text" placeholder="服务" class="input_search p_bold p_grey1" name='key'/>
-                </form>
+                <input type="text" placeholder="服务" class="input_search p_bold p_grey1" name='key'/>
             </div>
-            <a href="#" class="btn_search p_bold">搜索</a><span class="text_or p_bold p_grey1">或者</span>
+            <a href="javascript:;" class="btn_search p_bold" id="btn_search">搜索</a><span class="text_or p_bold p_grey1">或者</span>
             <a href="javascript:;" class="btn_search p_bold" style="width: 157px;" id="btn_createpost">发布一个找人</a>
         </div>
     </div>
@@ -87,6 +85,13 @@
         </form>
     </div>
 </div>
+<div class="fixedtool">
+    {if !$smarty.session.user|default: false}
+        <a href="{site_url('/page/register')}" class="btn">注册</a>
+        <a href="{site_url('/page/login')}" class="btn">登录</a>
+    {/if}
+    <a href="javascript:;" class="btn" id="createpost">发布找人</a>
+</div>
 <div class="footer">
     <ul class="center size">
         <li class="item">
@@ -135,6 +140,12 @@
                 $('#dialogcreatepost').toggle();
             } else {
                 alert('请登录');
+            }
+        });
+        $('#btn_search').click(function () {
+            var keyword = $('input[name=key]').val();
+            if (keyword != '') {
+                window.location.href = '{site_url('/page/items')}/' + keyword;
             }
         });
     });

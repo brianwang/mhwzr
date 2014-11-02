@@ -103,4 +103,23 @@ class PostBll extends Model {
         }
     }
 
+    public function search($key = '', $page = 1, $pagesize = 10) {
+        if ($key == '') {
+            $posts = PostModel::find('all', array('limit' => $pagesize,
+                        'offset' => ($page - 1) * $pagesize));
+        } else {
+            try{
+            $posts = PostModel::find('all', array(
+                        'conditions' => array('title like \'%' . $key . '%\' or description like \'%' . $key . '%\' OR name like \'%' . $key . '%\''),
+                        'order' => 'create_time desc', 'limit' => $pagesize,
+                        'offset' => ($page - 1) * $pagesize));
+            }catch(Exception $e){
+                
+            }
+            //var_dump(PostModel::connection()->last_query);
+        }
+        return $this->to_array($posts);
+        
+    }
+
 }

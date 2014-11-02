@@ -110,6 +110,11 @@ a img{border:none;}
 .field input{width: 180px; padding: 5px;}
 .field select{width: 195px; padding: 5px;}
 .box_title{height: 38px; line-height: 38px; font-size: 14px;}
-.content .page_nav{width: 200px; height: 40px; position: absolute; top:-40px;}
+.content .page_nav{width: 200px; height: 0px; position: relative; top:-40px;}
 .content .page_nav ul{display: block;}
 .content .page_nav li{display: block; padding-left: 15px;width: 185px;}
+#list33{margin-top: 50px;}
+#list33 li{float:left; width: 200px;}
+.help{font-size: 1.5em; line-height: 24px;}
+#debug{display:none;}
+.fixedtool{position: fixed; right: 5px; bottom: 0;height: 40px;z-index: 19;}

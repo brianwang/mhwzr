@@ -46,6 +46,7 @@
             console.log(url);
             $.get('{site_url('/post/search')}?' + url, function (data) {
                 console.log(data);
+                $('#debug').html(data);
                 data = JSON.parse(data);
                 m.posts.removeAll();
                 for (var i = 0; i < data.length; i++) {
@@ -101,12 +102,16 @@
                 });
                 $('.page_' + p).addClass('select');
             }
+            $('#createpost').click(function () {
+                $('#btn_createpost').click();
+            });
         }
         var m = new model();
         ko.applyBindings(m);
     </script>
 {/block}
 {block name=content}
+    <div id="debug"></div>
     <div class="content center">
         <div class="page_nav">
             <ul>
@@ -171,12 +176,13 @@
                                     <img src="{asset_url('img/pixel.gif')}" class='icon'
                                          data-bind="css: { icon_shang: $data.type == '悬赏类', icon_gong: $data.type != '悬赏类' }"
                                          ></img><span class="item_title" data-bind="text: $data.title"></span>
-                                    <span class="item_content"><span class="p_size_14 p_yellow p_bold" data-bind="text: $data.rewards+'币'"></span> 
+                                    <span class="item_content">
+                                        <span class="p_size_14 p_yellow p_bold" data-bind="text: $data.rewards+'币', visible: $data.type == '悬赏类'"></span> 
                                         <span class="p_grey3"><span data-bind="text: $data.browsers?$data.browsers:0"></span>人浏览 / 
                                             <span data-bind="text: $data.bidscount?$data.bidscount:0"></span>人已经投标</span>
                                     </span>
                                 </span>
-                                <span class="b_2" data-bind="text: $data.status"></span>
+                                <span class="b_2" data-bind="text: $data.status== 'going'?'进行中':'结束';"></span>
                                 <span class="b_3"><span data-bind="text: $data.province"></span>-<span data-bind="$data.city"></span></span>
                                 <span class="b_4"><span data-bind="text: $data.duration"></span>个月</span>
                             </li>
@@ -199,29 +205,9 @@
                     </div>
                 </div>
                 <div class="content_right">
-                    <div class="right_box">
-                        <p class="p_lineHeight_40 p_size_14 p_bold">我也要发布找人</p>
-                        <input type="text" class="textInput" placeholder="请输入标题"/>
-                        <p class="p_lineHeight_40">请勾选线索</p>
-                        <form>
-                            <div class="item">
-                                <input type="checkbox" class="checkbox"/><span>照片</span>
-                            </div>
-                            <div class="item">
-                                <input type="checkbox" class="checkbox"/><span>身份证</span>
-                            </div>
-                            <div class="item">
-                                <input type="checkbox" class="checkbox"/><span>QQ</span>
-                            </div>
-                            <div class="item">
-                                <input type="checkbox" class="checkbox"/><span>手机号</span>
-                            </div>
-                        </form>
-                        <textarea name="" rows="" cols="" placeholder="其他你认为重要的线索"></textarea>
-                        <a href="javascript:;" class="right_search">发布找人</a>
-                        <p class="clear"></p>
-                    </div>
+
                 </div>
                 <p class="clear"></p>
             </div>
+         
             {/block}

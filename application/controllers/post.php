@@ -138,8 +138,8 @@ class post extends Controller {
             $condition = implode(' AND ', array_keys($conditionarr));
             $coarr = array();
             $coarr[0] = $condition;
-            foreach ($conditionarr as $key => $v) {
-                if ($v != '') {
+            foreach ($conditionarr as $k => $v) {
+                if ((string)$v != '') {
                     array_push($coarr, $v);
                 }
             }
