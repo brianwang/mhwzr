@@ -16,6 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `messages`
+--
+
+DROP TABLE IF EXISTS `messages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `messages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  `create_time` timestamp NULL DEFAULT NULL,
+  `creator` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `messages`
+--
+
+LOCK TABLES `messages` WRITE;
+/*!40000 ALTER TABLE `messages` DISABLE KEYS */;
+/*!40000 ALTER TABLE `messages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `post_comments`
 --
 
@@ -117,7 +143,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (244,'666666','123123','123123','1231','123123','123','2014-09-13 16:00:00','\0','e10adc3949ba59abbe56e057f20f883e',NULL,'你最喜欢的明星是谁?','111',NULL,NULL,'0000-00-00 00:00:00',''),(494,'aa','asdf','123','123','123','123','2014-09-13 17:14:08','\0','123',NULL,'','123',NULL,NULL,'0000-00-00 00:00:00',''),(13726,'aaa','aa123@qq.com','4','4','3','3','1981-12-31 16:00:00','\0','698d51a19d8a121ce581499d7b701668',NULL,'你最喜欢的明星是谁?','111',NULL,NULL,'0000-00-00 00:00:00',''),(61429,'aaa','aaa@aaa.com','','',NULL,NULL,'2014-10-22 16:07:19','\0','e10adc3949ba59abbe56e057f20f883e',NULL,'你最喜欢的明星是谁?','aaa',NULL,NULL,'0000-00-00 00:00:00','');
+INSERT INTO `users` VALUES (244,'666666','123123','123123','1231','123123','123','2014-09-13 16:00:00','\0','e10adc3949ba59abbe56e057f20f883e',NULL,'你最喜欢的明星是谁?','111',NULL,NULL,'0000-00-00 00:00:00',''),(494,'aa','asdf','123','123','123','123','2014-09-13 17:14:08','\0','123',NULL,'','123',NULL,NULL,'0000-00-00 00:00:00',''),(1374,'bbb','bbb@bbb.com','','',NULL,NULL,'2014-11-04 14:28:10','\0','08f8e0260c64418510cefb2b06eee5cd',NULL,'你最喜欢的明星是谁?','bbb',NULL,NULL,'0000-00-00 00:00:00',''),(2265,'eee','eee@eee.com','','',NULL,NULL,'2014-11-04 14:44:50','\0','e10adc3949ba59abbe56e057f20f883e',NULL,'你最喜欢的明星是谁?','eee',NULL,NULL,'0000-00-00 00:00:00',''),(7690,'hhh','hhh@hhh.com','','',NULL,NULL,'2014-11-04 14:46:23','\0','a3aca2964e72000eea4c56cb341002a4',NULL,'你最喜欢的明星是谁?','hhh',NULL,NULL,'0000-00-00 00:00:00',''),(13726,'aaa','aa123@qq.com','4','4','3','3','1981-12-31 16:00:00','\0','698d51a19d8a121ce581499d7b701668',NULL,'你最喜欢的明星是谁?','111',NULL,NULL,'0000-00-00 00:00:00',''),(61429,'aaa','aaa@aaa.com','','',NULL,NULL,'2014-10-22 16:07:19','\0','e10adc3949ba59abbe56e057f20f883e',NULL,'你最喜欢的明星是谁?','aaa',NULL,NULL,'0000-00-00 00:00:00',''),(732653,'ccc','ccc@ccc.com','','',NULL,NULL,'2014-11-04 14:40:17','\0','e10adc3949ba59abbe56e057f20f883e',NULL,'你最喜欢的明星是谁?','ccc',NULL,NULL,'0000-00-00 00:00:00',''),(14674275,'ddd','ddd@dd.com','','',NULL,NULL,'2014-11-04 14:44:29','\0','e10adc3949ba59abbe56e057f20f883e',NULL,'你最喜欢的明星是谁?','ddd',NULL,NULL,'0000-00-00 00:00:00','');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -130,4 +156,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-02 23:41:02
+-- Dump completed on 2014-11-04 23:36:20
