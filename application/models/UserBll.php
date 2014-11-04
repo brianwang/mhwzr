@@ -27,9 +27,14 @@ class UserBll extends Model {
     }
 
     public function register($data = array()) {
-        $user = UserModel::create($data);
-        $result = $user->save();
-        return $result;
+        $user = UserModel::find(array('username' => $data['username']));
+        if ($user != null) {
+            return null;
+        } else {
+            $user = UserModel::create($data);
+            $result = $user->save();
+            return $result;
+        }
 //        $username = $this->escapeString($username);
 //        $password = md5($this->escapeString($password));
 //        $nickname = $this->escapeString($nickname);
@@ -40,7 +45,8 @@ class UserBll extends Model {
 //        return $result;
     }
 
-    public function count(){
+    public function count() {
         return UserModel::count();
     }
+
 }

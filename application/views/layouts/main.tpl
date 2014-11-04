@@ -21,7 +21,7 @@
                 <p class="login"><a class="p_yellow" href="#">请登录</a> <span class="p_grey">|</span> <a href="#">免费注册</a></p>
             {/if}
             <p class="nav"><span class="p_grey">| </span><a href="{site_url('/page/srvguide')}">服务商指南</a><span class="p_grey"> | </span><a href="{site_url('/page/help')}">帮助中心</a><span class="p_grey"> | </span>客服电话：400-366-7878</p>
-            <p class="user"><a href="/">我的美猴王 <img src="{asset_url('img/pixel.gif')}" class="icon arror"></a></p>
+            <p class="user"><a href="{site_url('/page/profile')}">我的美猴王 <img src="{asset_url('img/pixel.gif')}" class="icon arror"></a></p>
         </div>
     </div>
     <div class="search center">

@@ -19,22 +19,31 @@ class User extends Controller {
                 if (isset($_POST['agree']) && $_POST['agree'] == 'true') {
                     if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['confirmpassword']) && isset($_POST ['confirmpassword'])
                     ) {
+
                         $password = $_POST['password'];
                         $confirmpass = $_POST['confirmpassword'];
                         $username = $_POST['username'];
                         if ($password == $confirmpass) {
-                            $data = $_POST;
-                            $data['id'] = genid();
-                            $data['password'] = md5($data['password']);
-                            unset($data['confirmpassword']);
-                            unset($data['verifycode']);
-                            unset($data['agree']);
-                            $this->userbll->register($data);
-                            redirect('/page/login');
+                            if (isset($_POST ['email']) && isset($_POST ['answer'])) {
+                                $data = $_POST;
+                                $data['id'] = genid();
+                                $data['password'] = md5($data['password']);
+                                unset($data['confirmpassword']);
+                                unset($data['verifycode']);
+                                unset($data['agree']);
+                                $result = $this->userbll->register($data);
+                                if ($result == null) {
+                                    $data['error'] = '已经注册过了';
+                                    $this->view->render('register.tpl', $data);
+                                } else {
+                                    $this->view->render('result.tpl', array('message' => '注册成功', 'url' => '/page/login'));
+                                }
+                            } else {
+                                $data['error'] = '请输入邮箱或者密保回答';
+                                $this->view->render('register.tpl', $data);
+                            }
                         } else {
                             $data['error'] = '密码和确认密码不一致';
-                            $data['questions'] = $config['questions'];
-
                             $this->view->render('register.tpl', $data);
                         }
                     } else {

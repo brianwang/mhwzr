@@ -11,7 +11,7 @@
  *
  * @author brian
  */
-class PostBll extends Model {
+class PostBll extends BaseBll {
 
     public function create($data = array()) {
         $sql = 'insert into posts(';
@@ -36,13 +36,7 @@ class PostBll extends Model {
         
     }
 
-    private function to_array($data) {
-        $result = array();
-        foreach ($data as $d) {
-            array_push($result, $d->to_array());
-        }
-        return $result;
-    }
+   
 
     //今日寻人
     function gettoday() {
@@ -108,18 +102,24 @@ class PostBll extends Model {
             $posts = PostModel::find('all', array('limit' => $pagesize,
                         'offset' => ($page - 1) * $pagesize));
         } else {
-            try{
-            $posts = PostModel::find('all', array(
-                        'conditions' => array('title like \'%' . $key . '%\' or description like \'%' . $key . '%\' OR name like \'%' . $key . '%\''),
-                        'order' => 'create_time desc', 'limit' => $pagesize,
-                        'offset' => ($page - 1) * $pagesize));
-            }catch(Exception $e){
+            try {
+                $posts = PostModel::find('all', array(
+                            'conditions' => array('title like \'%' . $key . '%\' or description like \'%' . $key . '%\' OR name like \'%' . $key . '%\''),
+                            'order' => 'create_time desc', 'limit' => $pagesize,
+                            'offset' => ($page - 1) * $pagesize));
+            } catch (Exception $e) {
                 
             }
             //var_dump(PostModel::connection()->last_query);
         }
         return $this->to_array($posts);
-        
+    }
+
+    public function getbyuid($uid = '') {
+        if ($uid == '')
+            return array();
+        $result = PostModel::find('all', array('conditions' => array('creator=?', $uid)));
+        return $this->to_array($result);
     }
 
 }

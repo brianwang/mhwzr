@@ -87,7 +87,17 @@ class page extends Controller {
     }
 
     function profile() {
-        $this->view->render('profile.tpl');
+        if (isset($_SESSION['user'])) {
+            $user = $_SESSION['user'];
+            $data['user'] = $user;
+            $post = new PostBll();
+            $data['posts'] = $post->getbyuid($user['id']);
+            $message = new MessageBll();
+            $data['messages'] = $message->getbyuid($user['id']);
+            $this->view->render('profile.tpl', $data);
+        } else {
+            redirect('/page/login');
+        }
     }
 
     function srvcenter() {
