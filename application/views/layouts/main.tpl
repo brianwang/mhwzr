@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>美猴王找人网</title>
+        <title>{$config.sitename}</title>
         <link rel="stylesheet" href="{asset_url('css/style_all.css')}" />
         <link rel="stylesheet" href="{asset_url('easyui/themes/default/easyui.css')}" />
         <script src="{asset_url('easyui/jquery.min.js')}" type="text/javascript"></script>
@@ -31,23 +31,26 @@
                 <input type="text" placeholder="服务" class="input_search p_bold p_grey1" name='key'/>
             </div>
             <a href="javascript:;" class="btn_search p_bold" id="btn_search">搜索</a><span class="text_or p_bold p_grey1">或者</span>
-            <a href="javascript:;" class="btn_search p_bold" style="width: 157px;" id="btn_createpost">发布一个找人</a>
+            <a href="{site_url('/page/createpost')}" class="btn_search p_bold" style="width: 157px;" id="btn_createpost">发布信息</a>
         </div>
     </div>
     <div class="main_nav center">
         <ul>
             <li><a class="p_grey1" href="/">首页</a></li>
+            <li><a class="p_grey1" href="{site_url('/page/items')}">任务列表</a></li>
             <li><a class="p_grey1" href="{site_url('/page/items')}">寻人列表</a></li>
             <li><a class="p_grey1" href="{site_url('/page/success')}">成功案例</a></li>
             <li><a class="p_grey1" href="{site_url('/page/help')}">帮助中心</a></li>
         </ul>
-        <p class="right"><a href="{site_url('/page/profile')}">个人中心</a><span class="p_grey"> | </span>
-            <a href="{site_url('/page/srvguide')}">服务商中心</a> </p>
+        <p class="right"><a href="{site_url('/page/profile')}">个人中心</a>
+            <span class="p_grey"> | </span>
+            {*<a href="{site_url('/page/srvguide')}">服务商中心</a> *}
+        </p>
     </div>
 
 {block name=content}{/block}
 <div class="alert_public " style="display:none;" id="dialogcreatepost">
-    <p class="alert_title">一键发布找人（无需注册）<a class="btn_close" href="javascript:;" onclick='$(this).parent().parent().toggle();
+    <p class="alert_title">一键发布信息<a class="btn_close" href="javascript:;" onclick='$(this).parent().parent().toggle();
             return false;'>X</a></p>
     <div class="alert_content">
         {*<p class="item"><span class="label t_width_90">手机号码：</span><input class="input_text input_width_190" type="text" id="" value=""></p>
@@ -90,7 +93,7 @@
         <a href="{site_url('/page/register')}" class="btn">注册</a>
         <a href="{site_url('/page/login')}" class="btn">登录</a>
     {/if}
-    <a href="javascript:;" class="btn" id="createpost">发布找人</a>
+    <a href="javascript:;" class="btn" id="createpost">发布信息</a>
 </div>
 <div class="footer">
     <ul class="center size">
@@ -135,13 +138,13 @@
 </div>
 <Script>
     $(document).ready(function () {
-        $('#btn_createpost').click(function () {
+       /* $('#btn_createpost').click(function () {
             if ({$smarty.session.user|default: 'false' != null}) {
                 $('#dialogcreatepost').toggle();
             } else {
                 alert('请登录');
             }
-        });
+        });*/
         $('#btn_search').click(function () {
             var keyword = $('input[name=key]').val();
             if (keyword != '') {

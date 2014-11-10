@@ -1,5 +1,8 @@
-{extends file='layouts/main.tpl'}
-{block name=content}
+{extends file='layouts/page_content.tpl'}
+{block name=header}
+    <link rel="stylesheet" href="{asset_url('css/page_content.css')}" />
+{/block}
+{block name=pagebody}
     <div class="content center">
         <div class="page_nav">
             <ul>

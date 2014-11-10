@@ -16,18 +16,27 @@
             <ul>
                 <li class="box_title bg_0">服务内容</li>
                 <li class="box_content bg_1">
-                    <p class="p_title">我要找人</p>
-                    <p class="p_content"><a href="#">手机找人</a> <a href="#">姓名找人</a> <a href="#">照片找人</a> <a href="#">QQ找人</a> <a href="#">邮箱找人</a></p>
+                    <p class="p_title">公益寻人</p>
+                    <p class="p_content">
+                        提供无偿的免费寻人服务
+                        {*<a href="#">手机找人</a> <a href="#">姓名找人</a> <a href="#">照片找人</a> <a href="#">QQ找人</a> <a href="#">邮箱找人</a>*}
+                    </p>
                     <p class="clear"></p>
                 </li>
                 <li class="box_content bg_2">
-                    <p class="p_title">我能找人</p>
-                    <p class="p_content"><a href="#">手机找人</a> <a href="#">姓名找人</a> <a href="#">照片找人</a> <a href="#">QQ找人</a> <a href="#">邮箱找人</a></p>
+                    <p class="p_title">悬赏寻人</p>
+                    <p class="p_content">
+                        有偿为您提供寻人服务
+                        {*    <a href="#">手机找人</a> <a href="#">姓名找人</a> <a href="#">照片找人</a> <a href="#">QQ找人</a> <a href="#">邮箱找人</a>*}
+                    </p>
                     <p class="clear"></p>
                 </li>
                 <li class="box_content bg_3">
-                    <p class="p_title">公益找人</p>
-                    <p class="p_content"><a href="#">失踪儿童</a> <a href="#">失联老人</a> <a href="#">妻子不见</a> <a href="#">寻找嫂子</a></p>
+                    <p class="p_title">担保任务</p>
+                    <p class="p_content">
+                        为您提供其他任务的担保交易
+                        {*<a href="#">失踪儿童</a> <a href="#">失联老人</a> <a href="#">妻子不见</a> <a href="#">寻找嫂子</a>*}
+                    </p>
                     <p class="clear"></p>
                 </li>
                 <li class="box_foot">
@@ -125,7 +134,4 @@
         {/foreach}
     </div>
     <p class="clear"></p>
-
-
-
 {/block}

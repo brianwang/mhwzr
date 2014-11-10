@@ -1,9 +1,9 @@
-{if !$isnew|default:true}
-    {if !$isedit}
-        <div class="field">
-            <span class="field_span">身份证文件</span>
-            <input type="file" name="identity">
-        </div>
+{*    {if !$isnew|default:true}
+        {if !$isedit}
+            <div class="field">
+                <span class="field_span">身份证文件</span>
+                <input type="file" name="identity">
+            </div>
     {else}
         {if $model.imgurl == ''}
             <div class="field">
@@ -19,64 +19,84 @@
             {include file='partials/status.tpl' status=$model.status}
         </div>
     {/if}
-{/if}
+{/if}*}
 <div class="field">
-    <span class="field_span">一句话描述</span>
-    <input type="text" name="title" placeholder ="一句话描述（如：寻找离家孩子)" value='{$model.title}'  style='width:530px;'>
+    <span class="field_span">发布消息类型</span>
+    <select name="posttype">
+        <option value="s">寻人启示</option>
+        <option value="t">担保任务</option>
+    </select>
 </div>
-<div class='row'>
-    <div class="field">
-        <span class="field_span">该人姓名</span>
-        <input type="text" name="name" placeholder ="姓名" value='{$model.name}' >
+<div id="s">        
+    <div class='row'>
+        <div class="field">
+            <span class="field_span">他的姓名</span>
+            <input type="text" name="name" placeholder ="姓名" value='{$model.name}' >
+        </div>
+        <div class="field">
+            <span class="field_span">他的性别</span>
+            {include file='partials/gender.tpl' gender=$model.gender}
+        </div>
     </div>
-    <div class="field">
-        <span class="field_span">该人性别</span>
-        {include file='partials/gender.tpl' gender=$model.gender}
+    <div class='row'>
+        <div class="field">
+            <span class="field_span">大概年龄</span>
+            <input class="span2" size="16" type="text" value="{$model.age}" name="age" placeholder ="大概年龄">        
+        </div>
+        <div class="field">
+            <span class="field_span">走失区域</span>
+            {include file='partials/province.tpl' province=$model.province city=$model.city}
+        </div>
+    </div>
+    <div class='row'>
+        <div class="field">
+            <span class="field_span">任务性质</span>
+            {include file='partials/type.tpl' type=$model.type}
+        </div>
+        <div class="field"  id="gy">
+            <span class="field_span">奖励金额</span>
+            <input type="text" name="rewards" placeholder="奖励金额">
+        </div>
     </div>
 </div>
-<div class='row'>
+<div id="t">
     <div class="field">
-        <span class="field_span">出生年月</span>
-        <input class="span2" size="16" type="text" value="{$model.birthday}" name="birthday" placeholder ="出生年月">
-        {*<input type="text" name="birthday" placeholder ="出生年月" class="easyui-datebox" value='{$model.birthday}'>*}
+        <span class="field_span">一句话描述</span>
+        <input type="text" name="title" placeholder ="一句话描述（如：寻找离家孩子)" value='{$model.title}'  style='width:530px;'>
     </div>
-    <div class="field">
-        <span class="field_span">大概位置</span>
-        {include file='partials/province.tpl' province=$model.province city=$model.city}
-    </div>
-</div>
-<div class='row'>
-    <div class="field">
-        <span class="field_span">任务内容</span>
-        {include file='partials/task.tpl' task= $model.task}
-    </div>
-    <div class="field">
-        <span class="field_span">任务性质</span>
-        {include file='partials/type.tpl' type=$model.type}
-    </div>
-</div>
-<div class='row'>
-    <div class="field"  id="gy">
-        <span class="field_span">奖励金额</span>
-        <select name='rewards'>
-            {for $r=100 to 300 step=100}
-                <option value="{$r}" {if $r== $model.rewards}selected{/if}> {$r}猴王币</option>
-            {/for}
-        </select>
-    </div>
-
     <div class="field">
         <span class="field_span">有效期</span>
-        <select name='duration'>
-            {for $k=1 to 3}
-                <option value="{$k}"{if $k== $model.duration}selected{/if}>{$k}个月</option>
-            {/for}
+        <input type="text" name="duration" placeholder="有效期" value="{$model.duration}">天
+    </div>
+    <div class="field">
+        <span class="field_span">详细描述</span>
+        <textarea name='description' class="description" style='width:530px;'>{$model.description}</textarea>
+    </div>
+</div>
+
+<hr/>
+<div class='row'>
+    <div class="field">
+        <span class="field_span">你的姓名</span>
+        <input type="text" name="creator" placeholder ="姓名" value='{$model.name}' >
+    </div>
+    <div class="field">
+        <span class="field_span">是否公开</span>
+        <select name="ispublish">
+            <option value="1">不公开</option>
+            <option value="0">公开</option>
         </select>
     </div>
 </div>
-<div class="field">
-    <span class="field_span">详细描述</span>
-    <textarea name='description' class="description" style='width:530px;'>{$model.description}</textarea>
+<div class='row'>
+    <div class="field">
+        <span class="field_span">联系电话</span>
+        <input type="text" name="phone" placeholder ="联系电话" value='{$model.phone}' >
+    </div>
+    <div class="field">
+        <span class="field_span">QQ/邮箱</span>
+        <input type="text" name="email" placeholder ="QQ/邮箱" value='{$model.email}' >
+    </div>
 </div>
 <div class="field">
     <span class="field_span">验证码</span>
@@ -111,4 +131,12 @@
         }
     });
     $('#gy').hide();
+    $('select[name=posttype]').change(function (e) {
+        var v = $(e.target).val();
+        if (v == 's') {
+            $('#s').show();
+        } else {
+            $('#s').hide();
+        }
+    });
 </script>
