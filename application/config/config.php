@@ -10,7 +10,7 @@ $config['db_host'] = 'localhost'; // Database host (e.g. localhost)
 $config['db_name'] = 'mhwxr'; // Database name
 $config['db_username'] = 'mhwxr'; // Database username
 $config['db_password'] = 'mhwxr'; // Database password
-
+$config['sitename'] = '美猴网信息网';
 $config['questions'] = array(
     '你最喜欢的明星是谁?',
     '你的第一所学校是什么?',
@@ -18,9 +18,9 @@ $config['questions'] = array(
     '自定义答案'
 );
 $config['tasks'] = array('手机找人', '姓名找人', '照片找人', 'QQ找人', '邮箱找人');
-$config['times'] = array('一个月','二个月','三个月');
+$config['times'] = array('一个月', '二个月', '三个月');
 $config['provinces'] = array('安徽', '北京', '重庆', '福建', '甘肃', '广东', '广西', '贵州', '海南', '河北', '黑龙江', '河南', '香港', '湖北', '湖南', '江苏', '江西', '吉林', '辽宁', '澳门', '内蒙古', '宁夏', '青海', '山东', '上海', '山西', '陕西', '四川', '台湾', '天津', '新疆', '西藏', '云南', '浙江', '海外');
-$config['sitename'] = '美猴王寻人网';
+$config['sitename'] = '美猴网信息网';
 $config['hookpath'] = 'hook';
 $config['hookclass'] = 'hook';
 $config['admin'] = 'admin';
@@ -33,7 +33,7 @@ $config['status'] = array(
     'paying' => '付款中', 'payfinish' => '付款结束', 'finish' => '任务完成'
 );
 include 'urls.php';
-$config['cities'] = array('安徽'=> Array(
+$config['cities'] = array('安徽' => Array(
         '合肥',
         '安庆',
         '蚌埠',

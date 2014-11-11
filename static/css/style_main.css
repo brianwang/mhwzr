@@ -123,7 +123,8 @@
     height: 38px;
     line-height: 38px;
     background-color: #F39700;
-    display: block;
+    display: inline-block;
     color: #fff;
     text-align: center;
+    border: none;
 }

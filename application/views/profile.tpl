@@ -10,7 +10,13 @@
                 <a href="#profile">个人信息</a></li>
             <li class="pay_list_item">
                 <a href="#postlog">
-                    寻人日志</a></li>
+                    发布记录</a></li>
+            <li class="pay_list_item">
+                <a href="#applylog">
+                    申请记录</a></li>
+            <li class="pay_list_item">
+                <a href="#recharge">
+                    续费</a></li>
             <li class="pay_list_item">
                 <a href="#message">
                     私信</a></li>
@@ -25,11 +31,48 @@
             <div class='profile'>
                 <p class="right_title">个人信息</p>
                 <div class="right_content">
-
+                    <form action='{site_url('/user/saveprofile')}' method='post' id="profileform">
+                        {include file='model/user.tpl' model=$user}
+                        <input type='submit' class="btn" value="保存">
+                    </form>
+                    <script>
+                        $("#profileform").validate({
+                            rules: {
+                                username: {
+                                    required: true
+                                },
+                                email: {
+                                    required: true,
+                                    email: true
+                                },
+                                qq: {
+                                    required: true
+                                }
+                            },
+                            messages: {
+                                name: "Required Field"
+                            },
+                            submitHandler: function (form) {
+                                // some other code
+                                // maybe disabling submit button
+                                // then:
+                                $(form).submit();
+                            }
+                        });
+                    </script>
                 </div>
             </div>
             <div class='postlog'>
-                <p class="right_title">寻人日志</p>
+                <p class="right_title">发布记录</p>
+                <div class="right_content">
+                    <table>
+
+
+                    </table>
+                </div>
+            </div>
+            <div class='applylog'>
+                <p class="right_title">申请记录</p>
                 <div class="right_content">
 
                 </div>

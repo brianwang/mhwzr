@@ -9,6 +9,7 @@
         <script src="{asset_url('easyui/easyloader.js')}" type="text/javascript"></script>
         <script src="{asset_url('easyui/jquery.easyui.min.js')}" type="text/javascript"></script>
         <script src="{asset_url('js/knockout-3.2.0.js')}" type="text/javascript"></script>
+        <script src="{asset_url('js/jquery.validate.js')}" type="text/javascript"></script>
     {block name=header}{/block}
 </head>
 <body>
@@ -37,8 +38,8 @@
     <div class="main_nav center">
         <ul>
             <li><a class="p_grey1" href="/">首页</a></li>
-            <li><a class="p_grey1" href="{site_url('/page/items')}">任务列表</a></li>
-            <li><a class="p_grey1" href="{site_url('/page/items')}">寻人列表</a></li>
+            <li><a class="p_grey1" href="{site_url('/page/tasks')}">任务列表</a></li>
+            <li><a class="p_grey1" href="{site_url('/page/xunren')}">寻人列表</a></li>
             <li><a class="p_grey1" href="{site_url('/page/success')}">成功案例</a></li>
             <li><a class="p_grey1" href="{site_url('/page/help')}">帮助中心</a></li>
         </ul>

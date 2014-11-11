@@ -120,3 +120,4 @@ a img{border:none;}
 .fixedtool{position: fixed; right: 5px; bottom: 0;height: 40px;z-index: 19;}
 
 .postlog,.message,.recharge,.consume{display:none;}
+.error{color: red; font-size: 1em;}

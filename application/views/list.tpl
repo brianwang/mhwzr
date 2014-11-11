@@ -128,16 +128,16 @@
                     <li><a href="javascript:;"  data='公益找人'>公益找人</a></li>
                 </ul>
 
-                <ul class="nav_2" data="task">
-                    <li>任务：</li>
-                    <li><a href="javascript:;" class="select" data='all'>全部</a></li>
-                        {foreach from=$config.tasks item=t}
-                        <li><a href="javascript:;" data="{$t}">{$t}</a></li>
-                        {/foreach}
-                </ul>
+                {*<ul class="nav_2" data="task">
+                <li>任务：</li>
+                <li><a href="javascript:;" class="select" data='all'>全部</a></li>
+                {foreach from=$config.tasks item=t}
+                <li><a href="javascript:;" data="{$t}">{$t}</a></li>
+                {/foreach}
+                </ul>*}
 
                 <ul class="nav_3" data="time">
-                    <li>时间：</li>
+                    <li>有效期：</li>
                     <li><a href="javascript:;" class="select" data='all'>全部</a></li>
                         {foreach from=$config.times item=t}
                         <li><a href="javascript:;" data="{$t}">{$t}</a></li>
@@ -160,14 +160,17 @@
                             <li><a href="javascript:;" class="border_no_right select" data='sum-all'>综合</a></li>
                             <li><a href="javascript:;" class="border_no_right addArror" data='create_time'>发布时间<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
                             <li><a href="javascript:;" class="border_no_right addArror" data='lefttime'>剩余时间<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
-                            <li><a href="javascript:;" class="border_no_right addArror" data='joincount'>参与数<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
+                                    {*<li><a href="javascript:;" class="border_no_right addArror" data='joincount'>参与数<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>*}
                             <li><a href="javascript:;" class="border_all addArror" data='rewards'>价格<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror_bottom"></img></a></li>
                                     {*<li><a href="javascript:;" class="border_all combobox addArror">所有价格<img src="{asset_url('img/pixel.gif')}" class="icon icon_arror1_bottom"></img></a></li>*}
+                            
                         </ul>
-                        <ul class="contenter_title_right">
-                            <li><a href="javascript:;" id='btn_left'><img src="{asset_url('img/pixel.gif')}" class="icon icon_arror1_left"></img></a></li>
-                            <li><a href="javascript:;"  id='btn_right'><img src="{asset_url('img/pixel.gif')}" class="icon icon_arror1_right"></img></a></li>
-                        </ul>
+
+                        {*<ul class="contenter_title_right">
+                        <li>    
+                        <a href="javascript:;" id='btn_left'><img src="{asset_url('img/pixel.gif')}" class="icon icon_arror1_left"></img></a></li>
+                        <li><a href="javascript:;"  id='btn_right'><img src="{asset_url('img/pixel.gif')}" class="icon icon_arror1_right"></img></a></li>
+                        </ul>*}
                         <ul class="contenter_data_box">
                             <li class="box_title"><span class="b_1">标题/赏金</span><span class="b_2">状态</span><span class="b_3">所在地</span><span class="b_4">时间</span></li>
                             <!-- ko foreach: posts -->
@@ -209,5 +212,5 @@
                 </div>
                 <p class="clear"></p>
             </div>
-         
+
             {/block}

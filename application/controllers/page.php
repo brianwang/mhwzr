@@ -37,7 +37,11 @@ class page extends Controller {
         //$this->display();
     }
 
-    public function items($key = '', $pageid = 1, $status = 'going') {
+    public function tasks() {
+        $this->xunren('',1,'going');
+    }
+
+    public function xunren($key = '', $pageid = 1, $status = 'going') {
         $data = array();
         $postbll = new PostBll();
         if ($key != '') {
