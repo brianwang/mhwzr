@@ -1,24 +1,24 @@
 {*    {if !$isnew|default:true}
-        {if !$isedit}
-            <div class="field">
-                <span class="field_span">身份证文件</span>
-                <input type="file" name="identity">
-            </div>
-    {else}
-        {if $model.imgurl == ''}
-            <div class="field">
-                <span class="field_span">身份证文件</span>
-                <input type="file" name="identity">
-            </div>
-        {else}
-            <img src="{$model.imgurl|default:''}" width=160 heigh=160>
-        {/if}
-        <input type='hidden' name='id' value='{$model.id}'>
-        <div class="field">
-            <span class="field_span">状态</span>
-            {include file='partials/status.tpl' status=$model.status}
-        </div>
-    {/if}
+{if !$isedit}
+<div class="field">
+<span class="field_span">身份证文件</span>
+<input type="file" name="identity">
+</div>
+{else}
+{if $model.imgurl == ''}
+<div class="field">
+<span class="field_span">身份证文件</span>
+<input type="file" name="identity">
+</div>
+{else}
+<img src="{$model.imgurl|default:''}" width=160 heigh=160>
+{/if}
+<input type='hidden' name='id' value='{$model.id}'>
+<div class="field">
+<span class="field_span">状态</span>
+{include file='partials/status.tpl' status=$model.status}
+</div>
+{/if}
 {/if}*}
 <div class="field">
     <span class="field_span">发布消息类型</span>
@@ -113,6 +113,18 @@
                 options += '<option value=' + data[i] + '>' + data[i] + '</option>';
             }
             $('select[name=city]').html(options);
+            var city = $('select[name=city]').val();
+            getarea(province, city);
+        });
+    }
+    function getarea(province, city) {
+        $.get('/api/area/' + province + '/' + city, function (data) {
+            data = JSON.parse(data);
+            var options = '';
+            for (var i = 0; i < data.length; i++) {
+                options += '<option value=' + data[i] + '>' + data[i] + '</option>';
+            }
+            $('select[name=area]').html(options);
         });
     }
     // var province = $(e.target).val();
@@ -120,6 +132,13 @@
     $('select[name=province]').change(function (e) {
         var province = $(e.target).val();
         getcity(province);
+
+    });
+
+    $('select[name=city]').change(function (e) {
+        var city = $(e.target).val();
+        var province = $('select[name=province').val();
+        getarea(province, city);
     });
 
     $('select[name=type]').change(function (e) {

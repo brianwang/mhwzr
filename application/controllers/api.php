@@ -19,11 +19,22 @@ class api extends Controller {
         echo json_encode(array_keys($config['cities']));
     }
 
-    public function city($province='') {
+    public function city($province = '') {
         global $config;
         $province = urldecode($province);
         if (isset($config['cities'][$province])) {
-            echo json_encode($config['cities'][$province]);
+            echo json_encode(array_keys($config['cities'][$province]));
+        } else {
+            echo json_encode(array());
+        }
+    }
+
+    public function area($province = '', $city = '') {
+        global $config;
+        $province = urldecode($province);
+        $city = urldecode($city);
+        if (isset($config['cities'][$province][$city])) {
+            echo json_encode($config['cities'][$province][$city]);
         } else {
             echo json_encode(array());
         }

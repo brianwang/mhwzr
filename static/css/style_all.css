@@ -108,7 +108,7 @@ a img{border:none;}
 
 .field_span{ width: 120px;display:inline-block; float:left;padding: 5px; font-size:1.2em;}
 .field input{width: 180px; padding: 5px;}
-.field select{width: 195px; padding: 5px;}
+.field select{width: 115px; padding: 5px;}
 .box_title{height: 38px; line-height: 38px; font-size: 14px;}
 .content .page_nav{width: 200px; height: 0px; position: relative; top:-40px;}
 .content .page_nav ul{display: block;}
