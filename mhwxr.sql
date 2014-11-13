@@ -49,11 +49,13 @@ DROP TABLE IF EXISTS `post_comments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `post_comments` (
-  `id` varchar(45) NOT NULL,
+  `id` int(11) NOT NULL,
   `post_id` bigint(20) NOT NULL,
   `content` mediumtext NOT NULL,
   `uid` bigint(20) NOT NULL,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `username` varchar(45) DEFAULT NULL,
+  `parent_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -64,7 +66,7 @@ CREATE TABLE `post_comments` (
 
 LOCK TABLES `post_comments` WRITE;
 /*!40000 ALTER TABLE `post_comments` DISABLE KEYS */;
-INSERT INTO `post_comments` VALUES ('1',86931,'aaa',0,'2014-09-14 16:00:00');
+INSERT INTO `post_comments` VALUES (1,86931,'aaa',0,'2014-09-14 16:00:00',NULL,0);
 /*!40000 ALTER TABLE `post_comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,23 +79,25 @@ DROP TABLE IF EXISTS `posts`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `posts` (
   `id` bigint(20) NOT NULL,
-  `name` varchar(45) NOT NULL,
-  `province` varchar(24) NOT NULL,
-  `city` varchar(24) NOT NULL,
-  `birthday` datetime NOT NULL,
-  `gender` bit(1) NOT NULL,
-  `description` mediumtext NOT NULL,
-  `task` varchar(50) NOT NULL,
-  `rewards` float NOT NULL,
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `status` varchar(50) NOT NULL DEFAULT 'going',
-  `creator` bigint(20) NOT NULL,
-  `duration` varchar(45) NOT NULL,
-  `imgurl` text NOT NULL,
-  `type` varchar(45) NOT NULL DEFAULT '',
-  `title` varchar(255) NOT NULL DEFAULT '',
+  `name` varchar(45) DEFAULT NULL,
+  `province` varchar(24) DEFAULT NULL,
+  `city` varchar(24) DEFAULT NULL,
   `age` int(11) DEFAULT NULL,
-  `creator_name` varchar(255) DEFAULT NULL,
+  `gender` bit(1) DEFAULT NULL,
+  `description` mediumtext NOT NULL,
+  `rewards` float DEFAULT NULL,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `status` varchar(50) DEFAULT 'going',
+  `creator` varchar(255) NOT NULL,
+  `duration` varchar(45) NOT NULL,
+  `imgurl` text,
+  `type` varchar(45) DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `area` varchar(45) DEFAULT NULL,
+  `phone` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `posttype` varchar(45) NOT NULL,
+  `ispublic` bit(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -104,7 +108,7 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (27,'徐明','安徽','安徽','1985-10-03 00:00:00','','很不错','查身份证',100,'2014-10-13 14:50:01','going',0,'1','','悬赏类','',NULL,NULL),(227,'李明浩','安徽','安徽','1982-01-01 00:00:00','','很好','查QQ',100,'2014-10-13 14:50:01','going',0,'1','','悬赏类','',NULL,NULL),(443,'逗比小','安徽','安徽','1993-01-01 00:00:00','','啊地方','手机找人',100,'2014-10-13 14:59:48','going',0,'1','','悬赏类','寻人都比小',21,NULL),(494,'徐明','安徽','安徽','1985-10-03 00:00:00','\0','很不错','姓名找人',200,'2014-10-19 16:48:24','going',0,'2','','公益找人','寻找传说中的徐明',29,NULL),(62090,'迷你','重庆','合肥','1986-05-01 00:00:00','\0','来一个','手机找人',100,'2014-10-24 15:11:54','going',61429,'1','','悬赏找人','想要寻找迷你i',28,'aaa'),(63642,'徐明','海南','安徽','1986-01-01 00:00:00','','很不错','姓名找人',200,'2014-10-19 17:10:20','paying',0,'2','','悬赏找人','寻找',28,NULL),(191653,'徐明','北京','安徽','1985-10-03 00:00:00','\0','很不错','手机找人',100,'2014-10-19 16:48:37','going',0,'1','','公益找人','',29,NULL),(846695,'王吧皮','安徽','合肥','1987-01-01 00:00:00','\0','寻找他的','手机找人',100,'2014-10-31 17:10:21','going',244,'1','','公益找人','寻找徐明',27,'666666'),(2997412,'刘嘉玲','重庆','万州','1985-01-01 00:00:00','\0','没啥','手机找人',100,'2014-10-24 15:04:03','going',0,'1','','公益找人','我想要寻找他',29,NULL),(30227897,'王祖先','安徽','合肥','1996-01-01 00:00:00','\0','啊','手机找人',100,'2014-10-24 15:09:27','going',61429,'1','','悬赏找人','寻找这个人',18,'aaa');
+INSERT INTO `posts` VALUES (508,'','北京市','北京市',0,'\0','寻找户口本',0,'2014-11-13 14:14:30','going','0','30',NULL,'公益找人','帮着寻找户口本','东城区','123456','123456@qq.com','t','\0'),(11155,'徐明','北京市','北京市',32,'\0','他在北京走势',0,'2014-11-13 14:12:43','going','0','30',NULL,'公益找人','寻找徐明','东城区','0371-556555555','123456@qq.com','s','\0'),(826860,'张盆子','河南省','郑州市',25,'\0','他在哪里',5000,'2014-11-13 14:18:30','going','0','30',NULL,'悬赏找人','他在哪里啊','管城回族区','00000000','000000','s','\0'),(1513943,'小白','北京市','北京市',30,'\0','小白在哪里？',0,'2014-11-13 14:22:04','going','666666','30',NULL,'公益找人','小白是个好哈子','东城区','123123','123123','s','');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,4 +160,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-04 23:36:20
+-- Dump completed on 2014-11-13 22:57:37
