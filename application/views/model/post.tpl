@@ -66,7 +66,7 @@
     </div>
     <div class="field">
         <span class="field_span">有效期</span>
-        <input type="text" name="duration" placeholder="有效期" value="{$model.duration}">天
+        <input type="text" name="duration" placeholder="有效期" value="{$model.duration|default: 30}">天
     </div>
     <div class="field">
         <span class="field_span">详细描述</span>
@@ -78,24 +78,24 @@
 <div class='row'>
     <div class="field">
         <span class="field_span">你的姓名</span>
-        <input type="text" name="creator" placeholder ="姓名" value='{$model.name}' >
+        <input type="text" name="creator" placeholder ="姓名" value='{$smarty.session.user.username}' >
     </div>
     <div class="field">
         <span class="field_span">是否公开</span>
-        <select name="ispublish">
-            <option value="1">不公开</option>
-            <option value="0">公开</option>
+        <select name="ispublic">
+            <option value="0">不公开</option>
+            <option value="1">公开</option>
         </select>
     </div>
 </div>
 <div class='row'>
     <div class="field">
         <span class="field_span">联系电话</span>
-        <input type="text" name="phone" placeholder ="联系电话" value='{$model.phone}' >
+        <input type="text" name="phone" placeholder ="联系电话" value='{$smarty.session.user.phone}' >
     </div>
     <div class="field">
         <span class="field_span">QQ/邮箱</span>
-        <input type="text" name="email" placeholder ="QQ/邮箱" value='{$model.email}' >
+        <input type="text" name="email" placeholder ="QQ/邮箱" value='{$smarty.session.user.email}' >
     </div>
 </div>
 <div class="field">
@@ -150,12 +150,12 @@
         }
     });
     $('#gy').hide();
-    $('select[name=posttype]').change(function (e) {
+    /*$('select[name=posttype]').change(function (e) {
         var v = $(e.target).val();
         if (v == 's') {
             $('#s').show();
         } else {
             $('#s').hide();
         }
-    });
+    });*/
 </script>

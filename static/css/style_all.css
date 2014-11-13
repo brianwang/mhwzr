@@ -121,3 +121,4 @@ a img{border:none;}
 
 .postlog,.message,.recharge,.consume{display:none;}
 .error{color: red; font-size: 1em;}
+.leftcontent{width: 100px; display:inline-block;}

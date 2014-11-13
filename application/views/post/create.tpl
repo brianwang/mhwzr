@@ -45,7 +45,7 @@
                 },
                 email: {
                     required: true,
-                    email: true
+                    //email: true
                 },
                 qq: {
                     required: true
@@ -72,7 +72,8 @@
             var usermessages = {
                 name: "请输入用户名",
                 email: {
-                    required: "请输入用户名", email: '格式不正确'
+                    required: "请输入QQ/邮箱",
+                    //email: '格式不正确'
                 },
                 creator: {
                     required: "请输入你的姓名"
@@ -113,11 +114,9 @@
                 },
                 email: {
                     required: true,
-                    email: true
+                    //email: true
                 },
-                qq: {
-                    required: true
-                }, creator: {
+                creator: {
                     required: true
                 },
                 phone: {

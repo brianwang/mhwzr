@@ -10,7 +10,23 @@ $config['db_host'] = 'localhost'; // Database host (e.g. localhost)
 $config['db_name'] = 'mhwxr'; // Database name
 $config['db_username'] = 'mhwxr'; // Database username
 $config['db_password'] = 'mhwxr'; // Database password
+
+define('BASE_URL', $config['base_url']);
+$cfg = ActiveRecord\Config::instance();
+$cfg->set_model_directory(ROOT_DIR . '/application/models');
+$cfg->set_connections(
+        array(
+            'development' => 'mysql://'.$config['db_username'].':'.$config['db_password'].'@'.$config['db_host'].
+            '/'.$config['db_name'].';charset=utf8',
+            //'test' => 'mysql://username:password@localhost/test_database_name',
+            //'production' => 'mysql://username:password@localhost/production_database_name'
+        )
+);
+$cfg->set_default_connection('development');
+ActiveRecord\DateTime::$DEFAULT_FORMAT = 'Y-m-d H:i:s';
+
 $config['sitename'] = '美猴网信息网';
+$config['phone400'] = 'XXX-XX-XXXX';
 $config['questions'] = array(
     '你最喜欢的明星是谁?',
     '你的第一所学校是什么?',

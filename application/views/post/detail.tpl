@@ -13,13 +13,19 @@
         <div class="content_left">
             <div class="content_left_box padding_bottom">
                 <div class="left_header  bg_4">
-                    <img class="img_header" src="{$post.imgurl}">
-                    <p class="content_title p_size_20 p_bold p_grey1 p_lineHeight_40">{$post.task}</p>
-                    <p class="content_title1 p_size_14 p_bold p_lineHeight_30"><span class="p_yellow">赏金：8355元</span> <span class="p_grey3">日期：2014.10.14</span></p>
+                    <img class="img_header" src="{$post.imgurl|default: ''}">
+                    <p class="content_title p_size_20 p_bold p_grey1 p_lineHeight_40">{$post.title}</p>
+                    <p class="content_title1 p_size_14 p_bold p_lineHeight_30">
+                        {if $post.posttype == 't' and $post.type=='悬赏找人'}
+                            <span class="p_yellow">赏金：{$post.rewards}元</span>
+                        {/if}
+                        <span class="p_grey3">日期：{$post.create_time}</span></p>
                 </div>
                 <p class="p_lineHeight_50 p_bold p">找人线索:</p>
-                <p class="p_lineHeight_30 p">身份证:</p>
-                <p class="p_lineHeight_30 p">手机号:</p>
+                <p class="p_lineHeight_30 p"><span class='leftcontent'>性别:</span><span class='rightcontent'>{if $post.gender==0}男{else}女{/if}</span></p>
+                <p class="p_lineHeight_30 p"><span class='leftcontent'>年龄:</span><span class='rightcontent'>{$post.age}</span></p>
+                <p class="p_lineHeight_30 p"><span class='leftcontent'>所在地区:</span><span class='rightcontent'>{$post.province}-{$post.city}-{$post.area}</span></p>
+                <p class="p_lineHeight_30 p"><span class='leftcontent'>详细描述:</span><span class='rightcontent'>{$post.description}</span></p>
                 <div class="circle_bot">
                     <span class="s_b"> 
                         <b class="b1  bg_fff8ec"></b> 
@@ -33,73 +39,49 @@
                         <b class="b1 bg_fff8ec"></b>
                     </span>
                 </div>
-                <a class="btn_search p_clor_ffffff p_bold p_size_18" href="#">我能找到</a>
+                <a class="btn_search p_clor_ffffff p_bold p_size_18" href="javascript:;" id="icando">我能找到</a>
             </div>
             <div class="content_left_box">
-                <p class="p_lineHeight_40">已参与找人</p>
+                <p class="p_lineHeight_40">已参与找人({$applyusers|count}人)</p>
                 <ul class="pic_list">
-                    <li><img src="img/item_head1.jpg" width="45px" height="45px"></li>
+                    {foreach from=$applyusers item=u}
+                        <li><a href="{site_url('/page/profile')}/{$u.id}"><img src="{$u.imgurl}" width="45px" height="45px"></a></li>
+                            {/foreach}
                 </ul>
                 <p class="clear"></p>
             </div>
 
             <div class="content_left_box">
                 <p class="p_lineHeight_40">寻人交流</p>
-                <textarea name="" rows="" cols=""></textarea>
-
-                <a class="btn bg_dedede" href="#">发布</a>
+                <form>
+                    <textarea name="" rows="" cols=""></textarea>
+                    <a class="btn bg_dedede" href="#">发布</a>
+                </form>
                 <p class="clear"></p>
             </div>
-            <div class="content_left_box padding_top">
-                <img class="img_header" width="45px" height="45px" src="{$post.imgurl}">
-                <p class="p_lineHeight_25 p_indent_15">经天纬地</p>
-                <p class="p_grey3 p_indent_15">2014年10月20日</p>
-                <div class="content">
-                    <p class="p_content">这个任务我肯定可以搞定的，其他人不用参与了。。</p>
-                    <div class="content_box">
-                        <textarea name="" rows="" cols=""></textarea>
-                        <a class="btn bg_dedede" href="#">评论</a>
-                        <p class="clear"></p>
-                        <div class="item boder_bottom">
-                            <img class="img_header" width="45px" height="45px" src="img/item_head1.jpg">
-                            <p class="p_lineHeight_25 p_indent_15">经天纬地</p>
-                            <p class="p_grey3 p_indent_15">2014年10月20日</p>
-                            <p class="p_content p_indent_15">这个任务我肯定可以搞定的，其他人不用参与了。。</p>
-                        </div>
-                        <div class="item">
-                            <img class="img_header" width="45px" height="45px" src="img/item_head1.jpg">
-                            <p class="p_lineHeight_25 p_indent_15">经天纬地</p>
-                            <p class="p_grey3 p_indent_15">2014年10月20日</p>
-                            <p class="p_content p_indent_15">这个任务我肯定可以搞定的，其他人不用参与了。。</p>
+            {foreach from=$comments item=comment}
+                <div class="content_left_box padding_top">
+                    <img class="img_header" width="45px" height="45px" src="{$post.imgurl}">
+                    <p class="p_lineHeight_25 p_indent_15">{$comment.username}</p>
+                    <p class="p_grey3 p_indent_15">{$comment.create_time}</p>
+                    <div class="content">
+                        <p class="p_content">{$comment.content}</p>
+                        <div class="content_box">
+                            <textarea name="" rows="" cols=""></textarea>
+                            <a class="btn bg_dedede" href="#">评论</a>
+                            <p class="clear"></p>
+                            {foreach from=$comment.comments item=c}
+                            <div class="item boder_bottom">
+                                <img class="img_header" width="45px" height="45px" src="img/item_head1.jpg">
+                                <p class="p_lineHeight_25 p_indent_15">{$c.username}</p>
+                                <p class="p_grey3 p_indent_15">{$c.create_time}</p>
+                                <p class="p_content p_indent_15">{$c.content}</p>
+                            </div>
+                            {/foreach}
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="content_left_box padding_top clear_boder">
-                <img class="img_header" width="45px" height="45px" src="img/item_head1.jpg">
-                <p class="p_lineHeight_25 p_indent_15">经天纬地</p>
-                <p class="p_grey3 p_indent_15">2014年10月20日</p>
-                <div class="content">
-                    <p class="p_content">这个任务我肯定可以搞定的，其他人不用参与了。。</p>
-                    <div class="content_box">
-                        <textarea name="" rows="" cols=""></textarea>
-                        <a class="btn bg_dedede" href="#">评论</a>
-                        <p class="clear"></p>
-                        <div class="item boder_bottom">
-                            <img class="img_header" width="45px" height="45px" src="img/item_head1.jpg">
-                            <p class="p_lineHeight_25 p_indent_15">经天纬地</p>
-                            <p class="p_grey3 p_indent_15">2014年10月20日</p>
-                            <p class="p_content p_indent_15">这个任务我肯定可以搞定的，其他人不用参与了。。</p>
-                        </div>
-                        <div class="item">
-                            <img class="img_header" width="45px" height="45px" src="img/item_head1.jpg">
-                            <p class="p_lineHeight_25 p_indent_15">经天纬地</p>
-                            <p class="p_grey3 p_indent_15">2014年10月20日</p>
-                            <p class="p_content p_indent_15">这个任务我肯定可以搞定的，其他人不用参与了。。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {/foreach}
         </div>
         <div class="content_right">
             <div class="right_box">
@@ -130,15 +112,7 @@
 
 
 
-    <img src='{$post.imgurl}' alt="" width="160" height="160"/>
-    <p>{$post.name}</p>
-    <p>{$post.province}-{$post.city}</p>
-    <p>{$post.birthday}</p>
-    <p>{$post.gender}</p>
-    <p>{$post.description}</p>
-    <p>{$post.task}</p>
-    <p>{$post.rewards}</p>
-    <p>{$post.create_time}</p>
+
     <form action="{site_url('/user/apply')}/{$post.id}" method="post">
         <input type="submit" value="申请任务"/>
     </form>

@@ -57,8 +57,8 @@
                     {foreach from=$today item=t}
                         <li class="item">
                             <span class="msg_time">{$t.create_time|date_format: '%H:%M'}</span>
-                            <span class="{if $t.type=='公益寻人'}p_clor_24c1a4{else}p_yellow{/if} msg_type">寻人任务</span>
-                            <p class="p_grey1 msg_content"><span class="p_blue">{$t.creator_name}</span> 发布了一个 {$t.task}</p>
+                            <span class="{if $t.type=='公益找人'}p_clor_24c1a4{else}p_yellow{/if} msg_type">寻人任务</span>
+                            <p class="p_grey1 msg_content"><span class="p_blue">{$t.creator}</span> 发布了一个信息</p>
                         </li>
                     {/foreach}
                 </ul>
@@ -89,7 +89,7 @@
                 <ul>
                     {foreach from=$today item=t}
                         {if $t.type == '悬赏找人'}
-                            <li><a href="{site_url('/post/')}/{$t.id}" class="p_size_14"><span class="p_blue">{$t.creator_name}</span> 发布了 一个{$t.task},悬赏 <span class="p_yellow p_bold">{$t.rewards}</span> 元。</a></li>
+                            <li><a href="{site_url('/post/')}/{$t.id}" class="p_size_14"><span class="p_blue">{$t.creator}</span> 发布了 一个信息,悬赏 <span class="p_yellow p_bold">{$t.rewards}</span> 元。</a></li>
                             {/if}
                         {/foreach}
                 </ul>
@@ -101,7 +101,7 @@
                 <ul>
                     {foreach from=$today item=t}
                         {if $t.type == '公益找人'}
-                            <li><a href="#" class="p_size_14"><span class="p_blue">{$t.creator_name}</span> 发布了 一个{$t.task}。</a></li>
+                            <li><a href="#" class="p_size_14"><span class="p_blue">{$t.creator}</span> 发布了 一个信息。</a></li>
                             {/if}
                         {/foreach}
                 </ul>

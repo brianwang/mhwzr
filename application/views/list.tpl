@@ -102,9 +102,6 @@
                 });
                 $('.page_' + p).addClass('select');
             }
-            $('#createpost').click(function () {
-                $('#btn_createpost').click();
-            });
         }
         var m = new model();
         ko.applyBindings(m);
@@ -178,16 +175,21 @@
                                 <span class="b_1">
                                     <img src="{asset_url('img/pixel.gif')}" class='icon'
                                          data-bind="css: { icon_shang: $data.type == '悬赏类', icon_gong: $data.type != '悬赏类' }"
-                                         ></img><span class="item_title" data-bind="text: $data.title"></span>
+                                         ></img>
+                                    <a data-bind="attr: { href: '/post/index/'+$data.id}"><span class="item_title" data-bind="text: $data.title"></span></a>
                                     <span class="item_content">
-                                        <span class="p_size_14 p_yellow p_bold" data-bind="text: $data.rewards+'币', visible: $data.type == '悬赏类'"></span> 
+                                        <span class="p_size_14 p_yellow p_bold" data-bind="text: $data.rewards+'元', visible: $data.type == '悬赏类'"></span> 
                                         <span class="p_grey3"><span data-bind="text: $data.browsers?$data.browsers:0"></span>人浏览 / 
                                             <span data-bind="text: $data.bidscount?$data.bidscount:0"></span>人已经投标</span>
                                     </span>
                                 </span>
                                 <span class="b_2" data-bind="text: $data.status== 'going'?'进行中':'结束';"></span>
-                                <span class="b_3"><span data-bind="text: $data.province"></span>-<span data-bind="$data.city"></span></span>
-                                <span class="b_4"><span data-bind="text: $data.duration"></span>个月</span>
+                                <span class="b_3">
+                                    
+                                    <span data-bind="text:$data.city"></span>
+                                    <span data-bind="text:$data.area"></span>
+                                </span>
+                                <span class="b_4"><span data-bind="text: $data.duration"></span>天</span>
                             </li>
                             <!-- /ko -->
                         </ul>

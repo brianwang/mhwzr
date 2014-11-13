@@ -45,18 +45,17 @@ class post extends Controller {
                         move_uploaded_file($file, $filename);
                     }
                 }
-                $duration = date_diff(new DateTime(), new DateTime($post['birthday']));
-                $post['age'] = $duration->y;
+                //$duration = date_diff(new DateTime(), new DateTime($post['birthday']));
+                //$post['age'] = $duration->y;
                 unset($post['postverify']);
-                if (isset($_SESSION['user'])) {
-                    $username = $_SESSION['user']['username'];
-                    $creator = $_SESSION['user']['id'];
-                } else {
-                    $username = '游客';
-                    $creator = '-1';
+                if (isset($post['posttype']) && $post['posttype'] == 't') {
+                    unset($post['province']);
+                    unset($post['city']);
+                    unset($post['area']);
+                    unset($post['type']);
                 }
-                $post['creator'] = $creator;
-                $post['creator_name'] = $username;
+                //$post['creator'] = $creator;
+                //$post['creator_name'] = $username;
                 if (isset($_POST['id'])) {
                     PostModel::table()->update($post, array('id' => $_POST['id']));
                 } else {
@@ -74,7 +73,11 @@ class post extends Controller {
             $this->show_404();
         } else {
             $post = PostModel::find(array('id' => $id));
-            $data['post'] = $post->to_array(array('include' => 'comments'));
+            $postdata = $post->to_array(array('include' => 'comments'));
+            $applyusers = array();
+            $data['post'] = $postdata;
+            $data['applyusers'] =$applyusers;
+            $data['comments'] =array();
             $this->view->render('post/detail.tpl', $data);
         }
     }
@@ -139,7 +142,7 @@ class post extends Controller {
             $coarr = array();
             $coarr[0] = $condition;
             foreach ($conditionarr as $k => $v) {
-                if ((string)$v != '') {
+                if ((string) $v != '') {
                     array_push($coarr, $v);
                 }
             }

@@ -21,7 +21,7 @@
                     {else}
                 <p class="login"><a class="p_yellow" href="#">请登录</a> <span class="p_grey">|</span> <a href="#">免费注册</a></p>
             {/if}
-            <p class="nav"><span class="p_grey">| </span><a href="{site_url('/page/srvguide')}">服务商指南</a><span class="p_grey"> | </span><a href="{site_url('/page/help')}">帮助中心</a><span class="p_grey"> | </span>客服电话：400-366-7878</p>
+            <p class="nav"><span class="p_grey">| </span><a href="{site_url('/page/srvguide')}">服务商指南</a><span class="p_grey"> | </span><a href="{site_url('/page/help')}">帮助中心</a><span class="p_grey"> | </span>客服电话：{$config.phone400}</p>
             <p class="user"><a href="{site_url('/page/profile')}">我的美猴王 <img src="{asset_url('img/pixel.gif')}" class="icon arror"></a></p>
         </div>
     </div>
@@ -94,7 +94,7 @@
         <a href="{site_url('/page/register')}" class="btn">注册</a>
         <a href="{site_url('/page/login')}" class="btn">登录</a>
     {/if}
-    <a href="javascript:;" class="btn" id="createpost">发布信息</a>
+    <a href="{site_url('/page/createpost')}" class="btn">发布信息</a>
 </div>
 <div class="footer">
     <ul class="center size">
@@ -123,7 +123,7 @@
         </li>
         <li class="item">
             <p class="p_bold p_size_18  p_grey2 p_lineHeight_70">联系我们</p>
-            <img src="{asset_url('img/pixel.gif')}" class="icon icon_phone"/><span class="p_bold p_size_35 p_clor_red"> 4006-999-467</span>
+            <img src="{asset_url('img/pixel.gif')}" class="icon icon_phone"/><span class="p_bold p_size_35 p_clor_red"> {$config.phone400}</span>
         </li>
     </ul>
     <p class="clear"></p>
