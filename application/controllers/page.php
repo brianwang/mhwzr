@@ -38,7 +38,7 @@ class page extends Controller {
     }
 
     public function tasks() {
-        $this->xunren('',1,'going');
+        $this->xunren('', 1, 'going', 't');
     }
 
     public function xunren($key = '', $pageid = 1, $status = 'going') {
@@ -49,8 +49,6 @@ class page extends Controller {
             $data['pages'] = count($data['posts']) / 10;
             $data['curpage'] = $pageid;
         } else {
-            //$data = array();
-            //$postbll = new PostBll();
             $pages = $postbll->getpages();
             if ($pageid > $pages) {
                 $data['posts'] = array();
@@ -88,6 +86,19 @@ class page extends Controller {
 
     function servicetry() {
         $this->view->render('servicetry.tpl');
+    }
+
+    function userprofile($uid = '') {
+        if ($uid == '') {
+            $this->view->error(404);
+        } else {
+            $result = UserModel::find('all', array('id' => $uid));
+            if ($result != null && count($result) == 1) {
+                //$user = $result->to_array();
+                $data['user'] = $result[0]->to_array();
+                $this->view->render('userprofile.tpl', $data);
+            }
+        }
     }
 
     function profile() {

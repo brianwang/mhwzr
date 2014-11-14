@@ -21,11 +21,15 @@
                         {/if}
                         <span class="p_grey3">日期：{$post.create_time}</span></p>
                 </div>
-                <p class="p_lineHeight_50 p_bold p">找人线索:</p>
-                <p class="p_lineHeight_30 p"><span class='leftcontent'>性别:</span><span class='rightcontent'>{if $post.gender==0}男{else}女{/if}</span></p>
-                <p class="p_lineHeight_30 p"><span class='leftcontent'>年龄:</span><span class='rightcontent'>{$post.age}</span></p>
-                <p class="p_lineHeight_30 p"><span class='leftcontent'>所在地区:</span><span class='rightcontent'>{$post.province}-{$post.city}-{$post.area}</span></p>
-                <p class="p_lineHeight_30 p"><span class='leftcontent'>详细描述:</span><span class='rightcontent'>{$post.description}</span></p>
+                {if $post.posttype == 's'}
+                    <p class="p_lineHeight_50 p_bold p">找人线索:</p>
+                    <p class="p_lineHeight_30 p"><span class='leftcontent'>性别:</span><span class='rightcontent'>{if $post.gender==0}男{else}女{/if}</span></p>
+                    <p class="p_lineHeight_30 p"><span class='leftcontent'>年龄:</span><span class='rightcontent'>{$post.age}</span></p>
+                    <p class="p_lineHeight_30 p"><span class='leftcontent'>所在地区:</span><span class='rightcontent'>{$post.province}-{$post.city}-{$post.area}</span></p>
+                {else}
+                    <p class="p_lineHeight_50 p_bold p">线索:</p>
+                    <p class="p_lineHeight_30 p"><span class='leftcontent'>详细描述:</span><span class='rightcontent'>{$post.description}</span></p>
+                    {/if}
                 <div class="circle_bot">
                     <span class="s_b"> 
                         <b class="b1  bg_fff8ec"></b> 
@@ -39,13 +43,13 @@
                         <b class="b1 bg_fff8ec"></b>
                     </span>
                 </div>
-                <a class="btn_search p_clor_ffffff p_bold p_size_18" href="javascript:;" id="icando">我能找到</a>
+                <a class="btn_search p_clor_ffffff p_bold p_size_18" href="javascript:;" id="icando" data='{site_url('/post/apply')}/{$post.id}'>我能找到</a>
             </div>
             <div class="content_left_box">
                 <p class="p_lineHeight_40">已参与找人({$applyusers|count}人)</p>
                 <ul class="pic_list">
                     {foreach from=$applyusers item=u}
-                        <li><a href="{site_url('/page/profile')}/{$u.id}"><img src="{$u.imgurl}" width="45px" height="45px"></a></li>
+                        <li><a href="{site_url('/page/userprofile')}/{$u.apply_uid}"><img src="{$u.headurl|default:''}" width="45px" height="45px"></a></li>
                             {/foreach}
                 </ul>
                 <p class="clear"></p>
@@ -71,12 +75,12 @@
                             <a class="btn bg_dedede" href="#">评论</a>
                             <p class="clear"></p>
                             {foreach from=$comment.comments item=c}
-                            <div class="item boder_bottom">
-                                <img class="img_header" width="45px" height="45px" src="img/item_head1.jpg">
-                                <p class="p_lineHeight_25 p_indent_15">{$c.username}</p>
-                                <p class="p_grey3 p_indent_15">{$c.create_time}</p>
-                                <p class="p_content p_indent_15">{$c.content}</p>
-                            </div>
+                                <div class="item boder_bottom">
+                                    <img class="img_header" width="45px" height="45px" src="img/item_head1.jpg">
+                                    <p class="p_lineHeight_25 p_indent_15">{$c.username}</p>
+                                    <p class="p_grey3 p_indent_15">{$c.create_time}</p>
+                                    <p class="p_content p_indent_15">{$c.content}</p>
+                                </div>
                             {/foreach}
                         </div>
                     </div>
@@ -109,10 +113,6 @@
         </div>
         <p class="clear"></p>
     </div>
-
-
-
-
     <form action="{site_url('/user/apply')}/{$post.id}" method="post">
         <input type="submit" value="申请任务"/>
     </form>
@@ -126,5 +126,13 @@
             {$comment.content}
         {/foreach}
     </div>
-
+    <Script>
+        $('#icando').click(function (e) {
+            var url = $(e.target).attr('data');
+            $.post(url, function (result) {
+                result = JSON.parse(result);
+                alert(result.message);
+            });
+        });
+    </script>
 {/block}

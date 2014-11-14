@@ -36,8 +36,6 @@ class PostBll extends BaseBll {
         
     }
 
-   
-
     //今日寻人
     function gettoday() {
         $now = date('Y-m-d', time());
@@ -68,6 +66,18 @@ class PostBll extends BaseBll {
         return $pages;
     }
 
+    function apply($postid, $uid, $nickname, $time, $status) {
+        $result = PostApplyModel::find(array('apply_uid' => $uid, 'postid' => $postid, 'status' => '申请中'));
+        if ($result != null) {
+            return false;
+        } else {
+            $data = array('postid' => $postid, 'apply_uid' => $uid,
+                'apply_username' => $nickname, 'apply_time' => $time, 'status' => $status);
+            PostApplyModel::create($data)->save();
+        }
+        return $data;
+    }
+
     function getitems($page = 1, $pagesize = 10, $status = 'going') {
         try {
             if ($page == 0)
@@ -77,7 +87,7 @@ class PostBll extends BaseBll {
                 $conditions[$key] = $v;
             }
             $posts = PostModel::find('all', array(
-                        'conditions' => array('status=?', $status),
+                        'conditions' => array('status=? ', $status),
                         'order' => 'create_time desc', 'limit' => $pagesize,
                         'offset' => ($page - 1) * $pagesize));
             //var_dump(PostModel::connection()->last_query);
@@ -122,4 +132,9 @@ class PostBll extends BaseBll {
         return $this->to_array($result);
     }
 
+    public function getapplies($postid){
+        $join = 'JOIN users u ON(u.id= post_apply.apply_uid)';
+        $result =PostApplyModel::find('all',array('joins'=>$join,'select'=>'u.headurl,post_apply.*'));
+        return $this->to_array($result);
+    }
 }

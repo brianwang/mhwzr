@@ -13,6 +13,10 @@
  */
 class BaseBll {
 
+    public function getbypk($id=''){
+        if($id == '')
+            return array();        
+    }
     //put your code here
     protected function to_array($data) {
         $result = array();

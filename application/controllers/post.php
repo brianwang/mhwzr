@@ -74,10 +74,11 @@ class post extends Controller {
         } else {
             $post = PostModel::find(array('id' => $id));
             $postdata = $post->to_array(array('include' => 'comments'));
-            $applyusers = array();
+            $postbll = new PostBll();
+            $applyusers = $postbll->getapplies($id);
             $data['post'] = $postdata;
-            $data['applyusers'] =$applyusers;
-            $data['comments'] =array();
+            $data['applyusers'] = $applyusers;
+            $data['comments'] = array();
             $this->view->render('post/detail.tpl', $data);
         }
     }
@@ -88,9 +89,7 @@ class post extends Controller {
             $posts = PostModel::find('all', array('conditons' => $filters, 'limit' => 10, 'offset' => 0));
         } else {
             $filters = array();
-
             $conditionarr = array();
-            //$condition = '';
             foreach ($_GET as $key => $value) {
                 if ($value == 'all') {
                     continue;
@@ -112,8 +111,9 @@ class post extends Controller {
                     $conditionarr[$key . '=?'] = $value;
                 }
                 if ($key == 'time') {
-                    $time = intval(substr($value, 0, 1));
-                    $conditionarr['duration=?'] = $time;
+                    //$time = intval(substr($value, 0, 1));
+                    $time = explode('-', $value);
+                    $conditionarr['duration>=? and duration <=?'] = $time;
                 }
                 if (preg_match('/^lefttime/', $key) == 1) {
                     //$conditionarr['timediff(now(),create_time) as duration'] = '';
@@ -142,8 +142,12 @@ class post extends Controller {
             $coarr = array();
             $coarr[0] = $condition;
             foreach ($conditionarr as $k => $v) {
-                if ((string) $v != '') {
-                    array_push($coarr, $v);
+                if (is_array($v)) {
+                    $coarr = array_merge($coarr, $v);
+                } else {
+                    if ((string) $v != '') {
+                        array_push($coarr, $v);
+                    }
                 }
             }
             $filters['conditions'] = $coarr;
@@ -157,6 +161,25 @@ class post extends Controller {
         /* if ($key == '') {
           $posts = PostModel::find(array('id' => $id));
           } */
+    }
+
+    public function apply($id = '') {
+        if ($id == '') {
+            $this->view->json(array('result' => 'failed', 'message' => 'no id'));
+        } else {
+            $postbill = new PostBll();
+            $user = $_SESSION['user'];
+            $uid = $user['id'];
+            $nickname = $user['username'];
+            $time = new ActiveRecord\DateTime();
+            $status = '申请中';
+            $result = $postbill->apply($id, $uid, $nickname, $time, $status);
+            if (!$result) {
+                $this->view->json(array('result' => 'failed', 'message' => '请勿重复申请'));
+            } else {
+                $this->view->json(array('result' => 'success', 'message' => '申请成功'));
+            }
+        }
     }
 
 }

@@ -11,7 +11,7 @@
  *
  * @author brian
  */
-class UserBll extends Model {
+class UserBll extends BaseBll {
 
     //put your code herr
     public function login($username, $password) {
@@ -19,9 +19,6 @@ class UserBll extends Model {
         if ($user != null) {
             return $user;
         } else {
-            //$username = $this->escapeString($username);
-            //$password = md5($this->escapeString($password));
-            //$result = $this->query("select * from users where name='" . $username . "' and passsword='" . $password . "';");
             return null;
         }
     }
