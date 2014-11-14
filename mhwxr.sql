@@ -42,6 +42,34 @@ LOCK TABLES `messages` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `post_apply`
+--
+
+DROP TABLE IF EXISTS `post_apply`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `post_apply` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `postid` bigint(20) DEFAULT NULL,
+  `apply_uid` int(11) DEFAULT NULL,
+  `apply_username` varchar(45) DEFAULT NULL,
+  `apply_time` timestamp NULL DEFAULT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `post_apply`
+--
+
+LOCK TABLES `post_apply` WRITE;
+/*!40000 ALTER TABLE `post_apply` DISABLE KEYS */;
+INSERT INTO `post_apply` VALUES (2,2795,244,'666666','2014-11-14 16:29:27','申请中');
+/*!40000 ALTER TABLE `post_apply` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `post_comments`
 --
 
@@ -108,7 +136,7 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (508,'','北京市','北京市',0,'\0','寻找户口本',0,'2014-11-13 14:14:30','going','0','30',NULL,'公益找人','帮着寻找户口本','东城区','123456','123456@qq.com','t','\0'),(11155,'徐明','北京市','北京市',32,'\0','他在北京走势',0,'2014-11-13 14:12:43','going','0','30',NULL,'公益找人','寻找徐明','东城区','0371-556555555','123456@qq.com','s','\0'),(826860,'张盆子','河南省','郑州市',25,'\0','他在哪里',5000,'2014-11-13 14:18:30','going','0','30',NULL,'悬赏找人','他在哪里啊','管城回族区','00000000','000000','s','\0'),(1513943,'小白','北京市','北京市',30,'\0','小白在哪里？',0,'2014-11-13 14:22:04','going','666666','30',NULL,'公益找人','小白是个好哈子','东城区','123123','123123','s','');
+INSERT INTO `posts` VALUES (508,'','北京市','北京市',0,'\0','寻找户口本',0,'2014-11-13 14:14:30','going','0','30',NULL,'公益找人','帮着寻找户口本','东城区','123456','123456@qq.com','t','\0'),(2795,'',NULL,NULL,0,'\0','寻找汽车',0,'2014-11-14 15:52:13','going','666666','50',NULL,'','寻找汽车',NULL,'123123','123123','t','\0'),(3453,'test','北京市','北京市',45,'\0','test',0,'2014-11-14 15:50:00','going','666666','50',NULL,'公益找人','test','东城区','123123','123123','s','\0'),(11155,'徐明','北京市','北京市',32,'\0','他在北京走势',0,'2014-11-13 14:12:43','going','0','30',NULL,'公益找人','寻找徐明','东城区','0371-556555555','123456@qq.com','s','\0'),(826860,'张盆子','河南省','郑州市',25,'\0','他在哪里',5000,'2014-11-13 14:18:30','going','0','30',NULL,'悬赏找人','他在哪里啊','管城回族区','00000000','000000','s','\0'),(1513943,'小白','北京市','北京市',30,'\0','小白在哪里？',0,'2014-11-13 14:22:04','going','666666','30',NULL,'公益找人','小白是个好哈子','东城区','123123','123123','s','');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,6 +165,7 @@ CREATE TABLE `users` (
   `idpic2` mediumtext,
   `register_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `status` varchar(45) NOT NULL,
+  `headurl` text,
   PRIMARY KEY (`id`,`email`,`identity`,`phone`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -147,7 +176,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (244,'666666','123123','123123','1231','123123','123','2014-09-13 16:00:00','\0','e10adc3949ba59abbe56e057f20f883e',NULL,'你最喜欢的明星是谁?','111',NULL,NULL,'0000-00-00 00:00:00',''),(494,'aa','asdf','123','123','123','123','2014-09-13 17:14:08','\0','123',NULL,'','123',NULL,NULL,'0000-00-00 00:00:00',''),(1374,'bbb','bbb@bbb.com','','',NULL,NULL,'2014-11-04 14:28:10','\0','08f8e0260c64418510cefb2b06eee5cd',NULL,'你最喜欢的明星是谁?','bbb',NULL,NULL,'0000-00-00 00:00:00',''),(2265,'eee','eee@eee.com','','',NULL,NULL,'2014-11-04 14:44:50','\0','e10adc3949ba59abbe56e057f20f883e',NULL,'你最喜欢的明星是谁?','eee',NULL,NULL,'0000-00-00 00:00:00',''),(7690,'hhh','hhh@hhh.com','','',NULL,NULL,'2014-11-04 14:46:23','\0','a3aca2964e72000eea4c56cb341002a4',NULL,'你最喜欢的明星是谁?','hhh',NULL,NULL,'0000-00-00 00:00:00',''),(13726,'aaa','aa123@qq.com','4','4','3','3','1981-12-31 16:00:00','\0','698d51a19d8a121ce581499d7b701668',NULL,'你最喜欢的明星是谁?','111',NULL,NULL,'0000-00-00 00:00:00',''),(61429,'aaa','aaa@aaa.com','','',NULL,NULL,'2014-10-22 16:07:19','\0','e10adc3949ba59abbe56e057f20f883e',NULL,'你最喜欢的明星是谁?','aaa',NULL,NULL,'0000-00-00 00:00:00',''),(732653,'ccc','ccc@ccc.com','','',NULL,NULL,'2014-11-04 14:40:17','\0','e10adc3949ba59abbe56e057f20f883e',NULL,'你最喜欢的明星是谁?','ccc',NULL,NULL,'0000-00-00 00:00:00',''),(14674275,'ddd','ddd@dd.com','','',NULL,NULL,'2014-11-04 14:44:29','\0','e10adc3949ba59abbe56e057f20f883e',NULL,'你最喜欢的明星是谁?','ddd',NULL,NULL,'0000-00-00 00:00:00','');
+INSERT INTO `users` VALUES (244,'666666','123123','123123','1231','123123','123','2014-09-13 16:00:00','\0','e10adc3949ba59abbe56e057f20f883e',NULL,'你最喜欢的明星是谁?','111',NULL,NULL,'0000-00-00 00:00:00','',NULL),(494,'aa','asdf','123','123','123','123','2014-09-13 17:14:08','\0','123',NULL,'','123',NULL,NULL,'0000-00-00 00:00:00','',NULL),(1374,'bbb','bbb@bbb.com','','',NULL,NULL,'2014-11-04 14:28:10','\0','08f8e0260c64418510cefb2b06eee5cd',NULL,'你最喜欢的明星是谁?','bbb',NULL,NULL,'0000-00-00 00:00:00','',NULL),(2265,'eee','eee@eee.com','','',NULL,NULL,'2014-11-04 14:44:50','\0','e10adc3949ba59abbe56e057f20f883e',NULL,'你最喜欢的明星是谁?','eee',NULL,NULL,'0000-00-00 00:00:00','',NULL),(7690,'hhh','hhh@hhh.com','','',NULL,NULL,'2014-11-04 14:46:23','\0','a3aca2964e72000eea4c56cb341002a4',NULL,'你最喜欢的明星是谁?','hhh',NULL,NULL,'0000-00-00 00:00:00','',NULL),(13726,'aaa','aa123@qq.com','4','4','3','3','1981-12-31 16:00:00','\0','698d51a19d8a121ce581499d7b701668',NULL,'你最喜欢的明星是谁?','111',NULL,NULL,'0000-00-00 00:00:00','',NULL),(61429,'aaa','aaa@aaa.com','','',NULL,NULL,'2014-10-22 16:07:19','\0','e10adc3949ba59abbe56e057f20f883e',NULL,'你最喜欢的明星是谁?','aaa',NULL,NULL,'0000-00-00 00:00:00','',NULL),(732653,'ccc','ccc@ccc.com','','',NULL,NULL,'2014-11-04 14:40:17','\0','e10adc3949ba59abbe56e057f20f883e',NULL,'你最喜欢的明星是谁?','ccc',NULL,NULL,'0000-00-00 00:00:00','',NULL),(14674275,'ddd','ddd@dd.com','','',NULL,NULL,'2014-11-04 14:44:29','\0','e10adc3949ba59abbe56e057f20f883e',NULL,'你最喜欢的明星是谁?','ddd',NULL,NULL,'0000-00-00 00:00:00','',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -160,4 +189,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-13 22:57:37
+-- Dump completed on 2014-11-15  0:53:30
