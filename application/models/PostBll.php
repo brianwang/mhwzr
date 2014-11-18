@@ -32,11 +32,52 @@ class PostBll extends BaseBll {
         return $result;
     }
 
-    function addcomments($data) {
-        
+    function addcomment($postid, $parentid, $content) {
+        $result = PostModel::find(array('id' => $postid))->to_array();
+        if ($result != null) {
+            $data = array(
+                'content' => $content,
+                'create_time' => new ActiveRecord\DateTime(),
+                'parent_id' => $parentid,
+                'post_id' => $postid,
+                'uid' => $_SESSION['user']['id'],
+                'username' => $_SESSION['user']['username']);
+            PostCommentModel::create($data);
+            return $data;
+        } else {
+            return null;
+        }
     }
 
-    //今日寻人
+    function getcomments($id = '') {
+        if ($id == '') {
+            return array();
+        } else {
+            $result = PostCommentModel::find('all', array('post_id' => $id, 'parent_id' => -1));
+            if ($result != null) {
+                $comments = array();
+                foreach ($result as $r) {
+                    array_push($comments, $r->to_array());
+                }
+
+                foreach ($comments as &$c) {
+                    $child = PostCommentModel::find('all', array('post_id' => $id, 'parent_id' => $c['id']));
+                    if (!empty($child)) {
+                        $ccoms = array();
+                        foreach ($child as $c1) {
+                            array_push($ccoms, $c1->to_array());
+                        }
+                        $c['comments'] = $ccoms;
+                    } else {
+                        $c['comments'] = array();
+                    }
+                }
+                return $comments;
+            }
+        }
+    }
+
+//今日寻人
     function gettoday() {
         $now = date('Y-m-d', time());
         $posts = PostModel::find('all', array('order' => 'create_time desc', 'limit' => 4,
@@ -90,8 +131,8 @@ class PostBll extends BaseBll {
                         'conditions' => array('status=? ', $status),
                         'order' => 'create_time desc', 'limit' => $pagesize,
                         'offset' => ($page - 1) * $pagesize));
-            //var_dump(PostModel::connection()->last_query);
-            //var_dump(PostModel::connection()->last_query);
+//var_dump(PostModel::connection()->last_query);
+//var_dump(PostModel::connection()->last_query);
         } catch (Exception $e) {
             
         }
@@ -120,7 +161,7 @@ class PostBll extends BaseBll {
             } catch (Exception $e) {
                 
             }
-            //var_dump(PostModel::connection()->last_query);
+//var_dump(PostModel::connection()->last_query);
         }
         return $this->to_array($posts);
     }
@@ -132,9 +173,11 @@ class PostBll extends BaseBll {
         return $this->to_array($result);
     }
 
-    public function getapplies($postid){
+    public function getapplies($postid) {
         $join = 'JOIN users u ON(u.id= post_apply.apply_uid)';
-        $result =PostApplyModel::find('all',array('joins'=>$join,'select'=>'u.headurl,post_apply.*'));
+        $result = PostApplyModel::find('all', array('joins' => $join,
+                    'select' => 'u.headurl,post_apply.*', 'conditions' => array('postid=?', $postid)));
         return $this->to_array($result);
     }
+
 }

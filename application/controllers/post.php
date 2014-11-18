@@ -78,7 +78,8 @@ class post extends Controller {
             $applyusers = $postbll->getapplies($id);
             $data['post'] = $postdata;
             $data['applyusers'] = $applyusers;
-            $data['comments'] = array();
+            $comments = $postbll->getcomments($id);
+            $data['comments'] = $comments;
             $this->view->render('post/detail.tpl', $data);
         }
     }
@@ -179,6 +180,27 @@ class post extends Controller {
             } else {
                 $this->view->json(array('result' => 'success', 'message' => '申请成功'));
             }
+        }
+    }
+
+    public function addcomment() {
+        if (isset($_POST['post_id']) && $_POST['post_id'] != null) {
+            $postid = $_POST['post_id'];
+            if (isset($_POST['content'])) {
+                $postbill = new PostBll();
+                $content = $_POST['content'];
+                $parentid = isset($_POST['parent_id']) ? $_POST['parent_id'] : -1;
+                $result = $postbill->addcomment($postid, $parentid, $content);
+                if ($result == null) {
+                    $this->view->json(array('result' => 'errir', 'message' => '已存在'));
+                } else {
+                    $this->view->json(array('result' => 'success', 'message' => '成功'));
+                }
+            } else {
+                $this->view->json(array('result' => 'error', 'message' => '没有内容'));
+            }
+        } else {
+            $this->view->json(array('result' => 'error', 'message' => '数据不正确'));
         }
     }
 

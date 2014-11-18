@@ -10,7 +10,7 @@
 .content_left_box .text_center{height: 30px; text-align: center;}
 .content_left_box .btn_search{display: block;width: 219px; height: 55px; line-height: 55px;text-align: center; background-image: url(../img/btn.png);position: absolute; right: 0; bottom: 10px;}
 .content_left_box ul{display:block;float: left;}
-.content_left_box li{display: block; width: 45px; padding-left: 5px;}
+.content_left_box li{display: block; width: 45px; padding-left: 5px;float: left;}
 .content_left_box  textarea{width: 775px; height: 100px;resize: none; outline: none; border:  #999999 1px solid;padding:5px; margin-top: 5px;}
 .content_left_box .btn{display:block;width: 105px; height: 30px; line-height: 30px; text-align: center; float: right; margin-top: 5px;}
 .content_left_box .img_header{float: left;}

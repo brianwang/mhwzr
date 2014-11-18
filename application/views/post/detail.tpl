@@ -57,22 +57,22 @@
 
             <div class="content_left_box">
                 <p class="p_lineHeight_40">寻人交流</p>
-                <form>
-                    <textarea name="" rows="" cols=""></textarea>
-                    <a class="btn bg_dedede" href="#">发布</a>
-                </form>
+                <textarea name="" rows="" cols=""></textarea>
+                <a class="btn comment" href="javascript:;"
+                   parentid="-1">发布</a>
                 <p class="clear"></p>
             </div>
+            <input type="hidden" name="postid" value="{$post.id}"/>
             {foreach from=$comments item=comment}
                 <div class="content_left_box padding_top">
-                    <img class="img_header" width="45px" height="45px" src="{$post.imgurl}">
+                    <img class="img_header" width="45px" height="45px" src="{$comment.headimg|default: ''}">
                     <p class="p_lineHeight_25 p_indent_15">{$comment.username}</p>
                     <p class="p_grey3 p_indent_15">{$comment.create_time}</p>
                     <div class="content">
                         <p class="p_content">{$comment.content}</p>
                         <div class="content_box">
                             <textarea name="" rows="" cols=""></textarea>
-                            <a class="btn bg_dedede" href="#">评论</a>
+                            <a class="btn comment" href="javascript:;" parentid="{$comment.id|default: -1}">评论</a>
                             <p class="clear"></p>
                             {foreach from=$comment.comments item=c}
                                 <div class="item boder_bottom">
@@ -89,50 +89,66 @@
         </div>
         <div class="content_right">
             <div class="right_box">
-                <p class="p_lineHeight_40 p_size_14 p_bold">我也要发布找人</p>
+                {*  <p class="p_lineHeight_40 p_size_14 p_bold">我也要发布找人</p>
                 <input type="text" class="textInput" value="请输入标题">
                 <p class="p_lineHeight_40">请勾选线索</p>
                 <form>
-                    <div class="item">
-                        <input type="checkbox" class="checkbox"><span>照片</span>
-                    </div>
-                    <div class="item">
-                        <input type="checkbox" class="checkbox"><span>身份证</span>
-                    </div>
-                    <div class="item">
-                        <input type="checkbox" class="checkbox"><span>QQ</span>
-                    </div>
-                    <div class="item">
-                        <input type="checkbox" class="checkbox"><span>手机号</span>
-                    </div>
+                <div class="item">
+                <input type="checkbox" class="checkbox"><span>照片</span>
+                </div>
+                <div class="item">
+                <input type="checkbox" class="checkbox"><span>身份证</span>
+                </div>
+                <div class="item">
+                <input type="checkbox" class="checkbox"><span>QQ</span>
+                </div>
+                <div class="item">
+                <input type="checkbox" class="checkbox"><span>手机号</span>
+                </div>
                 </form>
                 <textarea name="" rows="" cols="">其他你认为重要的线索</textarea>
                 <a href="#" class="right_search">发布找人</a>
-                <p class="clear"></p>
+                <p class="clear"></p>*}
             </div>
         </div>
         <p class="clear"></p>
     </div>
-    <form action="{site_url('/user/apply')}/{$post.id}" method="post">
-        <input type="submit" value="申请任务"/>
+    {* <form action="{site_url('/user/apply')}/{$post.id}" method="post">
+    <input type="submit" value="申请任务"/>
     </form>
     <form>
-        <input type="submit" value="提供线索"/>
-    </form>
-
-    <div id="comments">
-        评论({$post.comments|count})
-        {foreach from=$post.comments|default:[] item=comment}
-            {$comment.content}
-        {/foreach}
-    </div>
+    <input type="submit" value="提供线索"/>
+    </form>*}
     <Script>
         $('#icando').click(function (e) {
             var url = $(e.target).attr('data');
             $.post(url, function (result) {
                 result = JSON.parse(result);
                 alert(result.message);
+                if (result.result == 'success') {
+                    window.location.reload();
+                }
             });
+        });
+        $('.comment').click(function (e) {
+            var parentid = $(e.target).attr('parentid');
+            var ulr = '{site_url('/post/addcomment')}';
+            var postid = $('input[name=postid]').val();
+            var content = $(e.target).prev().val();
+            if (content === '') {
+                alert('请输入内容');
+            } else {
+                $.post(ulr, {
+                    post_id: postid,
+                    parent_id: parentid,
+                    content: content
+                }, function (result) {
+                    //console.log(result);
+                    result = JSON.parse(result);
+                    alert(result.message);
+                    window.location.reload();
+                });
+            }
         });
     </script>
 {/block}
