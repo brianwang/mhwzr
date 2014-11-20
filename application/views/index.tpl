@@ -16,25 +16,25 @@
             <ul>
                 <li class="box_title bg_0">服务内容</li>
                 <li class="box_content bg_1">
-                    <p class="p_title">公益寻人</p>
+                    <p class="p_title">公益信息</p>
                     <p class="p_content">
-                        提供无偿的免费寻人服务
+                        无偿的免费信息服务
                         {*<a href="#">手机找人</a> <a href="#">姓名找人</a> <a href="#">照片找人</a> <a href="#">QQ找人</a> <a href="#">邮箱找人</a>*}
                     </p>
                     <p class="clear"></p>
                 </li>
                 <li class="box_content bg_2">
-                    <p class="p_title">悬赏寻人</p>
+                    <p class="p_title">悬赏信息</p>
                     <p class="p_content">
-                        有偿为您提供寻人服务
+                        有偿为您提供信息服务
                         {*    <a href="#">手机找人</a> <a href="#">姓名找人</a> <a href="#">照片找人</a> <a href="#">QQ找人</a> <a href="#">邮箱找人</a>*}
                     </p>
                     <p class="clear"></p>
                 </li>
                 <li class="box_content bg_3">
-                    <p class="p_title">担保任务</p>
+                    <p class="p_title">担保</p>
                     <p class="p_content">
-                        为您提供其他任务的担保交易
+                        为您提供其他信息或任务的担保交易
                         {*<a href="#">失踪儿童</a> <a href="#">失联老人</a> <a href="#">妻子不见</a> <a href="#">寻找嫂子</a>*}
                     </p>
                     <p class="clear"></p>
@@ -84,7 +84,7 @@
         <div class="task">
             <div class="task_box">
                 <div class="tast_title">
-                    <p class="p_title p_size_20 p_grey2 p_bold"><span class="p_yellow p_size_24 p_bold">今日寻人</span> 任务板</p>
+                    <p class="p_title p_size_20 p_grey2 p_bold"><span class="p_yellow p_size_24 p_bold">今日信息</span> 任务板</p>
                 </div>
                 <ul>
                     {foreach from=$today item=t}
@@ -96,7 +96,7 @@
             </div>
             <div class="task_box">
                 <div class="tast_title">
-                    <img src="{asset_url('img/pixel.gif')}" class="icon icon_tast"/><p class="p_title  p_size_20 p_grey2 p_indent_55 p_bold"><span class="p_yellow p_size_24 p_bold">公益找人</span> 任务板</p>
+                    <img src="{asset_url('img/pixel.gif')}" class="icon icon_tast"/><p class="p_title  p_size_20 p_grey2 p_indent_55 p_bold"><span class="p_yellow p_size_24 p_bold">公益信息</span> 任务板</p>
                 </div>
                 <ul>
                     {foreach from=$today item=t}
