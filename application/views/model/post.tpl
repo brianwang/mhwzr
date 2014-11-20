@@ -79,6 +79,8 @@
     <div class="field">
         <span class="field_span">你的姓名</span>
         <input type="text" name="creator" placeholder ="姓名" value='{$smarty.session.user.username}' >
+        <input type="hidden" name="uid"  value='{$smarty.session.user.id}' >
+         <input type="hidden" name="status"  value='{$model.status|default: '进行中'}' >
     </div>
     <div class="field">
         <span class="field_span">是否公开</span>
@@ -151,11 +153,11 @@
     });
     $('#gy').hide();
     /*$('select[name=posttype]').change(function (e) {
-        var v = $(e.target).val();
-        if (v == 's') {
-            $('#s').show();
-        } else {
-            $('#s').hide();
-        }
-    });*/
+     var v = $(e.target).val();
+     if (v == 's') {
+     $('#s').show();
+     } else {
+     $('#s').hide();
+     }
+     });*/
 </script>

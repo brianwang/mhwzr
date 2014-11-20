@@ -28,7 +28,9 @@
                     <p class="p_lineHeight_30 p"><span class='leftcontent'>所在地区:</span><span class='rightcontent'>{$post.province}-{$post.city}-{$post.area}</span></p>
                 {else}
                     <p class="p_lineHeight_50 p_bold p">线索:</p>
+                    
                     <p class="p_lineHeight_30 p"><span class='leftcontent'>详细描述:</span><span class='rightcontent'>{$post.description}</span></p>
+                    <p class="p_lineHeight_30 p"><span class='leftcontent'>当前状态:</span><span class='rightcontent'>{$post.status}</span></p>
                     {/if}
                 <div class="circle_bot">
                     <span class="s_b"> 
@@ -46,11 +48,16 @@
                 <a class="btn_search p_clor_ffffff p_bold p_size_18" href="javascript:;" id="icando" data='{site_url('/post/apply')}/{$post.id}'>我能找到</a>
             </div>
             <div class="content_left_box">
-                <p class="p_lineHeight_40">已参与找人({$applyusers|count}人)</p>
+                <p class="p_lineHeight_40">已申请人数({$applyusers|count}人)</p>
                 <ul class="pic_list">
                     {foreach from=$applyusers item=u}
-                        <li><a href="{site_url('/page/userprofile')}/{$u.apply_uid}"><img src="{$u.headurl|default:''}" width="45px" height="45px"></a></li>
-                            {/foreach}
+                        <li>
+                            <a href="{site_url('/page/userprofile')}/{$u.apply_uid}"><img src="{$u.headurl|default: asset_url('/img/default_head.jpg')}" width="45px" height="45px"></a>
+                                {if $post.uid == $smarty.session.user.id}
+                                <a href="javascript:;" class="agree">同意</a>&nbsp;<a href="javascript:;" class="deny">拒绝</a>
+                            {/if}
+                        </li>
+                    {/foreach}
                 </ul>
                 <p class="clear"></p>
             </div>
@@ -65,7 +72,7 @@
             <input type="hidden" name="postid" value="{$post.id}"/>
             {foreach from=$comments item=comment}
                 <div class="content_left_box padding_top">
-                    <img class="img_header" width="45px" height="45px" src="{$comment.headimg|default: ''}">
+                    <img class="img_header" width="45px" height="45px" src="{$comment.headurl|default: asset_url('/img/default_head.jpg')}">
                     <p class="p_lineHeight_25 p_indent_15">{$comment.username}</p>
                     <p class="p_grey3 p_indent_15">{$comment.create_time}</p>
                     <div class="content">
@@ -76,7 +83,7 @@
                             <p class="clear"></p>
                             {foreach from=$comment.comments item=c}
                                 <div class="item boder_bottom">
-                                    <img class="img_header" width="45px" height="45px" src="img/item_head1.jpg">
+                                    <img class="img_header" width="45px" height="45px" src="{$c.headurl|default:asset_url('/img/default_head.jpg')}">
                                     <p class="p_lineHeight_25 p_indent_15">{$c.username}</p>
                                     <p class="p_grey3 p_indent_15">{$c.create_time}</p>
                                     <p class="p_content p_indent_15">{$c.content}</p>

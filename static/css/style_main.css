@@ -128,3 +128,9 @@
     text-align: center;
     border: none;
 }
+h2.profiletitle{
+    font-size: 1.5em;
+    padding: 15px;
+    margin-top: 10px;
+    border-bottom:  solid #ddd 1px;
+}

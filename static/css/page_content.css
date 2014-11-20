@@ -10,7 +10,7 @@
 .content_left_box .text_center{height: 30px; text-align: center;}
 .content_left_box .btn_search{display: block;width: 219px; height: 55px; line-height: 55px;text-align: center; background-image: url(../img/btn.png);position: absolute; right: 0; bottom: 10px;}
 .content_left_box ul{display:block;float: left;}
-.content_left_box li{display: block; width: 45px; padding-left: 5px;float: left;}
+.content_left_box li{display: block; width: 55px; padding-left: 5px;float: left;}
 .content_left_box  textarea{width: 775px; height: 100px;resize: none; outline: none; border:  #999999 1px solid;padding:5px; margin-top: 5px;}
 .content_left_box .btn{display:block;width: 105px; height: 30px; line-height: 30px; text-align: center; float: right; margin-top: 5px;}
 .content_left_box .img_header{float: left;}
@@ -32,3 +32,5 @@
 .content_right .item span{display: block; float: left; position: absolute; left: 20px;top: -2px;}
 .content_right textarea{outline: none; border: #e9e9e9 1px solid; border-radius: 3px; resize: none; width: 168px; height: 80px; padding: 5px; color: #cccccc;}
 .content_right .right_search{display: block; background-color: #FF9400; width: 80px; height: 30px; text-align: center; line-height: 30px; color: #ffffff; float: right; margin-top: 5px;}
+.agree{color: green;}
+.deny{color: red;}
