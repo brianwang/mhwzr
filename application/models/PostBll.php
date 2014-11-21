@@ -119,7 +119,7 @@ class PostBll extends BaseBll {
         return $data;
     }
 
-    function getitems($page = 1, $pagesize = 10, $status = 'going') {
+    function getitems($page = 1, $pagesize = 10, $status = '进行中') {
         try {
             if ($page == 0)
                 $page = 1;
@@ -166,11 +166,15 @@ class PostBll extends BaseBll {
         return $this->to_array($posts);
     }
 
-    public function getbyuid($uid = '') {
+    public function getbyuid($uid = '', $page = 1, $pagesize = 10) {
         if ($uid == '')
             return array();
-        $result = PostModel::find('all', array('conditions' => array('creator=?', $uid)));
-        return $this->to_array($result);
+        $result = PostModel::find('all', array('conditions' => array('uid=?', $uid),
+                    'limit' => $pagesize,
+                    'offset' => ($page - 1) * $pagesize));
+        $count = PostModel::count(array('conditions' => array('uid=?', $uid)));
+        $data = $this->to_array($result);
+        return array('data' => $data, 'recordsTotal' => $count, 'recordsFiltered' => $count);
     }
 
     public function getapplies($postid) {
@@ -178,6 +182,32 @@ class PostBll extends BaseBll {
         $result = PostApplyModel::find('all', array('joins' => $join,
                     'select' => 'u.headurl,post_apply.*', 'conditions' => array('postid=?', $postid)));
         return $this->to_array($result);
+    }
+
+    public function agree($uid, $postid, $status) {
+        $post = PostModel::find(array('id' => $postid));
+        if ($post != null) {
+            $user = UserModel::find(array('id' => $uid));
+            if ($user != null) {
+                $applypost = PostApplyModel::find(array('postid' => $postid,
+                            'apply_uid' => $uid));
+                if ($applypost != null) {
+                    if ($applypost->status != $status) {
+                        $applypost->status = $status;
+                        $applypost->save();
+                        return array('result' => 'success', 'message' => '成功');
+                    } else {
+                        return array('result' => 'error', 'message' => '已经处理');
+                    }
+                } else {
+                    return array('result' => 'error', 'message' => '申请不存在');
+                }
+            } else {
+                return array('result' => 'error', 'message' => '用户不存在');
+            }
+        } else {
+            return array('result' => 'error', 'message' => 'post 不存在');
+        }
     }
 
 }

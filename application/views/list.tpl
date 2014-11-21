@@ -177,9 +177,9 @@
                         <ul class="contenter_data_box">
                             <li class="box_title"><span class="b_1">标题/赏金</span>
                                 <span class="b_2">消息类型</span>
-                                <span class="b_2">状态</span>
-                                <span class="b_3">所在地</span>
-                                <span class="b_4">时间</span></li>
+                                <span class="b_2">奖励</span>
+                                {*<span class="b_3">所在地</span>*}
+                                <span class="b_4">有效期</span></li>
                             <!-- ko foreach: posts -->
                             <li class="box_item">
                                 <span class="b_1">
@@ -194,12 +194,13 @@
                                     </span>
                                 </span>
                                 <span class="b_2" data-bind="text: $data.posttype== 't'?'担保任务':'寻人启示';"></span>
-                                <span class="b_2" data-bind="text: $data.type"></span>
-                                <span class="b_3">
-
+                                {*<span class="b_2" data-bind="text: $data.type"></span>*}
+                                
+                               <span class="b_2" data-bind="text: $data.rewards"></span>
+                                {*<span class="b_3">
                                     <span data-bind="text:$data.city"></span>
                                     <span data-bind="text:$data.area"></span>
-                                </span>
+                                </span>*}
                                 <span class="b_4"><span data-bind="text: $data.duration"></span>天</span>
                             </li>
                             <!-- /ko -->

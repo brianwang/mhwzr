@@ -122,3 +122,16 @@ a img{border:none;}
 .postlog,.message,.recharge,.consume{display:none;}
 .error{color: red; font-size: 1em;}
 .leftcontent{width: 100px; display:inline-block;}
+span.agreed{
+    position: absolute;
+    color: green;
+    margin-top: -32px;
+    font-weight: bold;
+    height: 0px;
+}
+span.denied{
+    position: absolute;margin-top: -32px;  
+    font-weight: bold;
+    height: 0px;color: red;
+}
+.pic_list li{position: relative;}

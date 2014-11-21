@@ -14,13 +14,7 @@
             var validation = $("#postform").validate({
                 //debug: true,
                 rules: userrules,
-                messages: usermessages,
-                submitHandler: function (form) {
-                    // some other code
-                    // maybe disabling submit button
-                    // then:
-                    $(form).submit();
-                }
+                messages: usermessages
             });
 
 

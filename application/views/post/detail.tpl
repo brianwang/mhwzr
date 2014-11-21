@@ -28,7 +28,7 @@
                     <p class="p_lineHeight_30 p"><span class='leftcontent'>所在地区:</span><span class='rightcontent'>{$post.province}-{$post.city}-{$post.area}</span></p>
                 {else}
                     <p class="p_lineHeight_50 p_bold p">线索:</p>
-                    
+
                     <p class="p_lineHeight_30 p"><span class='leftcontent'>详细描述:</span><span class='rightcontent'>{$post.description}</span></p>
                     <p class="p_lineHeight_30 p"><span class='leftcontent'>当前状态:</span><span class='rightcontent'>{$post.status}</span></p>
                     {/if}
@@ -52,9 +52,25 @@
                 <ul class="pic_list">
                     {foreach from=$applyusers item=u}
                         <li>
-                            <a href="{site_url('/page/userprofile')}/{$u.apply_uid}"><img src="{$u.headurl|default: asset_url('/img/default_head.jpg')}" width="45px" height="45px"></a>
+                            <a href="{site_url('/page/userprofile')}/{$u.apply_uid}"
+                               class="{if $u.status == '申请成功'}sucess {else if $u.status == '拒绝申请'}reject{/if}"
+                               >
+                                <img src="{$u.headurl|default: asset_url('/img/default_head.jpg')}" width="45px" height="45px"></a>
                                 {if $post.uid == $smarty.session.user.id}
-                                <a href="javascript:;" class="agree">同意</a>&nbsp;<a href="javascript:;" class="deny">拒绝</a>
+                                    {if $u.status == '申请成功'}
+                                    <div class="applystatus">
+                                        <span class="agreed">已同意</span>
+                                    </div>
+                                    <a href="javascript:;" class="deny"  uid="{$u.apply_uid}">拒绝</a>
+                                {else if $u.status == '拒绝申请'}
+                                    <div class="applystatus">
+                                        <span class="denied">已拒绝</span>
+                                    </div>
+                                    <a href="javascript:;" class="agree" uid="{$u.apply_uid}">同意</a>
+                                {else}
+                                    <div class="applystatus"></div>
+                                    <a href="javascript:;" class="agree" uid="{$u.apply_uid}">同意</a>&nbsp;<a href="javascript:;" class="deny"  uid="{$u.apply_uid}">拒绝</a>
+                                {/if}
                             {/if}
                         </li>
                     {/foreach}
@@ -156,6 +172,38 @@
                     window.location.reload();
                 });
             }
+        });
+        $('.agree').on('click',function (e) {
+            var uid = $(e.target).attr('uid');
+            var post_id = {$post.id};
+            $.post('{site_url('/post/agree')}', {
+                uid: uid,
+                postid: post_id
+            }, function (result) {
+                result = JSON.parse(result);
+                if (result.result == 'success') {
+                    $(e.target).parent().find('.applystatus').html('<span class="agreed">已同意</span>');
+                    $(e.target).attr('class','deny').text('拒绝');
+                } else {
+                    alert(result.message);
+                }
+            });
+        });
+        $('.deny').on('click',function (e) {
+            var uid = $(e.target).attr('uid');
+            var post_id = {$post.id};
+            $.post('{site_url('/post/deny')}', {
+                uid: uid,
+                postid: post_id
+            }, function (result) {
+                result = JSON.parse(result);
+                if (result.result == 'success') {
+                    $(e.target).parent().find('.applystatus').html('<span class="denied">已拒绝</span>');
+                    $(e.target).attr('class','agree').text('同意');
+                } else {
+                    alert(result.message);
+                }
+            });
         });
     </script>
 {/block}

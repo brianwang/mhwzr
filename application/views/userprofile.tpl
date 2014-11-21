@@ -1,6 +1,7 @@
 {extends file='layouts/page_content.tpl'}
 {block name=header}
     <link rel="stylesheet" href="{asset_url('css/pay.css')}" />
+    
 {/block}
 {block name=pagebody}
     <div class='profile'>

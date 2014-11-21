@@ -39,7 +39,7 @@
         <ul>
             <li><a class="p_grey1" href="/">首页</a></li>
             {*<li><a class="p_grey1" href="{site_url('/page/tasks')}">任务列表</a></li>*}
-            <li><a class="p_grey1" href="{site_url('/page/xunren')}">寻人列表</a></li>
+            <li><a class="p_grey1" href="{site_url('/page/xunren')}">消息列表</a></li>
             <li><a class="p_grey1" href="{site_url('/page/success')}">成功案例</a></li>
             <li><a class="p_grey1" href="{site_url('/page/help')}">帮助中心</a></li>
         </ul>

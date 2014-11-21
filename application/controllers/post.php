@@ -68,6 +68,21 @@ class post extends Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
+    function my() {
+        if (isset($_SESSION['user'])) {
+            $uid = $_SESSION['user']['id'];
+            $postbll = new PostBll();
+            $page = isset($_GET['start']) ? $_GET['start'] : 1;
+            $pagesize = isset($_GET['length']) ? $_GET['length'] : 10;
+            $page =intval($page/$pagesize)+1;
+            $result = $postbll->getbyuid($uid,$page,$pagesize);
+            $totalcount = 
+            $this->view->json($result);
+        } else {
+            $this->view->json(array());
+        }
+    }
+
     function index($id = '') {
         if ($id == '') {
             $this->show_404();
@@ -201,6 +216,30 @@ class post extends Controller {
             }
         } else {
             $this->view->json(array('result' => 'error', 'message' => '数据不正确'));
+        }
+    }
+
+    function agree() {
+        if (isset($_POST['uid']) && isset($_POST['postid'])) {
+            $uid = $_POST['uid'];
+            $postid = $_POST['postid'];
+            $postbll = new PostBll();
+            $result = $postbll->agree($uid, $postid, '申请成功');
+            $this->view->json($result);
+        } else {
+            $this->view->json(array('result' => 'error', 'message' => 'parameters error'));
+        }
+    }
+
+    function deny() {
+        if (isset($_POST['uid']) && isset($_POST['postid'])) {
+            $uid = $_POST['uid'];
+            $postid = $_POST['postid'];
+            $postbll = new PostBll();
+            $result = $postbll->agree($uid, $postid, '拒绝申请');
+            $this->view->json($result);
+        } else {
+            $this->view->json(array('result' => 'error', 'message' => 'parameters error'));
         }
     }
 
