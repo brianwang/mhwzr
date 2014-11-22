@@ -26,6 +26,10 @@ function current_url() {
     return $config['base_url'] . $_SERVER['REQUEST_URI'];
 }
 
+function cur_uri() {
+    return $_SERVER['REQUEST_URI'];
+}
+
 function asset_url($path) {
     global $config;
     return $config['asset_url'] . $path;

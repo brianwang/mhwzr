@@ -74,10 +74,23 @@ class post extends Controller {
             $postbll = new PostBll();
             $page = isset($_GET['start']) ? $_GET['start'] : 1;
             $pagesize = isset($_GET['length']) ? $_GET['length'] : 10;
-            $page =intval($page/$pagesize)+1;
-            $result = $postbll->getbyuid($uid,$page,$pagesize);
-            $totalcount = 
-            $this->view->json($result);
+            $page = intval($page / $pagesize) + 1;
+            $result = $postbll->getbyuid($uid, $page, $pagesize);
+            $totalcount = $this->view->json($result);
+        } else {
+            $this->view->json(array());
+        }
+    }
+
+    function myapply() {
+        if (isset($_SESSION['user'])) {
+            $uid = $_SESSION['user']['id'];
+            $postbll = new PostBll();
+            $page = isset($_GET['start']) ? $_GET['start'] : 1;
+            $pagesize = isset($_GET['length']) ? $_GET['length'] : 10;
+            $page = intval($page / $pagesize) + 1;
+            $result = $postbll->getapplybyuid($uid, $page, $pagesize);
+            $totalcount = $this->view->json($result);
         } else {
             $this->view->json(array());
         }

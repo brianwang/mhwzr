@@ -21,3 +21,13 @@ $config['footer'] = array(
     array('title' => '联系方式', 'url' => '/company/contact'),
     array('title' => '客服中心', 'url' => '/company/support')
 );
+$config['profilemenu'] = array(
+    array('title' => '个人首页', 'url' => '/page/profile/user'),
+    array('title' => '发布记录', 'url' => '/page/profile/publish'),
+    array('title' => '申请记录', 'url' => '/page/profile/apply'),
+    array('title' => '充值消费', 'url' => '/page/profile/rc', 'menus' => array(
+            array('title' => '充值记录', 'url' => '/page/profile/recharge'),
+            array('title' => '消费记录', 'url' => '/page/profile/consume'),
+        )),
+    array('title' => '个人消息', 'url' => '/page/profile/message')
+);

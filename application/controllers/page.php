@@ -101,7 +101,7 @@ class page extends Controller {
         }
     }
 
-    function profile() {
+    function profile($tag = '') {
         if (isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
             $data['user'] = $user;
@@ -109,7 +109,19 @@ class page extends Controller {
             $data['posts'] = $post->getbyuid($user['id']);
             $message = new MessageBll();
             $data['messages'] = $message->getbyuid($user['id']);
-            $this->view->render('profile.tpl', $data);
+            if ($tag != '') {
+                //$data['title'] = $config['profilemenu'][$tag];
+                $righttitles = array('user' => '个人信息',
+                    'rs' => '充值消费',
+                    'apply' => '申请记录',
+                    'publish' => '发布记录',
+                    'message' => '个人消息',
+                );
+                $data['content_title'] = isset($righttitles[$tag])?$righttitles[$tag]:'';
+                $this->view->render('profile/' . $tag . '.tpl', $data);
+            } else {
+                $this->view->render('profile.tpl', $data);
+            }
         } else {
             redirect('/page/login');
         }
