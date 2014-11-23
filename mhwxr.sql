@@ -56,7 +56,7 @@ CREATE TABLE `post_apply` (
   `apply_time` timestamp NULL DEFAULT NULL,
   `status` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +65,7 @@ CREATE TABLE `post_apply` (
 
 LOCK TABLES `post_apply` WRITE;
 /*!40000 ALTER TABLE `post_apply` DISABLE KEYS */;
-INSERT INTO `post_apply` VALUES (2,2795,244,'666666','2014-11-14 16:29:27','申请中');
+INSERT INTO `post_apply` VALUES (2,2795,244,'666666','2014-11-14 16:29:27','申请中'),(3,508,244,'666666','2014-11-18 15:09:41','申请中'),(4,3453,244,'666666','2014-11-18 16:14:03','拒绝申请'),(5,826860,244,'666666','2014-11-18 16:16:46','申请中'),(6,11155,244,'666666','2014-11-21 15:16:31','申请中'),(7,3453,61429,'aaa','2014-11-21 15:16:51','申请成功');
 /*!40000 ALTER TABLE `post_apply` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,7 +77,7 @@ DROP TABLE IF EXISTS `post_comments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `post_comments` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `post_id` bigint(20) NOT NULL,
   `content` mediumtext NOT NULL,
   `uid` bigint(20) NOT NULL,
@@ -85,7 +85,7 @@ CREATE TABLE `post_comments` (
   `username` varchar(45) DEFAULT NULL,
   `parent_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +94,7 @@ CREATE TABLE `post_comments` (
 
 LOCK TABLES `post_comments` WRITE;
 /*!40000 ALTER TABLE `post_comments` DISABLE KEYS */;
-INSERT INTO `post_comments` VALUES (1,86931,'aaa',0,'2014-09-14 16:00:00',NULL,0);
+INSERT INTO `post_comments` VALUES (1,2795,'aaaa',244,'2014-11-18 16:02:20','666666',-1),(2,2795,'bbb',244,'2014-11-18 16:02:25','666666',-1),(3,2795,'asdfdsaf',244,'2014-11-18 16:02:31','666666',1),(4,2795,'adsfdsaf',244,'2014-11-18 16:02:36','666666',1),(5,3453,'test',244,'2014-11-18 16:14:13','666666',-1),(6,3453,'test111',244,'2014-11-18 16:15:01','666666',-1),(7,3453,'这个好。我能申请这个项目',244,'2014-11-18 16:15:44','666666',-1),(8,3453,'特殊他',244,'2014-11-18 16:15:56','666666',5),(9,3453,'爱上地方的',244,'2014-11-18 16:16:03','666666',6),(10,3453,'123123213',244,'2014-11-18 16:16:08','666666',7),(11,3453,'是吗？',244,'2014-11-21 16:06:18','666666',7),(12,3453,'不好了',244,'2014-11-21 16:06:25','666666',6),(13,3453,'你好，我想申请这个项目',244,'2014-11-21 16:06:38','666666',-1),(14,11155,'爱上地方但是',244,'2014-11-21 16:17:05','666666',-1);
 /*!40000 ALTER TABLE `post_comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,6 +126,7 @@ CREATE TABLE `posts` (
   `email` varchar(45) NOT NULL,
   `posttype` varchar(45) NOT NULL,
   `ispublic` bit(1) NOT NULL,
+  `uid` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -136,8 +137,35 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (508,'','北京市','北京市',0,'\0','寻找户口本',0,'2014-11-13 14:14:30','going','0','30',NULL,'公益找人','帮着寻找户口本','东城区','123456','123456@qq.com','t','\0'),(2795,'',NULL,NULL,0,'\0','寻找汽车',0,'2014-11-14 15:52:13','going','666666','50',NULL,'','寻找汽车',NULL,'123123','123123','t','\0'),(3453,'test','北京市','北京市',45,'\0','test',0,'2014-11-14 15:50:00','going','666666','50',NULL,'公益找人','test','东城区','123123','123123','s','\0'),(11155,'徐明','北京市','北京市',32,'\0','他在北京走势',0,'2014-11-13 14:12:43','going','0','30',NULL,'公益找人','寻找徐明','东城区','0371-556555555','123456@qq.com','s','\0'),(826860,'张盆子','河南省','郑州市',25,'\0','他在哪里',5000,'2014-11-13 14:18:30','going','0','30',NULL,'悬赏找人','他在哪里啊','管城回族区','00000000','000000','s','\0'),(1513943,'小白','北京市','北京市',30,'\0','小白在哪里？',0,'2014-11-13 14:22:04','going','666666','30',NULL,'公益找人','小白是个好哈子','东城区','123123','123123','s','');
+INSERT INTO `posts` VALUES (508,'','北京市','北京市',0,'\0','寻找户口本',0,'2014-11-20 15:32:11','going','0','30',NULL,'公益找人','帮着寻找户口本','东城区','123456','123456@qq.com','t','\0',244),(2304,'re','北京市','北京市',20,'\0','测试i',0,'2014-11-21 14:34:13','进行中','666666','30',NULL,'公益找人','测试寻找人相关信息你','东城区','123123','123123','s','\0',244),(2795,'',NULL,NULL,0,'\0','寻找汽车',0,'2014-11-20 15:32:12','going','666666','50',NULL,'','寻找汽车',NULL,'123123','123123','t','\0',244),(3134,'小明','北京市','北京市',30,'\0','寻找他人',0,'2014-11-21 14:33:08','进行中','666666','30',NULL,'公益找人','寻找他人','东城区','123123','123123','s','\0',244),(3289,'测试寻人','北京市','北京市',30,'\0','测试寻人',0,'2014-11-21 14:33:48','进行中','666666','30',NULL,'公益找人','测试寻人','东城区','123123','123123','s','\0',244),(3453,'test','北京市','北京市',45,'\0','test',0,'2014-11-20 15:32:12','going','666666','50',NULL,'公益找人','test','东城区','123123','123123','s','\0',244),(11155,'徐明','北京市','北京市',32,'\0','他在北京走势',0,'2014-11-20 15:32:12','going','0','30',NULL,'公益找人','寻找徐明','东城区','0371-556555555','123456@qq.com','s','\0',244),(48657,'',NULL,NULL,0,'\0','寻找小明',0,'2014-11-20 15:47:30','','666666','30',NULL,'','寻找小明',NULL,'123123','123123','t','\0',244),(121902,'',NULL,NULL,0,'\0','寻找户口本',0,'2014-11-21 14:34:42','进行中','666666','30',NULL,'','寻找户口本',NULL,'123123','123123','t','\0',244),(826860,'张盆子','河南省','郑州市',25,'\0','他在哪里',5000,'2014-11-20 15:32:12','going','0','30',NULL,'悬赏找人','他在哪里啊','管城回族区','00000000','000000','s','\0',244),(1452742,'小明','天津市','天津市',20,'\0','123123123123',0,'2014-11-20 15:46:52','','666666','30',NULL,'公益找人','寻找小明','河西区','123123','123123','s','\0',244),(1513943,'小白','北京市','北京市',30,'\0','小白在哪里？',0,'2014-11-20 15:32:12','going','666666','30',NULL,'公益找人','小白是个好哈子','东城区','123123','123123','s','',244),(379366713,'',NULL,NULL,0,'\0','寻找小明',0,'2014-11-20 15:48:45','进行中','666666','30',NULL,'','寻找小明',NULL,'123123','123123','t','\0',244);
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `recharges`
+--
+
+DROP TABLE IF EXISTS `recharges`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `recharges` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `type` varchar(45) DEFAULT NULL,
+  `amount` float DEFAULT NULL,
+  `c_time` timestamp NULL DEFAULT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `recharges`
+--
+
+LOCK TABLES `recharges` WRITE;
+/*!40000 ALTER TABLE `recharges` DISABLE KEYS */;
+/*!40000 ALTER TABLE `recharges` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -189,4 +217,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-15  0:53:30
+-- Dump completed on 2014-11-24  0:08:56
