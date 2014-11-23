@@ -22,7 +22,7 @@
                 <p class="login"><a class="p_yellow" href="#">请登录</a> <span class="p_grey">|</span> <a href="#">免费注册</a></p>
             {/if}
             <p class="nav"><span class="p_grey">| </span><a href="{site_url('/page/srvguide')}">服务商指南</a><span class="p_grey"> | </span><a href="{site_url('/page/help')}">帮助中心</a><span class="p_grey"> | </span>客服电话：{$config.phone400}</p>
-            <p class="user"><a href="{site_url('/page/profile')}">我的美猴王 <img src="{asset_url('img/pixel.gif')}" class="icon arror"></a></p>
+            <p class="user"><a href="{site_url('/page/profile/user')}">我的美猴王 <img src="{asset_url('img/pixel.gif')}" class="icon arror"></a></p>
         </div>
     </div>
     <div class="search center">
@@ -43,7 +43,7 @@
             <li><a class="p_grey1" href="{site_url('/page/success')}">成功案例</a></li>
             <li><a class="p_grey1" href="{site_url('/page/help')}">帮助中心</a></li>
         </ul>
-        <p class="right"><a href="{site_url('/page/profile')}">个人中心</a>
+        <p class="right"><a href="{site_url('/page/profile/user')}">个人中心</a>
             <span class="p_grey"> | </span>
             {*<a href="{site_url('/page/srvguide')}">服务商中心</a> *}
         </p>

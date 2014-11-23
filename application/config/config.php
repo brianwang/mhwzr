@@ -1,6 +1,6 @@
 <?php
 
-$config['base_url'] = 'http://www.mhwxr.com:8080'; // Base URL including trailing slash (e.g. http://localhost/)
+$config['base_url'] = 'http://www.mhwxr.com'; // Base URL including trailing slash (e.g. http://localhost/)
 $config['asset_url'] = '/static/'; // Base URL including trailing slash (e.g. http://localhost/)
 
 $config['default_controller'] = 'page'; // Default controller to load

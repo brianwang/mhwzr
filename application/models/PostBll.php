@@ -181,9 +181,9 @@ class PostBll extends BaseBll {
         if ($uid == '') {
             return array('data' => array(), 'recordsTotal' => 0, 'recordsFiltered' => 0);
         }
-        $join = 'JOIN users u ON(u.id= post_apply.apply_uid)';
+        $join = 'JOIN users u ON(u.id= post_apply.apply_uid) JOIN posts p on (p.id=post_apply.postid)';
         $result = PostApplyModel::find('all', array('joins' => $join,
-                    'select' => 'u.headurl,post_apply.*', 'conditions' => array('apply_uid=?', $uid)));
+                    'select' => 'u.headurl,post_apply.*,p.*', 'conditions' => array('apply_uid=?', $uid)));
         $count = PostApplyModel::count(array('conditions' => array('apply_uid=?', $uid)));
         $data = $this->to_array($result);
         return array('data' => $data, 'recordsTotal' => $count, 'recordsFiltered' => $count);

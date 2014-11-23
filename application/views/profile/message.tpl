@@ -10,11 +10,10 @@
         <thead>
             <tr>
                 <th>标题</th>
-                <th>类型</th>
-                <th>奖励</th>
-                <th>有效期</th>
-                <th>状态</th>
-                <th>发布时间</th>
+                <th>内容</th>
+                <th>来自</th>
+                <th>时间</th>
+                <th></th>
             </tr>
         </thead>
     </table>
@@ -33,7 +32,7 @@
             "serverSide": true,
             "paging": true,
             "ajax": {
-                "url": '{site_url('/post/my')}',
+                "url": '{site_url('/message/my')}',
                 "data": function (d) {
                     console.log(d);
                 }
