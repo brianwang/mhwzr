@@ -50,7 +50,7 @@
     </div>
 
 {block name=content}{/block}
-<div class="alert_public " style="display:none;" id="dialogcreatepost">
+{*<div class="alert_public " style="display:none;" id="dialogcreatepost">
     <p class="alert_title">一键发布信息<a class="btn_close" href="javascript:;" onclick='$(this).parent().parent().toggle();
             return false;'>X</a></p>
     <div class="alert_content">
@@ -79,7 +79,7 @@
         <a class="linkbtn" href="#">无法获取验证码？</a>
         <p class="error top_2"><img src="img/pixel.gif" class="icon icon_tanhao">请填写正确的验证码</p>
         <p class="success top_1"><img src="img/pixel.gif" class="icon icon_duihao"></p>
-        <p class="item p_padding_100"><a class="btn" href="#">发布找人</a></p>*}
+        <p class="item p_padding_100"><a class="btn" href="#">发布找人</a></p>
         <form action="{site_url('/post/save')}" method="post" enctype="multipart/form-data">
             {include file='model/post.tpl' isedit=false model=null isfile=false}
 
@@ -88,7 +88,7 @@
             </div>
         </form>
     </div>
-</div>
+</div>*}
 <div class="fixedtool">
     {if !$smarty.session.user|default: false}
         <a href="{site_url('/page/register')}" class="btn">注册</a>

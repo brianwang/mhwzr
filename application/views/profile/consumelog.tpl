@@ -6,41 +6,35 @@
     <script src="{asset_url('/dt/media/js/jquery.dataTables.js')}"></script>
 {/block}
 {block name=profilecontent}
-    <table id="example" class="display" cellspacing="0" width="100%">
+    <table id="consume" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th>标题</th>
+                <th>消费金额</th>
                 <th>类型</th>
-                <th>奖励</th>
-                <th>有效期</th>
+                <th>日期</th>
                 <th>状态</th>
-                <th>发布时间</th>
             </tr>
         </thead>
     </table>
-    <script>
-        $('#example').dataTable({
+   <script>
+        $('#consume').dataTable({
             "serverSide": true,
             "paging": true,
             "ajax": {
-                "url": '{site_url('/post/my')}',
+                "url": '{site_url('/consume/my')}',
                 "data": function (d) {
                     console.log(d);
                 }
             },
             "columns": [
                 {
-                    "data": "title"},
+                    "data": "amoutn"},
                 {
-                    "data": "posttype"},
+                    "data": "type"},
                 {
-                    "data": "rewards"},
+                    "data": "c_time"},
                 {
-                    "data": "duration"},
-                {
-                    "data": "status"},
-                {
-                    "data": "create_time"}
+                    "data": "status"}
             ],
             "oLanguage": datatablelang
         });

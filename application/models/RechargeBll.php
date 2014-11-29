@@ -14,10 +14,14 @@
 class RechargeBll extends BaseBll {
 
     //put your code here
-    public function getbyuid($uid) {
+    public function getbyuid($uid, $page = 1, $pagesize = 10) {
         $result = RechargeModel::find('all', array('conditions' => array(
-                        'uid=?', $uid)));
-        return $this->to_array($result);
+                        'uid=?', $uid), 'limit' => $pagesize,
+                    'offset' => ($page - 1) * $pagesize));
+        $count = RechargeModel::count(array('conditions' => array('uid=?', $uid)));
+        $data = $this->to_array($result);
+        return array('data' => $data, 'recordsTotal' => $count, 'recordsFiltered' => $count);
+        //return $this->to_array($result);
     }
 
 }
