@@ -18,10 +18,7 @@ function pip() {
     }
     $querystring = parse_url($url, PHP_URL_QUERY);
     $path = parse_url($url, PHP_URL_PATH);
-
-    // Split the url into segments
     $segments = explode('/', $path);
-
     // Do our default checks
     if (isset($segments[0]) && $segments[0] != '')
         $controller = $segments[0];
@@ -32,15 +29,12 @@ function pip() {
     $hookclass = $config['hookclass'];
     $hookpath = APP_DIR . $hookdir . '/' . $hookclass . '.php';
     require_once($hookpath);
-
     // Get our controller file
     $path = APP_DIR . 'controllers/' . $controller . '.php';
     if (file_exists($path)) {
         require_once($path);
     } else {
         die('controller is not exists');
-        //$controller = $config['error_controller'];
-        //require_once(APP_DIR . 'controllers/' . $controller . '.php');
     }
 
     // Check the action exists

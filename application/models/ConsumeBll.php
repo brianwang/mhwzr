@@ -11,17 +11,16 @@
  *
  * @author brian
  */
-class RechargeBll extends BaseBll {
+class ConsumeBll extends BaseBll {
 
     //put your code here
     public function getbyuid($uid, $page = 1, $pagesize = 10) {
         $result = RechargeModel::find('all', array('conditions' => array(
-                        'uid=? and type=?', $uid, '充值'), 'limit' => $pagesize,
+                        'uid=? and type=?', $uid, '消费'), 'limit' => $pagesize,
                     'offset' => ($page - 1) * $pagesize));
         $count = RechargeModel::count(array('conditions' => array('uid=?', $uid)));
         $data = $this->to_array($result);
         return array('data' => $data, 'recordsTotal' => $count, 'recordsFiltered' => $count);
-        //return $this->to_array($result);
     }
 
 }

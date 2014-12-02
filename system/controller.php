@@ -33,8 +33,9 @@ class Controller {
         if ($tplfile == '') {
             $idx = strripos(__METHOD__, ':') + 1;
             $method = substr(__METHOD__, $idx);
-            $classname = debug_backtrace()[1]['class'];
-            $method= debug_backtrace()[1]['function'];
+            $bt = debug_backtrace();
+            $classname = $bt[1]['class'];
+            $method = $bt[1]['function'];
             $tplfile = VIEW_DIR . $classname . '/' . $method . '.html';
         }
         //if ($isfetch) {

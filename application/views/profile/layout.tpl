@@ -37,7 +37,6 @@
                 },
                 "sSearch": "搜索"
             };
-            
         </script>
         <div class="pay_content_right">
             <div class='profile'>

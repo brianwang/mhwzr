@@ -119,6 +119,16 @@ class PostBll extends BaseBll {
         return $data;
     }
 
+    function getposts($page = 1, $pagesize = 10,$filters=array()) {
+        if ($page == 0)
+            $page = 1;
+        $posts = PostModel::find('all', array(
+                    'conditions' => $filters,
+                    'order' => 'create_time desc', 'limit' => $pagesize,
+                    'offset' => ($page - 1) * $pagesize));
+        return $this->to_array($posts);
+    }
+
     function getitems($page = 1, $pagesize = 10, $status = '进行中') {
         try {
             if ($page == 0)
@@ -131,8 +141,6 @@ class PostBll extends BaseBll {
                         'conditions' => array('status=? ', $status),
                         'order' => 'create_time desc', 'limit' => $pagesize,
                         'offset' => ($page - 1) * $pagesize));
-//var_dump(PostModel::connection()->last_query);
-//var_dump(PostModel::connection()->last_query);
         } catch (Exception $e) {
             
         }

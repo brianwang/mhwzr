@@ -13,13 +13,16 @@
  */
 class MessageBll extends BaseBll {
 
-    public function getbyuid($uid = '') {
+    public function getbyuid($uid = '', $page = 1, $pagesize = 10) {
         if ($uid == '') {
             return array();
         } else {
-            $messgae = new MessageModel();
-            $result = $messgae->find('all', array('conditions' => array('creator=?', $uid)));
-            return $this->to_array($result);
+            $result = MessageModel::find('all', array('conditions' => array(
+                            'touid=? or uid=?', $uid, $uid), 'limit' => $pagesize,
+                        'offset' => ($page - 1) * $pagesize));
+            $count = MessageModel::count(array('conditions' => array('uid=?', $uid)));
+            $data = $this->to_array($result);
+            return array('data' => $data, 'recordsTotal' => $count, 'recordsFiltered' => $count);
         }
     }
 

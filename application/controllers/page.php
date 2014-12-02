@@ -88,6 +88,35 @@ class page extends Controller {
         $this->view->render('servicetry.tpl');
     }
 
+    function gongyi($pageid = 1) {
+        $data = array();
+        $postbll = new PostBll();
+        $pages = $postbll->getpages();
+        if ($pageid > $pages) {
+            $data['posts'] = array();
+        } else {
+            $data['posts'] = $postbll->getposts($pageid, 10, array('type=? ', '公益找人'));
+        }
+        $data['pages'] = $pages;
+        $data['curpage'] = $pageid;
+        $this->view->render('list.tpl', $data);
+    }
+
+    function xuanshang($pageid = 1) {
+        $data = array();
+        $postbll = new PostBll();
+
+        $pages = $postbll->getpages();
+        if ($pageid > $pages) {
+            $data['posts'] = array();
+        } else {
+            $data['posts'] = $postbll->getposts($pageid, 10, array('type=? ', '悬赏找人'));
+        }
+        $data['pages'] = $pages;
+        $data['curpage'] = $pageid;
+        $this->view->render('list.tpl', $data);
+    }
+
     function userprofile($uid = '') {
         if ($uid == '') {
             $this->view->error(404);
@@ -149,6 +178,14 @@ class page extends Controller {
 
     function help() {
         $this->view->render('help.tpl');
+    }
+
+    function contact() {
+        $this->view->render('contact.tpl');
+    }
+
+    function zhaopin() {
+        $this->view->render('zhaopin.tpl');
     }
 
     function recharge() {

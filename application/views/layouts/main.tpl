@@ -39,9 +39,10 @@
         <ul>
             <li><a class="p_grey1" href="/">首页</a></li>
             {*<li><a class="p_grey1" href="{site_url('/page/tasks')}">任务列表</a></li>*}
-            <li><a class="p_grey1" href="{site_url('/page/xunren')}">消息列表</a></li>
-            <li><a class="p_grey1" href="{site_url('/page/success')}">成功案例</a></li>
-            <li><a class="p_grey1" href="{site_url('/page/help')}">帮助中心</a></li>
+            <li><a class="p_grey1" href="{site_url('/page/gongyi')}">公益信息</a></li>
+            <li><a class="p_grey1" href="{site_url('/page/xuanshang')}">悬赏信息</a></li>
+            <li><a class="p_grey1" href="{site_url('/page/contact')}">联系网站</a></li>
+            <li><a class="p_grey1" href="{site_url('/page/zhaopin')}">网站招聘</a></li>
         </ul>
         <p class="right"><a href="{site_url('/page/profile/user')}">个人中心</a>
             <span class="p_grey"> | </span>
