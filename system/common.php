@@ -17,13 +17,11 @@ function redirect($loc) {
 }
 
 function site_url($path) {
-    global $config;
-    return $config['base_url'] . $path;
+    return $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $path;
 }
 
 function current_url() {
-    global $config;
-    return $config['base_url'] . $_SERVER['REQUEST_URI'];
+    return site_url($_SERVER['REQUEST_URI']);
 }
 
 function cur_uri() {

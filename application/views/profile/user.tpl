@@ -25,7 +25,9 @@
                 }
             },
             messages: {
-                name: "Required Field"
+                name: "Required Field",
+                qq: { required:'需要填写QQ'},
+                email: { required:'需要填写邮箱'}
             },
             submitHandler: function (form) {
                 // some other code

@@ -143,22 +143,19 @@ class page extends Controller {
                     'message' => '个人消息',
                 );
                 $data['content_title'] = isset($righttitles[$tag]) ? $righttitles[$tag] : '';
-//                switch ($tag) {
-//                    case 'apply': {
-//                        }
-//                        break;
-//                    case 'publish': {
-//                            $post = new PostBll();
-//                            $data['posts'] = $post->getbyuid($user['id']);
-//                        }
-//                        break;
-//                    case 'message': {
-//                            $message = new MessageBll();
-//                            $messages = $message->getbyuid($user['id']);
-//                            $data['messages'] = $messages;
-//                        }
-//                        break;
-//                }
+                switch ($tag) {
+                    case 'publish': {
+                            $post = new PostBll();
+                            $data['posts'] = $post->getbyuid($user['id']);
+                        }
+                        break;
+                    case 'message': {
+                            $message = new MessageBll();
+                            $messages = $message->getbyuid($user['id']);
+                            $data['messages'] = $messages;
+                        }
+                        break;
+                }
                 $this->view->render('profile/' . $tag . '.tpl', $data);
             } else {
                 $this->view->render('profile.tpl', $data);
