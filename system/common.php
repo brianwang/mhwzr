@@ -6,18 +6,18 @@
  * and open the template in the editor.
  */
 
+function site_url($path) {
+    return $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $path;
+}
+
 function redirect($loc) {
     global $config;
     if (strpos($loc, 'http') > -1) {
         header('Location: ' . $loc);
     } else {
-        header('Location: ' . $config['base_url'] . $loc);
+        header('Location: ' . site_url($loc));
     }
     exit();
-}
-
-function site_url($path) {
-    return $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $path;
 }
 
 function current_url() {

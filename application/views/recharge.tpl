@@ -12,36 +12,26 @@
         </ul>
         <div class="pay_content_right">
             <div class='alipay'>
-            <p class="right_title">支付宝充值</p>
-            <div class="right_content">
-                <p class="recharge_input"><span class="span1">充值:	</span><input type="text"><span class="span2">猴王币</span></p>
-                <p class="recharge_amount">付款：<span class="p_yellow p_bold"> 0 </span>元</p>
-                <p class="clear"></p>
-                <a class="recharge_btn" href="#">立即充值</a>
+                <p class="right_title">支付宝充值</p>
+                <div class="right_content">
+                    <p class="recharge_input"><span class="span1">充值:	</span><input type="text"><span class="span2">猴王币</span></p>
+                    <p class="recharge_amount">付款：<span class="p_yellow p_bold"> 0 </span>元</p>
+                    <p class="clear"></p>
+                    <a class="recharge_btn" href="#">立即充值</a>
+                </div>
             </div>
-        </div>
             <div class="right_content unionpay" style="display: none;">
                 <p class="recharge_input"><span class="span1">充值:	</span><input type="text"><span class="span2">猴王币</span></p>
                 <p class="recharge_amount">付款：<span class="p_yellow p_bold"> 0 </span>元</p>
                 <div class="blank_box">
                     <p>请选择付款银行</p>
                     <ul class="blank_list">
-                        <li class="item"><input type="radio" name="blank_name"><img src="{asset_url('img/pixel.gif')}" class="icon icon_blank_item1 p_icon"></li>
-                        <li class="item"><input type="radio" name="blank_name"><img src="{asset_url('img/pixel.gif')}" class="icon icon_blank_item1 p_icon"></li>
-                        <li class="item"><input type="radio" name="blank_name"><img src="{asset_url('img/pixel.gif')}" class="icon icon_blank_item1 p_icon"></li>
-                        <li class="item"><input type="radio" name="blank_name"><img src="{asset_url('img/pixel.gif')}" class="icon icon_blank_item1 p_icon"></li>
-                        <li class="item"><input type="radio" name="blank_name"><img src="{asset_url('img/pixel.gif')}" class="icon icon_blank_item1 p_icon"></li>
-                        <li class="item"><input type="radio" name="blank_name"><img src="{asset_url('img/pixel.gif')}" class="icon icon_blank_item1 p_icon"></li>
-                        <li class="item"><input type="radio" name="blank_name"><img src="{asset_url('img/pixel.gif')}" class="icon icon_blank_item1 p_icon"></li>
-                        <li class="item"><input type="radio" name="blank_name"><img src="{asset_url('img/pixel.gif')}" class="icon icon_blank_item1 p_icon"></li>
-                        <li class="item"><input type="radio" name="blank_name"><img src="{asset_url('img/pixel.gif')}" class="icon icon_blank_item1 p_icon"></li>
-                        <li class="item"><input type="radio" name="blank_name"><img src="{asset_url('img/pixel.gif')}" class="icon icon_blank_item1 p_icon"></li>
-                        <li class="item"><input type="radio" name="blank_name"><img src="{asset_url('img/pixel.gif')}" class="icon icon_blank_item1 p_icon"></li>
-                        <li class="item"><input type="radio" name="blank_name"><img src="{asset_url('img/pixel.gif')}" class="icon icon_blank_item1 p_icon"></li>
-                        <li class="item"><input type="radio" name="blank_name"><img src="{asset_url('img/pixel.gif')}" class="icon icon_blank_item1 p_icon"></li>
-                        <li class="item"><input type="radio" name="blank_name"><img src="{asset_url('img/pixel.gif')}" class="icon icon_blank_item1 p_icon"></li>
-                        <li class="item"><input type="radio" name="blank_name"><img src="{asset_url('img/pixel.gif')}" class="icon icon_blank_item1 p_icon"></li>
-                        <li class="item"><input type="radio" name="blank_name"><img src="{asset_url('img/pixel.gif')}" class="icon icon_blank_item1 p_icon"></li>
+                        {foreach  from=$config.banks item=bank}
+                            <li class="item"><input type="radio" name="{$bank.name}">
+                                <input type="hidden" name="bankname" value="{$bank.value}">
+                                <img src="{asset_url('img/pixel.gif')}" class="icon icon_blank_item1 p_icon">
+                            </li>
+                        {/foreach}
                     </ul>
                 </div>
                 <p class="clear"></p>
@@ -52,14 +42,14 @@
     </div>
     <script>
         $('.pay_list_item a').click(function (e) {
-            $('.pay_list_item').each(function(i,e){
-                    $(e).removeClass('select');
-                    var t = $(e).find('a').attr('href').substring(1);
-                    $('.'+t).hide();
+            $('.pay_list_item').each(function (i, e) {
+                $(e).removeClass('select');
+                var t = $(e).find('a').attr('href').substring(1);
+                $('.' + t).hide();
             });
             $(e.target).parent().addClass('select');
-            var tdiv= $(e.target).attr('href').substring(1);
-            $('.'+tdiv).show();
+            var tdiv = $(e.target).attr('href').substring(1);
+            $('.' + tdiv).show();
         });
     </script>
 {/block}

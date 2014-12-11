@@ -25,4 +25,15 @@ class recharge extends Controller {
         }
     }
 
+    
+    //支付宝参数
+    function zfb() {
+        
+    }
+
+    //银联
+    function yl() {
+        
+    }
+
 }

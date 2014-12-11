@@ -43,4 +43,10 @@ $config['status'] = array(
 include 'urls.php';
 include 'city.php';
 $config['provinces'] = array_keys($config['cities']);
+$config['banks'] = array(
+    array('name' => '招商银行', 'value' => 'ZSYH'),
+    array('name' => '建设银行', 'value' => 'ZSYH'),
+    array('name' => '工商银行', 'value' => 'ZSYH'),
+    array('name' => '', 'value' => 'ZSYH')
+);
 ?>
