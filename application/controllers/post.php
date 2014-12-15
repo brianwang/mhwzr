@@ -75,7 +75,32 @@ class post extends Controller {
             $page = isset($_GET['start']) ? $_GET['start'] : 1;
             $pagesize = isset($_GET['length']) ? $_GET['length'] : 10;
             $page = intval($page / $pagesize) + 1;
-            $result = $postbll->getbyuid($uid, $page, $pagesize);
+            $columns = $_GET['columns'];
+            $orders = $_GET['order'];
+            $filters = array();
+            $orderby = '';
+            foreach ($orders as $order) {
+                $orderby .= $columns[$order['column']]['data'] . ' ' . $order['dir'];
+            }
+            $filters['order'] = $orderby;
+            $search = '';
+            if (isset($_GET['search']) && $_GET['search']['value'] != '') {
+                for ($i = 0; $i < count($columns); $i++) {
+                    $search .=$columns[$i]['data'] . ' like %' . $_GET['search']['value'] . '%';
+                    if ($i != count($columns) - 1) {
+                        $search .=' and ';
+                    }
+                }
+            }
+            if ($search != '') {
+                $filters['conditions'] = array('uid=? and ' . $search, $uid);
+            } else {
+                $filters['conditions'] = array('uid=?', $uid);
+            }
+            $filters['limit'] = $_GET['length'];
+            $filters['offset'] = $_GET['start'];
+            $result = $postbll->filter($filters);
+            /// $postbll->getbyuid($uid, $page, $pagesize);
             $totalcount = $this->view->json($result);
         } else {
             $this->view->json(array());

@@ -119,7 +119,7 @@ class PostBll extends BaseBll {
         return $data;
     }
 
-    function getposts($page = 1, $pagesize = 10,$filters=array()) {
+    function getposts($page = 1, $pagesize = 10, $filters = array()) {
         if ($page == 0)
             $page = 1;
         $posts = PostModel::find('all', array(
@@ -154,6 +154,19 @@ class PostBll extends BaseBll {
             }
             return $result;
         }
+    }
+
+    public function filter($keys = array()) {
+        $posts = array();
+        try {
+            $posts = PostModel::find('all', $keys);
+        } catch (Exception $e) {
+            
+        }
+        $count = PostModel::count(array('conditions' => $keys['conditions']));
+        $data = $this->to_array($posts);
+        return array('data' => $data, 'recordsTotal' => $count, 'recordsFiltered' => $count);
+        //return  $this->to_array($posts);;
     }
 
     public function search($key = '', $page = 1, $pagesize = 10) {

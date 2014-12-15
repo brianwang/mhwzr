@@ -46,13 +46,24 @@ class UserBll extends BaseBll {
         return UserModel::count();
     }
 
-    public function saveprofile($user) {
-        $oldpassd = MD5($user['oldpassword']);
-        $user = UserModel::find(array('username' => $user['username'], 'password' => $oldpassd));
+    public function saveprofile($data) {
+        $oldpassd = MD5($data['oldpassword']);
+        $user = UserModel::find(array('username' => $data['username'], 'password' => $oldpassd));
         if ($user != null) {
-            $user->password = MD5($user['newpassword']);
+//            foreach ($data as $key => $v) {
+//                if ($key == 'newpassword') {
+//                    $v = MD5($v);
+//                }
+//                $user[$key] = $v;
+//            }
+            $user->password = MD5($data['newpassword']);
+            $user->email = $data['email'];
+            $user->qq= $data['qq'];
+            $user->phone = $data['phone'];
             $user->save();
-            return array('result'=>'success','message'=>'保存成功');
+            return array('result' => 'success', 'message' => '保存成功');
+        } else {
+            return array('result' => 'error', 'message' => '用户不存在');
         }
     }
 

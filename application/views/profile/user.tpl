@@ -27,13 +27,7 @@
             messages: {
                 name: "Required Field",
                 qq: { required:'需要填写QQ'},
-                email: { required:'需要填写邮箱'}
-            },
-            submitHandler: function (form) {
-                // some other code
-                // maybe disabling submit button
-                // then:
-                $(form).submit();
+                email: { required:'需要填写邮箱',email: '邮箱格式不正确'}
             }
         });
     </script>

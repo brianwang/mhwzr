@@ -65,11 +65,19 @@ class User extends Controller {
     }
 
     function saveprofile() {
-        if (isset($_POST['qq']) && isset($_POST['phone']) && isset($_POST['oldpassword']) && isset($_POST['newpassword']) && isset($_POST['confrim_password'])) {
-            if ($_POST['newpassword'] == $_POST['confirm_password']) {
-                $userbll = new UserBll();
-                $result = $userbll->save($_POST);
-                $this->view->json($result);
+        if (isset($_POST['qq']) && isset($_POST['phone']) && isset($_POST['oldpassword']) && isset($_POST['newpassword']) && isset($_POST['confirm_password'])) {
+            if ($_POST['oldpassword'] == $_POST['newpassword']) {
+                $this->view->json(array('result' => 'error', 'message' => '新密码和原密码一样'));
+            } else {
+                if ($_POST['newpassword'] == $_POST['confirm_password']) {
+                    $userbll = new UserBll();
+                    $result = $userbll->saveprofile($_POST);
+                    $this->view->json($result);
+                    //unset($_SESSION('user'));
+                    //redirect('/page/login');
+                } else {
+                    $this->view->json(array('result' => 'error', 'message' => '有些字段为空'));
+                }
             }
         } else {
             $this->view->json(array('result' => 'error', 'message' => '有些字段为空'));
